@@ -1,3 +1,4 @@
+# /usr/bin/env zsh
 # vim: ft=zsh :
 # shellcheck shell=bash
 #
@@ -16,7 +17,7 @@ zle -N edit-command-line
 # Define an init function and append to zvm_after_init_commands
 function zvm_after_init() {
   if [[ "$OS_NAME" == "Darwin" ]]; then
-    source /(opt|usr)/(homebrew|local)/Cellar/sk/*/share/zsh/site-functions/key-bindings.zsh([1])
+    source /$HOMEBREW_CELLAR/sk/*/share/zsh/site-functions/key-bindings.zsh([1])
   else
     source /usr/share/skim/shell/key-bindings.zsh
   fi

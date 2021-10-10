@@ -1,4 +1,5 @@
-#
+# /usr/bin/env zsh
+# vim: ft=zsh :
 # Requirements
 #
 
@@ -35,7 +36,7 @@ bashcompinit
 
 # load skim completion
 if [[ "$OS_NAME" == "Darwin" ]]; then
-  source /(opt|usr)/(homebrew|local)/Cellar/sk/*/share/zsh/site-functions/completion.zsh([1])
+  source /$HOMEBREW_CELLAR/sk/*/share/zsh/site-functions/completion.zsh([1])
 else
   source /usr/share/bash-completion/completions/sk
 fi
