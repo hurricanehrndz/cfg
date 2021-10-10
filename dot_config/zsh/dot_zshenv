@@ -1,0 +1,4 @@
+ZDOTDIR=$HOME/.config/zsh
+
+# Start compinit in my zshrc
+skip_global_compinit=1

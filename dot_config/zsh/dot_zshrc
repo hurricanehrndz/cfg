@@ -1,0 +1,38 @@
+# vim: ft=zsh :
+
+# path
+path=("$HOME/.local/bin" $path)
+
+# all of our zsh files
+typeset -U config_files
+config_files=($ZDOTDIR/*/*.zsh)
+
+
+# load the path files
+for file in ${(M)config_files:#*/path.zsh}; do
+  source "$file"
+done
+
+# load init files
+for file in ${(M)config_files:#*/init.zsh}; do
+  source "$file"
+done
+
+# load sheldon plugins
+source <(sheldon source)
+
+# load everything but the path and init files
+for file in ${${config_files:#*/path.zsh}:#*/init.zsh}; do
+  source "$file"
+done
+unset config_files
+
+# Load environment variables from a file; this approach allows me to not
+# commit secrets like API keys to Git
+if [ -e ~/.env ]; then
+  source ~/.env
+fi
+
+if [[ $TERM != "dumb" && (-z $INSIDE_EMACS || $INSIDE_EMACS == "vterm") ]]; then
+  eval "$(starship init zsh)"
+fi

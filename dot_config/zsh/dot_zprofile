@@ -1,0 +1,71 @@
+# vim:set ft=zsh sw=2 sts=2 ts=2 et:
+
+# see: https://wiki.archlinux.org/index.php/XDG_Base_Directory
+# Home clean-up:
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+if [ -z "$XDG_GREETER_DATA_DIR" ] && [ -e "/etc/zsh/zprofile" ]; then
+  # No duplicates in path arrays
+  typeset -gU cdpath fpath mailpath PATH path
+  # Source default profile if not done by system config
+  grep -qc 'source /etc/profile' /etc/zsh/zprofile || \
+    emulate sh -c 'source /etc/profile'
+  path=(               \
+    "$path[@]"         \
+  )
+  export PATH
+else
+  # Fallback for bash
+  export PATH=$(echo "$PATH" | \
+    awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}')
+fi
+
+# Shortcut to dotfiles path is $DOTFILES
+export DOTFILES="$HOME/dotfiles"
+
+# Time format
+export TIME="\t%e real,\t%U user,\t%S sys"
+
+# Default Programs
+export TERMINAL="alacritty"
+
+# Default editor (will set zsh binds to vi mode)
+if [ -n $(command -v nvim) ]; then
+  export VIMCONFIG="$HOME/.config/nvim"
+  export VIMDATA="$HOME/.local/share/nvim"
+  export EDITOR='nvim'
+  export VISUAL="nvim"
+else
+  export EDITOR='vi'
+  export VISUAL="vi"
+fi
+
+# Pagers
+# less: do not pollute home
+export LESSHISTFILE="-"
+export PAGER="less"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export BAT_THEME="TwoDark"
+export BAT_PAGER="less -RFI"
+
+# kvm default connection
+export VIRSH_DEFAULT_CONNECT_URI='qemu:///system'
+
+
+# autosuggetions
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+
+# Do not set SSH_AUTH_SOCKET on remote connection
+# if [[ -z "$SSH_CONNECTION" ]]; then
+#   export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
+# fi
+
+# OS Name
+export OS_NAME="$(uname)"
+
+if [ "$OS_NAME" = "Darwin" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
