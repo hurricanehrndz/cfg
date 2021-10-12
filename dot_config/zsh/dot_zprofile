@@ -31,7 +31,7 @@ if [ -n "$(command -v alacritty)" ]; then
 fi
 
 # Default editor (will set zsh binds to vi mode)
-if [ -n "$(command -v nvim") ]; then
+if [ -n "$(command -v nvim)" ]; then
   export EDITOR="nvim"
   export VISUAL="nvim"
 else
@@ -64,5 +64,5 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export OS_NAME="$(uname)"
 
 if [ "$OS_NAME" = "Darwin" ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  eval $(/opt/homebrew/bin/brew shellenv)
 fi
