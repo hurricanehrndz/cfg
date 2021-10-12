@@ -22,46 +22,43 @@ else
     awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}')
 fi
 
-# Shortcut to dotfiles path is $DOTFILES
-export DOTFILES="$HOME/dotfiles"
-
 # Time format
 export TIME="\t%e real,\t%U user,\t%S sys"
 
 # Default Programs
-export TERMINAL="alacritty"
+if [ -n "$(command -v alacritty)" ]; then
+  export TERMINAL="alacritty"
+fi
 
 # Default editor (will set zsh binds to vi mode)
-if [ -n $(command -v nvim) ]; then
-  export VIMCONFIG="$HOME/.config/nvim"
-  export VIMDATA="$HOME/.local/share/nvim"
-  export EDITOR='nvim'
+if [ -n "$(command -v nvim") ]; then
+  export EDITOR="nvim"
   export VISUAL="nvim"
 else
-  export EDITOR='vi'
+  export EDITOR="vi"
   export VISUAL="vi"
 fi
 
 # Pagers
 # less: do not pollute home
 export LESSHISTFILE="-"
-export PAGER="less"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export BAT_THEME="TwoDark"
-export BAT_PAGER="less -RFI"
+if [ -n "$(command -v bat)" ]; then
+  alias cat='bat'
+  export PAGER="bat"
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+  export BAT_THEME="TwoDark"
+  export BAT_PAGER="less -RFI"
+else
+  # less options
+  export LESS="-R-j12"  # displays 12 lines before search results with / and ?
+fi
 
 # kvm default connection
 export VIRSH_DEFAULT_CONNECT_URI='qemu:///system'
 
-
 # autosuggetions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
-
-# Do not set SSH_AUTH_SOCKET on remote connection
-# if [[ -z "$SSH_CONNECTION" ]]; then
-#   export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
-# fi
 
 # OS Name
 export OS_NAME="$(uname)"
