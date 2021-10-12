@@ -22,6 +22,13 @@ else
     awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}')
 fi
 
+# OS Name
+export OS_NAME="$(uname)"
+
+if [ "$OS_NAME" = "Darwin" ] && [ -e /opt/homebrew/bin/brew ]; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+fi
+
 # Time format
 export TIME="\t%e real,\t%U user,\t%S sys"
 
@@ -34,6 +41,7 @@ fi
 if [ -n "$(command -v nvim)" ]; then
   export EDITOR="nvim"
   export VISUAL="nvim"
+  alias vi='nvim'
 else
   export EDITOR="vi"
   export VISUAL="vi"
@@ -59,10 +67,3 @@ export VIRSH_DEFAULT_CONNECT_URI='qemu:///system'
 # autosuggetions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
-
-# OS Name
-export OS_NAME="$(uname)"
-
-if [ "$OS_NAME" = "Darwin" ]; then
-  eval $(/opt/homebrew/bin/brew shellenv)
-fi
