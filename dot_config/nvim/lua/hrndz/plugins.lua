@@ -27,12 +27,7 @@ return require('packer').startup(function(use)
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-fzy-native.nvim'}}
   }
   use 'christoomey/vim-tmux-navigator'
-  -- Let me see the status of the galaxy
-  use {
-    -- effects start page (redraw)
-    'glepnir/galaxyline.nvim',
-    branch = 'main'
-  }
+  use('windwp/windline.nvim')
 
   -- Please complete me
   use 'neovim/nvim-lspconfig'
