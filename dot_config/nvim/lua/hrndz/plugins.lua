@@ -66,8 +66,6 @@ return require('packer').startup(function(use)
   -- All hail to the Pope (tpope) + Other tools <--
   -- For the Git
   use 'tpope/vim-fugitive'
-  -- Do not forget the Hub
-  use 'tpope/vim-rhubarb'
   -- Need to swap some braces? This is the dentist!
   use 'tpope/vim-surround'
   -- Embrace the peanut gallery
