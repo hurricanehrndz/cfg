@@ -1,24 +1,29 @@
 return require('packer').startup(function(use)
 
   -- Packer can manage itself
-  use {'wbthomason/packer.nvim'}
+  use('wbthomason/packer.nvim')
   -- let's go to space
-  use 'tjdevries/astronauta.nvim'
+  use('tjdevries/astronauta.nvim')
 
   -- > Look and feel <--
   -- Embrace the darkside
-  use 'joshdick/onedark.vim'
+  use('joshdick/onedark.vim')
   -- Use the guides
-  use 'lukas-reineke/indent-blankline.nvim'
+  use('lukas-reineke/indent-blankline.nvim')
   -- Show me end of column
-  use 'tjdevries/overlength.vim'
+  use('tjdevries/overlength.vim')
   -- But mind the (git) warning signs
-  use({'lewis6991/gitsigns.nvim',})
+  use('lewis6991/gitsigns.nvim')
 
   -- A splash of color in your life
-  use 'norcalli/nvim-colorizer.lua'
+  use('norcalli/nvim-colorizer.lua')
   -- Everyone needs an icon
-  use {'kyazdani42/nvim-web-devicons', config = function() require'nvim-web-devicons'.setup({default = true}) end}
+  use({
+    'kyazdani42/nvim-web-devicons',
+    config = function()
+      require'nvim-web-devicons'.setup({default = true})
+    end
+  })
   -- Files grow on trees?
   use 'kyazdani42/nvim-tree.lua'
   -- Use the telescope to search between the fuzz
