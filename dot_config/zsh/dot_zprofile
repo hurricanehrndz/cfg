@@ -6,20 +6,19 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-if [ -z "$XDG_GREETER_DATA_DIR" ] && [ -e "/etc/zsh/zprofile" ]; then
-  # No duplicates in path arrays
+# No duplicates in path arrays
+if [ "${SHELL##*/}" = "zsh" ]; then
   typeset -gU cdpath fpath mailpath PATH path
-  # Source default profile if not done by system config
-  grep -qc 'source /etc/profile' /etc/zsh/zprofile || \
-    emulate sh -c 'source /etc/profile'
-  path=(               \
-    "$path[@]"         \
-  )
-  export PATH
 else
   # Fallback for bash
   export PATH=$(echo "$PATH" | \
     awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}')
+fi
+
+if [ "${SHELL##*/}" = "zsh" ] && [ -e "/etc/zsh/zprofile" ]; then
+  # Source default profile if not done by system config
+  grep -qc 'source /etc/profile' /etc/zsh/zprofile || \
+    emulate sh -c 'source /etc/profile'
 fi
 
 # OS Name
