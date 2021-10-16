@@ -27,6 +27,7 @@ preexec_functions+=(import_tmux_env)
 
 if [[ -n "$TMUX" ]]; then
   tmux_session="$(tmux display-message -p -F "#{session_name}")"
+  tmux set-environment -t $tmux_session PATH "${(j.:.)path}"
   if [[ ! "$tmux_session" =~ "popup" ]]; then
     WINDOW_ID=$(tmux display -p "#{window_id}")
     export NVIM_LISTEN_ADDRESS="/tmp/nvim_${USER}_${WINDOW_ID}"
