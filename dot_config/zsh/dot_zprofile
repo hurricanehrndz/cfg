@@ -31,9 +31,25 @@ fi
 # Time format
 export TIME="\t%e real,\t%U user,\t%S sys"
 
-# Default Programs
-if [ -n "$(command -v alacritty)" ]; then
-  export TERMINAL="alacritty"
+if [ "${SHELL##*/}" = "zsh" ]; then
+  typeset -gU cdpath fpath mailpath PATH path
+  # custom PATHS and variables
+  # XDG bin path
+  path=("$HOME/.local/bin" $path)
+
+  # all of our zsh files
+  typeset -U config_files
+  config_files=($ZDOTDIR/*/*.zsh)
+
+  # load the path files
+  for file in ${(M)config_files:#*/path.zsh}; do
+    source "$file"
+  done
+
+  # load init files
+  for file in ${(M)config_files:#*/init.zsh}; do
+    source "$file"
+  done
 fi
 
 # Default editor (will set zsh binds to vi mode)

@@ -5,18 +5,7 @@ path=("$HOME/.local/bin" $path)
 
 # all of our zsh files
 typeset -U config_files
-config_files=($ZDOTDIR/*/*.zsh)
-
-
-# load the path files
-for file in ${(M)config_files:#*/path.zsh}; do
-  source "$file"
-done
-
-# load init files
-for file in ${(M)config_files:#*/init.zsh}; do
-  source "$file"
-done
+config_files=($ZDOTDIR/*/conf.zsh)
 
 # load sheldon plugins
 source <(sheldon source)
