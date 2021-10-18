@@ -5,7 +5,7 @@ typeset -U config_files
 config_files=($ZDOTDIR/*/conf.zsh)
 
 # load sheldon plugins
-source <(sheldon source)
+(( $+commands[sheldon] )) && source <(sheldon source)
 
 # load everything but the path and init files
 for file in ${${config_files:#*/path.zsh}:#*/init.zsh}; do
@@ -20,5 +20,5 @@ if [ -e ~/.env ]; then
 fi
 
 if [[ $TERM != "dumb" && (-z $INSIDE_EMACS || $INSIDE_EMACS == "vterm") ]]; then
-  eval "$(starship init zsh)"
+  (( $+commands[starship] )) && eval "$(starship init zsh)"
 fi
