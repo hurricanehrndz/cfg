@@ -8,15 +8,15 @@ config_files=($ZDOTDIR/*/conf.zsh)
 (( $+commands[sheldon] )) && source <(sheldon source)
 
 # load everything but the path and init files
-for file in ${${config_files:#*/path.zsh}:#*/init.zsh}; do
+for file in ${config_files}; do
   source "$file"
 done
 unset config_files
 
 # Load environment variables from a file; this approach allows me to not
 # commit secrets like API keys to Git
-if [ -e ~/.env ]; then
-  source ~/.env
+if [[ -e "$HOME/.env" ]]; then
+  source "$HOME/.env"
 fi
 
 if [[ $TERM != "dumb" && (-z $INSIDE_EMACS || $INSIDE_EMACS == "vterm") ]]; then
