@@ -52,28 +52,11 @@ if [ "${SHELL##*/}" = "zsh" ]; then
   done
 fi
 
-# Default editor (will set zsh binds to vi mode)
-if [ -n "$(command -v nvim)" ]; then
-  export EDITOR="nvim"
-  export VISUAL="nvim"
-  alias vi='nvim'
-else
-  export EDITOR="vi"
-  export VISUAL="vi"
-fi
 
-# Pagers
-# less: do not pollute home
-export LESSHISTFILE="-"
-if [ -n "$(command -v bat)" ]; then
-  alias cat='bat'
-  export PAGER="bat"
-  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-  export BAT_THEME="TwoDark"
-  export BAT_PAGER="less -RFI"
-else
-  # less options
-  export LESS="-R-j12"  # displays 12 lines before search results with / and ?
+if [ "${SHELL##*/}" != "zsh" ]; then
+  # if not zsh, make sure PATH contains only unique values
+  export PATH=$(echo "$PATH" | \
+    awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}')
 fi
 
 # kvm default connection
