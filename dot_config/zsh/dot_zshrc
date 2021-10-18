@@ -1,8 +1,5 @@
 # vim: ft=zsh :
 
-# path
-path=("$HOME/.local/bin" $path)
-
 # all of our zsh files
 typeset -U config_files
 config_files=($ZDOTDIR/*/conf.zsh)
