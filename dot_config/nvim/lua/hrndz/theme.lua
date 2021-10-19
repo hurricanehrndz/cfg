@@ -11,15 +11,16 @@ local loaded_onedark, _ = pcall(function() return vim.fn['onedark#GetColors']() 
 if (not loaded_onedark) then
  do return end
 end
-vim.cmd('colorscheme onedark')
 -- enable italics
 vim.g.onedark_terminal_italics = 1
+vim.g.onedark_termcolors = 16
+vim.cmd('colorscheme onedark')
 
 local has_windline, _ = pcall(require, 'windline')
 if has_windline then
   require('wlsample.evil_line')
   require('wlfloatline').setup()
-   vim.cmd('colorscheme onedark')
+  vim.cmd('colorscheme onedark')
 end
 
 -- neovim/neovim/issues/11335
