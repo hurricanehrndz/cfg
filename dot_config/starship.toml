@@ -1,0 +1,11 @@
+scan_timeout = 15
+
+[aws]
+disabled = true
+
+[cmd_duration]
+disabled = true
+
+[directory]
+fish_style_pwd_dir_length = 1
+truncate_to_repo = false
