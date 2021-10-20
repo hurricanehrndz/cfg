@@ -1,0 +1,120 @@
+# Sources:
+# https://github.com/seebi/rc/blob/master/rc/gitconfig
+
+[user]
+    name  = Carlos Hernandez
+{{ if stat "/etc/yelp" }}
+    email = {{ .chezmoi.username }}@yelp.com
+{{ else }}
+    email = hurricanehrndz@techbyte.ca
+{{ end }}
+
+
+[alias]
+## log stuff
+    l           = "!git --no-pager log -1 --format=format:\"$path: %Cgreen%s%Creset (%Cred$(git rev-parse --abbrev-ref HEAD)%Creset/%ar)\"; echo "
+    x           = log -10 --format=format:'%Cgreen%h%Creset %Cred%d%Creset %s %Cblue(%ar by %an)%Creset'
+    xlog        = log -10 --format=format:'%Cgreen%h%Creset %Cred%d%Creset %s %Cblue(%ar by %an)%Creset'
+    xlogall     = log -10 --branches --format=format:'%Cgreen%h%Creset %Cred%d%Creset %s %Cblue(%ar by %an)%Creset'
+    xlogfull    = log --format=format:'%Cgreen%h%Creset %Cred%d%Creset %s %Cblue(%ar by %an)%Creset'
+    xlogfullall = log --branches --format=format:'%Cgreen%h%Creset %Cred%d%Creset %s %Cblue(%ar by %an)%Creset'
+    glog        = log --oneline --decorate --stat --graph
+    tree        = log --decorate --pretty=oneline --abbrev-commit --graph
+    lc          = log ORIG_HEAD.. --stat --no-merges --graph
+    lg1         = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+    lg2         = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+    lg          = !"git lg1"
+
+# other stuff
+    clean-all = clean -dfq
+
+[color]
+    diff        = always
+    status      = always
+    branch      = always
+    interactive = always
+    ui          = auto
+    pager       = true
+
+[color "branch"]
+    current = yellow reverse
+    local   = yellow
+    remote  = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old  = red bold
+    new  = green bold
+
+[color "status"]
+    added     = yellow
+    changed   = green
+    untracked = cyan
+
+[core]
+    pager        = delta --theme=$BAT_THEME
+    whitespace   = -indent-with-non-tab,trailing-space,cr-at-eol
+    excludesfile = $XDG_CONFIG_HOME/git/config/ignore
+
+[diff]
+    # Detect copies as well as renames
+    renames = copies
+
+[merge]
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
+    tool = vimdiff
+
+[mergetool]
+    keepBackup = false
+
+[mergetool "vimdiff"]
+    cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+
+[github]
+    user = hurricanehrndz
+
+[help]
+    # Automatically correct and execute mistyped commands
+    autocorrect = 1
+
+[push]
+    default = simple
+
+[pull]
+    rebase = true
+
+[status]
+    showStash = true
+
+[stash]
+    showPatch = true
+
+# URL shorthands
+[url "git://github.com/"]
+
+    insteadOf = "https://github.com/"
+    insteadOf = "github:"
+
+[url "git@github.com:"]
+
+    pushInsteadOf = "github:"
+    pushInsteadOf = "git://github.com/"
+
+
+[url "git@gist.github.com:"]
+
+    insteadOf = "gst:"
+    pushInsteadOf = "gist:"
+    pushInsteadOf = "git://gist.github.com/"
+
+[url "git://gist.github.com/"]
+
+    insteadOf = "gist:"
+
+[commit]
+    gpgsign = false
+    verbose = true
+
+# vim: set ft=gitconfig:
