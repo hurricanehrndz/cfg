@@ -8,6 +8,10 @@ if [[ -e "/usr/local/share/zsh/vendor-completions" ]]; then
   fpath=(/usr/local/share/zsh/vendor-completions $fpath)
 fi
 
+if [[ -e "$HOMEBREW_PREFIX/share/zsh/site-functions" ]]; then
+  fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
+fi
+
 if [[ -e "/usr/share/zsh/vendor-completions" ]]; then
   fpath=(/usr/share/zsh/vendor-completions $fpath)
 fi
