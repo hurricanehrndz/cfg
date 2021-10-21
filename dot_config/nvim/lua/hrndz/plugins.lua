@@ -32,7 +32,7 @@ return require('packer').startup(function(use)
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-fzy-native.nvim'}}
   }
   use 'christoomey/vim-tmux-navigator'
-  use('windwp/windline.nvim')
+  use('famiu/feline.nvim')
 
   -- Please complete me
   use 'neovim/nvim-lspconfig'
@@ -85,5 +85,4 @@ return require('packer').startup(function(use)
   use 'godlygeek/tabular'
   use 'ntpeters/vim-better-whitespace'
   -- Add a terminal
-  use("voldikss/vim-floaterm")
 end)
