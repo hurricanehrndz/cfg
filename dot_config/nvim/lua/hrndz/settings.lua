@@ -22,6 +22,8 @@ wo.wrap = false
 wo.colorcolumn = "120"
 
 -- >> edior options <<--
+-- cursor
+o.guicursor='n-v-c:hor20,i-ci-ve:hor20-blinkwait10-blinkon400-blinkoff250'
 -- abandon buffer when unloading
 o.hidden = true
 -- refresh rate of diagnostic msg
