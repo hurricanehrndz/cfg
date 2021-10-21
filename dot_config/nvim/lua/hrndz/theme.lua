@@ -16,13 +16,6 @@ vim.g.onedark_terminal_italics = 1
 vim.g.onedark_termcolors = 16
 vim.cmd('colorscheme onedark')
 
-local has_windline, _ = pcall(require, 'windline')
-if has_windline then
-  require('wlsample.evil_line')
-  require('wlfloatline').setup()
-  vim.cmd('colorscheme onedark')
-end
-
 -- neovim/neovim/issues/11335
 if (fn['has']('termguicolors') and fn['has']('nvim-0.5.0') and vim.api.nvim_list_uis()[1]['ext_termcolors']) then
   vim.g.terminal_color_0 = nil
