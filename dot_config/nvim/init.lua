@@ -6,6 +6,7 @@ require('hrndz.settings')
 
 -- Setup colors
 require('hrndz.theme')
+require('hrndz.statusline')
 
 -- Install plugins
 require('hrndz.plugins')
