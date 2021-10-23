@@ -16,7 +16,12 @@ return require('packer').startup(function(use)
   use('lewis6991/gitsigns.nvim')
 
   -- A splash of color in your life
-  use('norcalli/nvim-colorizer.lua')
+  use({
+      'norcalli/nvim-colorizer.lua',
+      config = function()
+        require('colorizer').setup()
+      end
+      })
   -- Everyone needs an icon
   use({
     'kyazdani42/nvim-web-devicons',
