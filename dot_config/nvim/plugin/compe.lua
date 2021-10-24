@@ -3,35 +3,26 @@ vim.o.completeopt = "menuone,noinsert,noselect"
 -- disable insert completion menu messages
 vim.o.shortmess = vim.o.shortmess .. "c"
 
-local has_compe, compe = pcall(require, "compe")
-if not has_compe then
+local has_cmp, cmp = pcall(require, "cmp")
+if not has_cmp then
  do return end
 end
 
-compe.setup {
-  enabled = true,
-  autocomplete = true,
-  debug = false,
-  min_length = 2,
-  preselect = "enable",
-  throttle_time = 80,
-  source_timeout = 200,
-  incomplete_delay = 400,
-  max_abbr_width = 100,
-  max_kind_width = 100,
-  max_menu_width = 100,
-  documentation = true,
-
-  source = {
-    path = true,
-    buffer = true,
-    calc = true,
-    nvim_lsp = true,
-    nvim_lua = true,
-    vsnip = true,
-    spell = true,
-    treesitter = false
-  }
+cmp.setup {
+  snippet = {
+    expand = fuction(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
+    { name = 'path' },
+    { name = 'buffer' },
+    { name = 'vsnip' },
+    { name = 'nuspell' },
+    { name = 'zsh' },
+  })
 }
 
 vim.cmd([[inoremap <silent><expr> <C-y>      compe#confirm("<C-y>")]])

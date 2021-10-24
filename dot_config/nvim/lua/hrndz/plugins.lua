@@ -41,7 +41,17 @@ return require('packer').startup(function(use)
 
   -- Please complete me
   use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-compe'
+  use('hrsh7th/cmp-nvim-lsp')
+  use('hrsh7th/cmp-nvim-lua')
+  use('hrsh7th/cmp-path')
+  use('hrsh7th/cmp-buffer')
+  use('tamago324/cmp-zsh')
+  use('Shougo/deol.nvim')
+  use('hrsh7th/nvim-cmp')
+  use(
+    'f3fora/cmp-nuspell',
+    -- rocks={'lua-nuspell'},
+  )
   use 'glepnir/lspsaga.nvim' -- performance UI - code actions, diags
   use {
     'onsails/lspkind-nvim', -- pictogram for completion menu
@@ -50,6 +60,7 @@ return require('packer').startup(function(use)
   use 'sbdchd/neoformat'
   -- Snippets
   use 'rafamadriz/friendly-snippets'
+  use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
   -- use 'norcalli/snippets.nvim'
 
