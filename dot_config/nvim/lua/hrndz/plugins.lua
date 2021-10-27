@@ -16,26 +16,17 @@ return require('packer').startup(function(use)
   use('lewis6991/gitsigns.nvim')
 
   -- A splash of color in your life
-  use({
-      'norcalli/nvim-colorizer.lua',
-      config = function()
-        require('colorizer').setup()
-      end
-      })
+  use('norcalli/nvim-colorizer.lua')
   -- Everyone needs an icon
-  use({
-    'kyazdani42/nvim-web-devicons',
-    config = function()
-      require'nvim-web-devicons'.setup({default = true})
-    end
+  use({'kyazdani42/nvim-web-devicons',
   })
   -- Files grow on trees?
-  use 'kyazdani42/nvim-tree.lua'
+  use('kyazdani42/nvim-tree.lua')
   -- Use the telescope to search between the fuzz
-  use {
+  use({
     'nvim-telescope/telescope.nvim',
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-fzy-native.nvim'}}
-  }
+  })
   use 'christoomey/vim-tmux-navigator'
   use('famiu/feline.nvim')
 
@@ -48,21 +39,27 @@ return require('packer').startup(function(use)
   use('tamago324/cmp-zsh')
   use('Shougo/deol.nvim')
   use('hrsh7th/nvim-cmp')
-  use(
-    'f3fora/cmp-nuspell',
-    -- rocks={'lua-nuspell'},
-  )
-  use 'glepnir/lspsaga.nvim' -- performance UI - code actions, diags
-  use {
-    'onsails/lspkind-nvim', -- pictogram for completion menu
-    config = function() require'lspkind'.init() end
-  }
-  use 'sbdchd/neoformat'
+  -- use({
+  --   'f3fora/cmp-nuspell',
+  --   rocks = {
+  --     {
+  --       'lua-nuspell',
+  --       env = {
+  --         ICU_ROOT = '/usr/local/opt/icu4c',
+  --         LUA_LIBDIR = '/usr/local/opt/lua@5.1/lib/',
+  --         LUA_LIBDIR_FILE = 'liblua5.1.dylib',
+  --         MACOSX_DEPLOYMENT_TARGET = '10.15',
+  --        },
+  --     },
+  --   }
+  -- })
+  use('glepnir/lspsaga.nvim') -- performance UI - code actions, diags
+  use('onsails/lspkind-nvim') -- pictogram for completion menu
+  use('sbdchd/neoformat')
   -- Snippets
-  use 'rafamadriz/friendly-snippets'
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/vim-vsnip'
-  -- use 'norcalli/snippets.nvim'
+  use('rafamadriz/friendly-snippets')
+  use('hrsh7th/cmp-vsnip')
+  use('hrsh7th/vim-vsnip')
 
   -- > Polyglot Plugins <--
   --  Better syntax
@@ -72,13 +69,6 @@ return require('packer').startup(function(use)
       -- color all the braces
       {'p00f/nvim-ts-rainbow'}
     },
-    -- Parsers are maintained by nix
-    config = function()
-      require'nvim-treesitter.configs'.setup({
-        highlight = {enable = true, disable = {"nix"}},
-        rainbow = {enable = true, disable = {'bash', 'nix'}}
-      })
-    end
   })
   use 'sheerun/vim-polyglot' -- forces redraw effecting startpage
   -- Lua development -- lsp plugin
