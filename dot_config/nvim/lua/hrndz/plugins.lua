@@ -18,8 +18,7 @@ return require('packer').startup(function(use)
   -- A splash of color in your life
   use('norcalli/nvim-colorizer.lua')
   -- Everyone needs an icon
-  use({'kyazdani42/nvim-web-devicons',
-  })
+  use('kyazdani42/nvim-web-devicons')
   -- Files grow on trees?
   use('kyazdani42/nvim-tree.lua')
   -- Use the telescope to search between the fuzz
