@@ -30,14 +30,19 @@ return require('packer').startup(function(use)
   use('famiu/feline.nvim')
 
   -- Please complete me
-  use 'neovim/nvim-lspconfig'
-  use('hrsh7th/cmp-nvim-lsp')
+  -- use 'neovim/nvim-lspconfig'
+  -- use('hrsh7th/cmp-nvim-lsp')
   use('hrsh7th/cmp-nvim-lua')
   use('hrsh7th/cmp-path')
   use('hrsh7th/cmp-buffer')
+  use('hrsh7th/cmp-cmdline')
   use('tamago324/cmp-zsh')
   use('Shougo/deol.nvim')
   use('hrsh7th/nvim-cmp')
+  -- Snippets
+  use('rafamadriz/friendly-snippets')
+  use('hrsh7th/cmp-vsnip')
+  use('hrsh7th/vim-vsnip')
   -- use({
   --   'f3fora/cmp-nuspell',
   --   rocks = {
@@ -54,11 +59,7 @@ return require('packer').startup(function(use)
   -- })
   use('glepnir/lspsaga.nvim') -- performance UI - code actions, diags
   use('onsails/lspkind-nvim') -- pictogram for completion menu
-  use('sbdchd/neoformat')
-  -- Snippets
-  use('rafamadriz/friendly-snippets')
-  use('hrsh7th/cmp-vsnip')
-  use('hrsh7th/vim-vsnip')
+  -- use('sbdchd/neoformat')
 
   -- > Polyglot Plugins <--
   --  Better syntax

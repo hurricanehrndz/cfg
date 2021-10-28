@@ -1,5 +1,6 @@
 -- completion settings
-vim.o.completeopt = "menu,menuone,noinsert"
+-- vim.o.completeopt = "menu,menuone,noinsert"
+vim.o.completeopt = "menuone,noinsert,noselect"
 -- disable insert completion menu messages
 vim.o.shortmess = vim.o.shortmess .. "c"
 
@@ -23,9 +24,25 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'buffer' },
     { name = 'path' },
-    { name = 'nvim_lsp' },
+    -- { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'vsnip' },
     { name = 'zsh' },
+  })
+})
+
+-- Use buffer source for `/`.
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- Use cmdline & path source for ':'.
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
   })
 })
