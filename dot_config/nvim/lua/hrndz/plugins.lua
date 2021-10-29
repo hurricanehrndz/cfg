@@ -1,3 +1,4 @@
+vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
 return require('packer').startup(function(use)
 
   -- Packer can manage itself
@@ -43,20 +44,6 @@ return require('packer').startup(function(use)
   use('rafamadriz/friendly-snippets')
   use('hrsh7th/cmp-vsnip')
   use('hrsh7th/vim-vsnip')
-  -- use({
-  --   'f3fora/cmp-nuspell',
-  --   rocks = {
-  --     {
-  --       'lua-nuspell',
-  --       env = {
-  --         ICU_ROOT = '/usr/local/opt/icu4c',
-  --         LUA_LIBDIR = '/usr/local/opt/lua@5.1/lib/',
-  --         LUA_LIBDIR_FILE = 'liblua5.1.dylib',
-  --         MACOSX_DEPLOYMENT_TARGET = '10.15',
-  --        },
-  --     },
-  --   }
-  -- })
   use('glepnir/lspsaga.nvim') -- performance UI - code actions, diags
   use('onsails/lspkind-nvim') -- pictogram for completion menu
   -- use('sbdchd/neoformat')
