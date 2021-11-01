@@ -11,20 +11,26 @@ brew "bash"
 brew "bat"
 brew "bottom"
 brew "chezmoi"
-brew "zstd"
 brew "direnv"
 brew "dust"
 brew "exa"
 brew "fd"
 brew "fzf"
 brew "gawk"
+brew "git"
 brew "git-delta"
+brew "gnupg"
 brew "grc"
 brew "grex"
 brew "hyperfine"
 brew "less"
+brew "lua@5.1"
+brew "luarocks"
 brew "neofetch"
-brew "neovim"
+brew "neovim", args: ["HEAD"]
+brew "neovim-remote"
+brew "ninja"
+brew "pinentry-mac"
 brew "poetry"
 brew "ripgrep"
 brew "sd"
@@ -38,18 +44,21 @@ brew "tmux"
 brew "tree"
 brew "zoxide"
 brew "zsh"
-cask "iterm2"
+brew "zstd"
 cask "flameshot"
 cask "font-sauce-code-pro-nerd-font"
+cask "iterm2"
 cask "vagrant"
 EOF
 
-{{ if (eq .chezmoi.arch "arm64") -}}
 if ! grep -qc "/usr/local/bin/zsh" /etc/shells; then
   echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells > /dev/null
 fi
+
+{{ if (eq .chezmoi.arch "arm64") -}}
 if [[ ! -e /usr/local/bin/zsh ]]; then
   sudo ln -sf /opt/homebrew/bin/zsh /usr/local/bin/zsh
 fi
 {{ end -}}
+
 {{ end -}}
