@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+SUMNEKO_ULR="https://github.com/sumneko/lua-language-server/"
+SUMKEKO_DIR="$HOME/.cache/nvim/nlua/sumneko_lua/lua-language-server/"
+mkdir -p "$SUMKEKO_DIR"
+
+if [[ ! -d "$SUMKEKO_DIR" ]]; then
+  git clone "$SUMNEKO_ULR" "$SUMKEKO_DIR"
+fi
+
+sumneko_update_flag=("$SUMKEKO_DIR/bin/.update"(Nmd+6))
+if [[ ! -e "$SUMKEKO_DIR/bin/.update" ]] || [[ "$#sumneko_update_flag" -ge 1 ]]; then
+  pushd "$SUMKEKO_DIR"
+  git submodule update --init --recursive
+  pushd "./3rd/luamake"
+  "./compile/install.sh"
+  popd
+  "./3rd/luamake/luamake" rebuild
+  popd
+  touch "$SUMKEKO_DIR/bin/.update"
+fi
+
+if [[ "$OS_NAME" == "Darwin" ]]; then
+  ln -sf "$SUMKEKO_DIR/bin/macOS"  "$SUMKEKO_DIR/bin/OSX"
+fi
