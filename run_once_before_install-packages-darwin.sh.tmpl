@@ -1,5 +1,5 @@
 {{- if (eq .chezmoi.os "darwin") -}}
-#!/bin/bash
+#!/bin/zsh
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 tap "homebrew/bundle"
@@ -62,3 +62,4 @@ fi
 {{ end -}}
 
 {{ end -}}
+# vim: set ft=zsh :
