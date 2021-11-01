@@ -30,3 +30,8 @@ if has_telescope then
   nnoremap({"<space>gs", require('telescope.builtin').git_status,})
   nnoremap({"<space>gp", require('telescope.builtin').git_bcommits,})
 end
+
+local has_plenary_ft, plenary_ft = pcall(require, 'plenary.filetype')
+if has_plenary_ft then
+  plenary_ft.add_file('defs')
+end
