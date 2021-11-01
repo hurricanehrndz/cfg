@@ -1,14 +1,16 @@
 -- completion settings
 -- vim.o.completeopt = "menu,menuone,noinsert"
-vim.o.completeopt = "menuone,noinsert,noselect"
+vim.o.completeopt = 'menuone,noinsert,noselect'
 -- disable insert completion menu messages
-vim.o.shortmess = vim.o.shortmess .. "c"
+vim.o.shortmess = vim.o.shortmess .. 'c'
 
-local has_cmp, cmp = pcall(require, "cmp")
-if not has_cmp then
+local has_cmp, cmp = pcall(require, 'cmp')
+local has_lspkind, lspkind = pcall(require, 'lspkind')
+if not has_cmp or not has_lspkind then
  do return end
 end
 
+lspkind.init()
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -24,11 +26,24 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'buffer' },
     { name = 'path' },
-    -- { name = 'nvim_lsp' },
+    { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'vsnip' },
     { name = 'zsh' },
-  })
+  }),
+  formatting = {
+    -- Youtube: How to set up nice formatting for your sources.
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[api]",
+        path = "[path]",
+        vsnip = "[snip]",
+      },
+    },
+  },
 })
 
 -- Use buffer source for `/`.
