@@ -23,7 +23,7 @@ wo.colorcolumn = "120"
 
 -- >> edior options <<--
 -- cursor
-o.guicursor='n-v-c:ver30,i-ci-ve:ver30-blinkwait10-blinkon400-blinkoff250'
+o.guicursor=''
 -- abandon buffer when unloading
 o.hidden = true
 -- refresh rate of diagnostic msg
@@ -59,3 +59,4 @@ o.shiftround = true
 -- >> buffer-scoped options <<--
 bo.shiftwidth = 4 -- smarttab enable by default, ts sts ignored
 bo.expandtab = true
+bo.smartindent = true
