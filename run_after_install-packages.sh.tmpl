@@ -1,11 +1,11 @@
 #!/bin/zsh
 # vim: set ft=zsh :
 
-SUMNEKO_ULR="https://github.com/sumneko/lua-language-server/"
-SUMKEKO_DIR="$HOME/.cache/nvim/nlua/sumneko_lua/lua-language-server/"
-mkdir -p "$SUMKEKO_DIR"
+SUMNEKO_ULR="https://github.com/sumneko/lua-language-server"
+SUMKEKO_DIR="$HOME/.cache/nvim/nlua/sumneko_lua/lua-language-server"
 
 if [[ ! -d "$SUMKEKO_DIR" ]]; then
+  mkdir -p "$SUMKEKO_DIR"
   git clone "$SUMNEKO_ULR" "$SUMKEKO_DIR"
 fi
 
