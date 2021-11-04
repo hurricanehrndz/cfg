@@ -24,12 +24,12 @@ cmp.setup({
     ['<C-e>'] = cmp.mapping.close(),
   },
   sources = cmp.config.sources({
-    { name = 'buffer' },
-    { name = 'path' },
-    { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
-    { name = 'vsnip' },
+    { name = 'nvim_lsp' },
     { name = 'zsh' },
+    { name = 'path' },
+    { name = 'vsnip' },
+    { name = 'buffer', keyword_length = 5 },
   }),
   formatting = {
     -- Youtube: How to set up nice formatting for your sources.
