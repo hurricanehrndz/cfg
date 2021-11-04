@@ -11,6 +11,31 @@ local custom_init = function(client)
   client.config.flags.allow_incremental_sync = true
 end
 
+
+local buf_nnoremap = function(opts)
+  opts.buffer = 0
+  nnoremap(opts)
+end
+
+local buf_inoremap = function(opts)
+  opts.buffer = 0
+  inoremap(opts)
+end
+
+local custom_attach = function(client)
+  buf_nnoremap({ '[d', vim.diagnostic.goto_prev })
+  buf_nnoremap({ ']d', vim.diagnostic.goto_next })
+  buf_nnoremap({ 'gd', vim.lsp.buf.definition })
+  buf_nnoremap { 'gD', vim.lsp.buf.declaration }
+  buf_nnoremap { 'gT', vim.lsp.buf.type_definition }
+  buf_nnoremap { 'gr', vim.lsp.buf.references }
+  buf_nnoremap { 'gR', vim.lsp.buf.rename }
+  buf_nnoremap { 'K', vim.lsp.buf.hover }
+
+  buf_inoremap { "<c-m>", vim.lsp.buf.signature_help }
+  buf_nnoremap { '<c-m>', vim.lsp.buf.signature_help }
+end
+
 -- Setup lspconfig.
 local has_lsp, lspconfig = pcall(require, 'lspconfig')
 local has_cmp_lsp, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
@@ -26,7 +51,8 @@ local has_nlua, nlua = pcall(require, 'nlua.lsp.nvim')
 if not has_nlua then
   return
 end
-nlua.setup(require('lspconfig'), {
+nlua.setup(lspconfig, {
   on_init = custom_init,
+  on_attch = custom_attach,
   capabilities = updated_capabilities,
 })
