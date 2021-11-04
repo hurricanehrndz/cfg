@@ -1,5 +1,9 @@
+local has_astronauta, _ = pcall(require, 'astronauta.keymap')
+if not has_astronauta then
+  return
+end
+
 local nnoremap = vim.keymap.nnoremap
-local vnoremap = vim.keymap.vnoremap
 local inoremap = vim.keymap.inoremap
 
 local custom_init = function(client)
