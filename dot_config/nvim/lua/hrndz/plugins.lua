@@ -20,8 +20,6 @@ return require('packer').startup(function(use)
   use('norcalli/nvim-colorizer.lua')
   -- Everyone needs an icon
   use('kyazdani42/nvim-web-devicons')
-  -- Files grow on trees?
-  use('kyazdani42/nvim-tree.lua')
   -- Use the telescope to search between the fuzz
   use({
     'nvim-telescope/telescope.nvim',
@@ -40,6 +38,8 @@ return require('packer').startup(function(use)
   use('tamago324/cmp-zsh')
   use('Shougo/deol.nvim')
   use('hrsh7th/nvim-cmp')
+  -- Lua development -- lsp plugin
+  use 'tjdevries/nlua.nvim'
   -- Snippets
   use('rafamadriz/friendly-snippets')
   use('hrsh7th/cmp-vsnip')
@@ -57,8 +57,6 @@ return require('packer').startup(function(use)
     },
   })
   use 'sheerun/vim-polyglot' -- forces redraw effecting startpage
-  -- Lua development -- lsp plugin
-  use 'tjdevries/nlua.nvim'
 
   -- All hail to the Pope (tpope) + Other tools <--
   -- For the Git
