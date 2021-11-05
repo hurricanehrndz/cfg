@@ -39,6 +39,7 @@ cmp.setup({
         buffer = "[buf]",
         nvim_lsp = "[LSP]",
         nvim_lua = "[api]",
+        zsh = "[zpty]",
         path = "[path]",
         vsnip = "[snip]",
       },
