@@ -23,7 +23,11 @@ return require('packer').startup(function(use)
   -- Use the telescope to search between the fuzz
   use({
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-fzy-native.nvim'}}
+    requires = {
+      {'nvim-lua/popup.nvim'},
+      {'nvim-lua/plenary.nvim'},
+      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
+    }
   })
   use 'christoomey/vim-tmux-navigator'
   use('famiu/feline.nvim')

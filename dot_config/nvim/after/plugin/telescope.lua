@@ -1,7 +1,7 @@
 local has_telescope, telescope = pcall(require, 'telescope')
 
 if has_telescope then
-  telescope.load_extension("fzy_native")
+  telescope.load_extension("fzf")
   local nnoremap = vim.keymap.nnoremap
   -- string maps
   -- search for current word under cursor
