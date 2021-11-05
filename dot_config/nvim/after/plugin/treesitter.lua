@@ -4,6 +4,7 @@ if not has_ts then
 end
 
 ts.setup({
-  highlight = {enable = true, disable = {"nix"}},
+  ensure_installed = 'maintained',
+  highlight = {enable = true, disable = {'nix'}},
   rainbow = {enable = true, disable = {'bash', 'nix'}}
 })

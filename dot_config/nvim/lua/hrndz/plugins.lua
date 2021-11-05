@@ -55,6 +55,7 @@ return require('packer').startup(function(use)
   --  Better syntax
   use({
     'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate maintained',
     requires = {
       -- color all the braces
       {'p00f/nvim-ts-rainbow'}
