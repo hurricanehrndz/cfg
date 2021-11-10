@@ -34,11 +34,6 @@ github = "zsh-users/zsh-completions"
 local = "~/.config/zsh/plugins/zsh-utils"
 use = ["history/*.zsh", "directory/*.zsh"]
 
-# time consuming plugins
-[plugins.fast-syntax-highlighting]
-github = "zdharma/fast-syntax-highlighting"
-apply = ["defer"]
-
 # history needs to come after highlighting
 [plugins.zsh-history-substring-search]
 github = "zsh-users/zsh-history-substring-search"
@@ -50,3 +45,8 @@ apply = ["defer"]
 [plugins.zsh-utils-completion]
 local = "~/.config/zsh/plugins/zsh-utils"
 use = ["completion/*.zsh"]
+
+# time consuming plugins
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+apply = ["defer"]
