@@ -29,7 +29,14 @@ cmp.setup({
     { name = 'zsh' },
     { name = 'path' },
     { name = 'vsnip' },
-    { name = 'buffer', keyword_length = 5 },
+    {
+      name = 'buffer',
+      keyword_length = 3,
+    },
+    {
+      name = "dictionary",
+      keyword_length = 2,
+    },
   }),
   formatting = {
     -- Youtube: How to set up nice formatting for your sources.
@@ -46,6 +53,9 @@ cmp.setup({
     },
   },
 })
+
+-- Extend dictionary
+vim.opt.dictionary:append("/usr/share/dict/words")
 
 -- Use buffer source for `/`.
 cmp.setup.cmdline('/', {
