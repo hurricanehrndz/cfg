@@ -8,9 +8,17 @@ vim.o.background = 'dark'
 vim.cmd('syntax on')
 
 local has_onedark, onedark = pcall(require, 'onedark')
-if has_onedark then
+if has_onedark and vim.g.hrnd_theme == 'onedark' then
   vim.g.onedark_disable_terminal_colors = true
   onedark.setup()
+end
+
+local has_gruvbox, _ = pcall(function() vim.fn['gruvbox_material#get_configuration']() end)
+if has_gruvbox and vim.g.hrnd_theme == 'gruvbox' then
+  vim.g.gruvbox_material_backgroud = 'hard'
+  vim.g.gruvbox_material_enable_italic = 1
+  vim.g.gruvbox_material_enable_bold = 1
+  vim.cmd('colorscheme gruvbox-material')
 end
 
 -- neovim/neovim/issues/11335
