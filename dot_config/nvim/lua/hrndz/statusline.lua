@@ -4,7 +4,7 @@ if not has_feline then
 end
 
 local colors = {
-    bg = '#282c34',
+    bg = '#31353f',
     fg = '#abb2bf',
     yellow = '#e5c07b',
     cyan = '#56b6c2',
@@ -93,7 +93,7 @@ local comps = {
                 name = 'file_info',
                 opts = {
                     file_modified_icon = '',
-                    type = 'relative-short'
+                    type = 'unique'
                 }
             },
             hl = {
