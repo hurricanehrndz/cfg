@@ -30,7 +30,7 @@ return require('packer').startup(function(use)
       {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
     }
   })
-  use 'christoomey/vim-tmux-navigator'
+  use('christoomey/vim-tmux-navigator')
   use('famiu/feline.nvim')
 
   -- Please complete me
