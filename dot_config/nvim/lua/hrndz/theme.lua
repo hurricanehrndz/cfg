@@ -7,14 +7,11 @@ end
 vim.o.background = 'dark'
 vim.cmd('syntax on')
 
-local loaded_onedark, _ = pcall(function() return vim.fn['onedark#GetColors']() end)
-if (not loaded_onedark) then
- do return end
+local has_onedark, onedark = pcall(require, 'onedark')
+if has_onedark then
+  vim.g.onedark_disable_terminal_colors = true
+  onedark.setup()
 end
--- enable italics
-vim.g.onedark_terminal_italics = 1
-vim.g.onedark_termcolors = 16
-vim.cmd('colorscheme onedark')
 
 -- neovim/neovim/issues/11335
 if (fn['has']('termguicolors') and fn['has']('nvim-0.5.0') and vim.api.nvim_list_uis()[1]['ext_termcolors']) then

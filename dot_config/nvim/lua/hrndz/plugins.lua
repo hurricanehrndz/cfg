@@ -8,8 +8,8 @@ return require('packer').startup(function(use)
 
   -- > Look and feel <--
   -- Embrace the darkside
-  use('joshdick/onedark.vim')
   use('sainnhe/gruvbox-material')
+  use('navarasu/onedark.nvim')
   -- Use the guides
   use('lukas-reineke/indent-blankline.nvim')
   -- Show me end of column
