@@ -49,6 +49,7 @@ cmp.setup({
         zsh = "[zpty]",
         path = "[path]",
         vsnip = "[snip]",
+        dictionary = "[spell]"
       },
     },
   },
