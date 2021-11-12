@@ -31,6 +31,7 @@ return require('packer').startup(function(use)
   })
   use('christoomey/vim-tmux-navigator')
   use('famiu/feline.nvim')
+  use('folke/which-key.nvim')
 
   -- Please complete me
   use 'neovim/nvim-lspconfig'
