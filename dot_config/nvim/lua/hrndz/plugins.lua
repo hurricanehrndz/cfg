@@ -8,7 +8,6 @@ return require('packer').startup(function(use)
 
   -- > Look and feel <--
   -- Embrace the darkside
-  use('sainnhe/gruvbox-material')
   use('navarasu/onedark.nvim')
   -- Use the guides
   use('lukas-reineke/indent-blankline.nvim')
