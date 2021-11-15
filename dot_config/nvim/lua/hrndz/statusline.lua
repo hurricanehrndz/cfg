@@ -4,9 +4,9 @@ if not has_feline then
 end
 
 local colors = {
-    bg = '#282c34',
+    bg = '#31353f',
     fg = '#abb2bf',
-    yellow = '#e0af68',
+    yellow = '#e5c07b',
     cyan = '#56b6c2',
     darkblue = '#081633',
     green = '#98c379',
@@ -93,7 +93,7 @@ local comps = {
                 name = 'file_info',
                 opts = {
                     file_modified_icon = '',
-                    type = 'relative-short'
+                    type = 'unique'
                 }
             },
             hl = {
@@ -249,7 +249,7 @@ table.insert(components.active[1], comps.git.branch)
 table.insert(components.active[1], comps.git.add)
 table.insert(components.active[1], comps.git.change)
 table.insert(components.active[1], comps.git.remove)
-table.insert(components.inactive[1], comps.vi_mode.left)
+-- table.insert(components.inactive[1], comps.vi_mode.left)
 table.insert(components.inactive[1], comps.file.info)
 table.insert(components.active[3], comps.diagnos.err)
 table.insert(components.active[3], comps.diagnos.warn)

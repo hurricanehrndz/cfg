@@ -8,6 +8,8 @@ g.loaded_python_provider = 0
 g.loaded_python3_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
+g.filetype_pp = 'puppet'
+g.hrnd_theme = 'onedark'
 
 -- >> window-scoped options <<--
 -- show line numbers
@@ -23,7 +25,7 @@ wo.colorcolumn = "120"
 
 -- >> edior options <<--
 -- cursor
-o.guicursor='n-v-c:ver30,i-ci-ve:ver30-blinkwait10-blinkon400-blinkoff250'
+o.guicursor=''
 -- abandon buffer when unloading
 o.hidden = true
 -- refresh rate of diagnostic msg
@@ -59,3 +61,4 @@ o.shiftround = true
 -- >> buffer-scoped options <<--
 bo.shiftwidth = 4 -- smarttab enable by default, ts sts ignored
 bo.expandtab = true
+bo.smartindent = true

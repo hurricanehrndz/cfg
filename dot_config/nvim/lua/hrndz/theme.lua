@@ -7,14 +7,19 @@ end
 vim.o.background = 'dark'
 vim.cmd('syntax on')
 
-local loaded_onedark, _ = pcall(function() return vim.fn['onedark#GetColors']() end)
-if (not loaded_onedark) then
- do return end
+local has_onedark, onedark = pcall(require, 'onedark')
+if has_onedark and vim.g.hrnd_theme == 'onedark' then
+  vim.g.onedark_disable_terminal_colors = true
+  onedark.setup()
 end
--- enable italics
-vim.g.onedark_terminal_italics = 1
-vim.g.onedark_termcolors = 16
-vim.cmd('colorscheme onedark')
+
+local has_gruvbox, _ = pcall(function() vim.fn['gruvbox_material#get_configuration']() end)
+if has_gruvbox and vim.g.hrnd_theme == 'gruvbox' then
+  vim.g.gruvbox_material_backgroud = 'hard'
+  vim.g.gruvbox_material_enable_italic = 1
+  vim.g.gruvbox_material_enable_bold = 1
+  vim.cmd('colorscheme gruvbox-material')
+end
 
 -- neovim/neovim/issues/11335
 if (fn['has']('termguicolors') and fn['has']('nvim-0.5.0') and vim.api.nvim_list_uis()[1]['ext_termcolors']) then

@@ -1,7 +1,7 @@
 local has_telescope, telescope = pcall(require, 'telescope')
 
 if has_telescope then
-  telescope.load_extension("fzy_native")
+  telescope.load_extension("fzf")
   local nnoremap = vim.keymap.nnoremap
   -- string maps
   -- search for current word under cursor
@@ -29,4 +29,9 @@ if has_telescope then
   nnoremap({ "<space>gb", require('telescope.builtin').git_branches,})
   nnoremap({"<space>gs", require('telescope.builtin').git_status,})
   nnoremap({"<space>gp", require('telescope.builtin').git_bcommits,})
+end
+
+local has_plenary_ft, plenary_ft = pcall(require, 'plenary.filetype')
+if has_plenary_ft then
+  plenary_ft.add_file('defs')
 end

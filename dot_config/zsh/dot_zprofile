@@ -56,5 +56,8 @@ fi
 export VIRSH_DEFAULT_CONNECT_URI='qemu:///system'
 
 # autosuggetions
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
+# export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8,underline"
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
+
+# Set GNUPGHOME
+export GNUPGHOME="$HOME/.config/gnupg"
