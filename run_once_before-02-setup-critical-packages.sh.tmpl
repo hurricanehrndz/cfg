@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+export GNUPGHOME="$HOME/.config/gnupg/"
+MY_KEY="21D77144BCC519FD64EAA2C0919DA52AC863D46D"
+
+gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$MY_KEY"
+echo "$MY_KEY:6:" | gpg --import-ownertrust
