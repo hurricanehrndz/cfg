@@ -3,9 +3,9 @@
 setopt extendedglob
 
 {{ if (eq .chezmoi.os "darwin") -}}
-BREW_BIN="/(usr|opt)/(local|homebrew)/bin/brew(N)"
+BREW_BIN=( /(usr|opt)/(local|homebrew)/bin/brew(N) )
 if [[ -z "$BREW_PREFIX" ]]; then
-  eval "$($~BREW_BIN shellenv zsh)"
+  eval "$($BREW_BIN shellenv zsh)"
 fi
 
 {{ end -}}
