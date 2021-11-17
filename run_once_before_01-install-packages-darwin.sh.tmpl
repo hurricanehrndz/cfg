@@ -3,7 +3,7 @@
 setopt extendedglob
 BREW_BIN=( /(usr|opt)/(local|homebrew)/bin/brew(N) )
 
-if [[ -f  "$BREW_BIN" ]]; then
+if [[ -z  "$BREW_BIN" ]]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   BREW_BIN=( /(usr|opt)/(local|homebrew)/bin/brew(N) )
 fi
