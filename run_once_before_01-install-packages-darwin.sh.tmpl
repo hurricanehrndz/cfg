@@ -1,5 +1,14 @@
 {{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/zsh
+BREW_BIN="$(ls /(usr|opt)/(local|homebrew)/bin/brew)"
+
+if [[ ! -f "$BREW_BIN" ]]; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+if [[ -z "$BREW_PREFIX" ]]; then
+  eval "$($BREW_BIN shellenv zsh)"
+fi
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 tap "homebrew/bundle"
