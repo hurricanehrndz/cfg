@@ -1,4 +1,13 @@
 #!/bin/zsh
+# vim: set ft=zsh :
+setopt extendedglob
+
+{{- if (eq .chezmoi.os "darwin") -}}
+BREW_BIN="$(ls /(usr|opt)/(local|homebrew)/bin/brew 2> /dev/null)"
+if [[ -z "$BREW_PREFIX" ]]; then
+  eval "$($BREW_BIN shellenv zsh)"
+fi
+{{ end -}}
 
 export GNUPGHOME="$HOME/.config/gnupg/"
 MY_KEY="21D77144BCC519FD64EAA2C0919DA52AC863D46D"
