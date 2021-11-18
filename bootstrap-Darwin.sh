@@ -11,5 +11,9 @@ if [[ -z "$BREW_PREFIX" ]]; then
   eval "$($BREW_BIN shellenv zsh)"
 fi
 
+export GNUPGHOME="$HOME/.config/gnupg/"
+mkdir -p $GNUPGHOME
+chmod 0700 $GNUPGHOME
+
 brew install --force chezmoi
 chezmoi init --apply hurricanehrndz
