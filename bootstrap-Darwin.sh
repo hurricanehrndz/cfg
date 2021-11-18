@@ -15,8 +15,7 @@ export GNUPGHOME="$HOME/.config/gnupg/"
 mkdir -p $GNUPGHOME
 chmod 0700 $GNUPGHOME
 
-brew install --force chezmoi gnupg
-gpg --card-status
+brew install --force chezmoi
 chezmoi init --apply hurricanehrndz
 
 # load services
