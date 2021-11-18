@@ -11,4 +11,4 @@ pinentry-program /usr/local/bin/pinentry-mac
 {{- end  }}
 {{- if and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64")  -}}
 pinentry-program /opt/homebrew/bin/pinentry-mac
-{{- end  -}}
+{{ end  -}}
