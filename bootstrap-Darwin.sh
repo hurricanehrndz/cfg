@@ -15,5 +15,21 @@ export GNUPGHOME="$HOME/.config/gnupg/"
 mkdir -p $GNUPGHOME
 chmod 0700 $GNUPGHOME
 
-brew install --force chezmoi
+brew install --force chezmoi gnupg
+gpg --card-status
 chezmoi init --apply hurricanehrndz
+
+# load services
+gpgconf --kill gpg-agent
+if launchctl print gui/$UID/homebrew.gpg.gpg-agent > /dev/null 2>&1 ; then
+  launchctl bootout gui/$UID/homebrew.gpg.gpg-agent
+  sleep 3
+fi
+launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/homebrew.gpg.gpg-agent.plist
+
+
+if launchctl print gui/$UID/link-ssh-auth-sock > /dev/null 2>&1 ; then
+  launchctl bootout gui/$UID/link-ssh-auth-sock
+  sleep 3
+fi
+launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/link-ssh-auth-sock.plist
