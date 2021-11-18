@@ -16,7 +16,8 @@ mkdir -p $GNUPGHOME
 chmod 0700 $GNUPGHOME
 
 brew install --force chezmoi
-chezmoi init --apply hurricanehrndz
+chezmoi init --exclude=encrypted --apply hurricanehrndz
+chezmoi apply
 
 # load services
 gpgconf --kill gpg-agent
