@@ -21,6 +21,6 @@ if [[ ! -e "$SUMKEKO_DIR/bin/.update" ]] || [[ "$#sumneko_update_flag" -ge 1 ]];
   touch "$SUMKEKO_DIR/bin/.update"
 fi
 
-if [[ "$OS_NAME" == "Darwin" ]]; then
+if [[ "$(uname -s)" == "Darwin" ]]; then
   ln -sf "$SUMKEKO_DIR/bin/macOS"  "$SUMKEKO_DIR/bin/OSX"
 fi
