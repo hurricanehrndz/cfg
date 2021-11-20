@@ -1,0 +1,7 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/bin/zsh
+# vim: set ft=zsh :
+{{ if stat ("/etc/yelp") }}
+{{ joinPath .chezmoi.sourceDir "yelp/setup-aws_okta.gpg" | include | decrypt }}
+{{ end }}
+{{ end }}

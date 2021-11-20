@@ -4,3 +4,4 @@ Library/**
 {{ end }}
 iterm2_themes
 bootstrap-Darwin.sh
+yelp/
