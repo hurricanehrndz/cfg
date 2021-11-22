@@ -15,9 +15,14 @@ export GNUPGHOME="$HOME/.config/gnupg/"
 mkdir -p $GNUPGHOME
 chmod 0700 $GNUPGHOME
 
+cat >| $HOME/.config/chezmoi/chezmoi.toml <<-EOF
+encryption = "gpg"
+[gpg]
+  recipient = "21D77144BCC519FD64EAA2C0919DA52AC863D46D"
+EOF
+
 brew install --force chezmoi
-chezmoi init --exclude=encrypted --apply hurricanehrndz
-chezmoi apply
+chezmoi init --apply hurricanehrndz
 
 # load services
 gpgconf --kill gpg-agent
