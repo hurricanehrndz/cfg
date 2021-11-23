@@ -46,6 +46,10 @@ return require('packer').startup(function(use)
   use('hrsh7th/nvim-cmp')
   -- Lua development -- lsp plugin
   use 'tjdevries/nlua.nvim'
+  -- javascript dev
+  use('jose-elias-alvarez/null-ls.nvim')
+  use('jose-elias-alvarez/nvim-lsp-ts-utils')
+
   -- Snippets
   use('rafamadriz/friendly-snippets')
   use('hrsh7th/cmp-vsnip')
