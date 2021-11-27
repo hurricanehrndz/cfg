@@ -1,4 +1,6 @@
 # vim:set ft=zsh :
+#
+(( $+commands[yarn] )) || return
 
 yarn_bin_path=$(yarn global bin)
 
