@@ -45,7 +45,7 @@ return require('packer').startup(function(use)
   use('Shougo/deol.nvim')
   use('hrsh7th/nvim-cmp')
   -- Lua development -- lsp plugin
-  use 'tjdevries/nlua.nvim'
+  use("folke/lua-dev.nvim")
   -- javascript dev
   use('jose-elias-alvarez/null-ls.nvim')
   use('jose-elias-alvarez/nvim-lsp-ts-utils')
@@ -67,23 +67,23 @@ return require('packer').startup(function(use)
       {'p00f/nvim-ts-rainbow'}
     },
   })
-  use 'sheerun/vim-polyglot' -- forces redraw effecting startpage
+  use('sheerun/vim-polyglot')
 
   -- All hail to the Pope (tpope) + Other tools <--
   -- For the Git
-  use 'tpope/vim-fugitive'
+  use('tpope/vim-fugitive')
   -- Need to swap some braces? This is the dentist!
-  use 'tpope/vim-surround'
+  use('tpope/vim-surround')
   -- Embrace the peanut gallery
-  use 'tpope/vim-commentary'
+  use('tpope/vim-commentary')
   -- So good, why not do it again
-  use 'tpope/vim-repeat'
+  use('tpope/vim-repeat')
   -- In case you need to break-up and reconcile
-  use 'AndrewRadev/splitjoin.vim'
+  use('AndrewRadev/splitjoin.vim')
   -- I am a Super
-  use 'lambdalisue/suda.vim'
+  use('lambdalisue/suda.vim')
   -- Need a table?
-  use 'godlygeek/tabular'
-  use 'ntpeters/vim-better-whitespace'
+  use('godlygeek/tabular')
+  use('ntpeters/vim-better-whitespace')
   -- Add a terminal
 end)

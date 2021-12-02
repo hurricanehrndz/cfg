@@ -2,7 +2,7 @@
 # vim: set ft=zsh :
 
 SUMNEKO_ULR="https://github.com/sumneko/lua-language-server"
-SUMKEKO_DIR="$HOME/.cache/nvim/nlua/sumneko_lua/lua-language-server"
+SUMKEKO_DIR="$HOME/.cache/nvim/lua-language-server"
 
 if [[ ! -d "$SUMKEKO_DIR" ]]; then
   mkdir -p "$SUMKEKO_DIR"
@@ -19,8 +19,4 @@ if [[ ! -e "$SUMKEKO_DIR/bin/.update" ]] || [[ "$#sumneko_update_flag" -ge 1 ]];
   "./3rd/luamake/luamake" rebuild
   popd
   touch "$SUMKEKO_DIR/bin/.update"
-fi
-
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  ln -sf "$SUMKEKO_DIR/bin/macOS"  "$SUMKEKO_DIR/bin/OSX"
 fi
