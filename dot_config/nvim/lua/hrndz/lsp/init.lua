@@ -46,3 +46,4 @@ updated_capabilities = cmp_lsp.update_capabilities(updated_capabilities)
 
 require("hrndz.lsp.sumneko").setup(custom_attach, updated_capabilities)
 require("hrndz.lsp.tsserver").setup(custom_attach, updated_capabilities)
+require("hrndz.lsp.null-ls").setup(custom_attach)
