@@ -45,3 +45,4 @@ local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
 updated_capabilities = cmp_lsp.update_capabilities(updated_capabilities)
 
 require("hrndz.lsp.sumneko").setup(custom_attach, updated_capabilities)
+require("hrndz.lsp.tsserver").setup(custom_attach, updated_capabilities)
