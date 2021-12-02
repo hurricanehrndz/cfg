@@ -24,6 +24,9 @@ M.setup = function(on_attach, capabilities)
       on_attach = on_attach,
       capabilities = capabilities,
       cmd = { binary, "-E", root_path .. "main.lua" },
+      flags = {
+        debounce_text_changes = 150,
+      },
     }
   })
   lspconfig.sumneko_lua.setup(luadev_config)
