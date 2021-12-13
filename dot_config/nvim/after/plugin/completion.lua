@@ -32,10 +32,12 @@ cmp.setup({
     {
       name = 'buffer',
       keyword_length = 3,
+      max_item_count = 5,
     },
     {
       name = "dictionary",
       keyword_length = 2,
+      max_item_count = 5,
     },
   }),
   formatting = {
@@ -49,14 +51,20 @@ cmp.setup({
         zsh = "[zpty]",
         path = "[path]",
         vsnip = "[snip]",
-        dictionary = "[spell]"
+        dictionary = "[dictionary]"
       },
     },
   },
 })
 
--- Extend dictionary
-vim.opt.dictionary:append("/usr/share/dict/words")
+local has_cmp_dictionary, cmp_dictionary = pcall(require, "cmp_dictionary")
+if has_cmp_dictionary then
+  cmp_dictionary.setup({
+    dic = {
+      ["*"] = "/usr/share/dict/words",
+    }
+  })
+end
 
 -- Use buffer source for `/`.
 cmp.setup.cmdline('/', {
