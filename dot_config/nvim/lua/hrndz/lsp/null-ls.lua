@@ -1,5 +1,3 @@
-local lspconfig = require("lspconfig")
-
 local eslint_opts = {
   condition = function(utils)
     return utils.root_has_file(".eslintrc.js")
@@ -30,10 +28,10 @@ M.setup = function (on_attach)
   if not has_null_ls then
     return
   end
-  null_ls.config({
+  null_ls.setup({
     sources = sources,
+    on_attach = on_attach
   })
-  lspconfig.null_ls.setup({ on_attach = on_attach })
 end
 
 return M
