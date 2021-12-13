@@ -17,7 +17,9 @@ local sources = {
     b.diagnostics.eslint_d.with(eslint_opts),
     b.formatting.eslint_d.with(eslint_opts),
     b.code_actions.eslint_d.with(eslint_opts),
-    b.formatting.shfmt,
+    b.formatting.shfmt.with({
+      extra_args = { "-i", "2", "-ci" }
+    }),
     b.diagnostics.shellcheck.with({ diagnostics_format = "#{m} [#{c}]" }),
     b.hover.dictionary,
 }
