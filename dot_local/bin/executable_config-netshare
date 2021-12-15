@@ -1,0 +1,75 @@
+#!/bin/zsh
+# vim: set ft=zsh :
+
+if [[ ! -d "/etc/yelp" ]]; then
+  exit
+fi
+
+if ! (( $+commands[multipass] )); then
+  echo "Please install multipass ... continuing"
+fi
+# Checks for VPN connection
+vpn_int=$(ifconfig -a inet | grep -B 1 "10.2" | grep utun | cut -d ":" -f 1)
+internet_int=$(route get deploy.apple.com 2> /dev/null | grep interface | cut -d ' ' -f 4)
+# Exits script if it cant find vpn connection
+if [[ -z $vpn_int || -z "$internet_int" ]]; then
+  echo "Required connections not found, exiting..."
+  exit
+fi
+
+
+dnscrypt_launchd_daemon="/Library/Application Support/OpenDNS Roaming Client/com.opendns.osx.DNSCryptProxy.plist"
+alt_dnscrypt_launchd_daemon="/Library/LaunchDaemons/alt.opendns.osx.DNSCryptProxy.plist"
+vm_gateway="192.168.64.1"
+vm_net="192.168.64.0/24"
+
+if [[ -f "$dnscrypt_launchd_daemon" ]] && [[ ! -f "$alt_dnscrypt_launchd_daemon" ]]; then
+  sed -e "s%com.opendns\(.osx.DNSCryptProxy\)%alt\1%g; s%127.0.0.1%$vm_gateway%g" \
+    "$dnscrypt_launchd_daemon" | sudo tee "$alt_dnscrypt_launchd_daemon" > /dev/null
+  sudo launchctl bootstrap system $alt_dnscrypt_launchd_daemon
+fi
+
+sudo tee /usr/local/bin/share-vpn > /dev/null <<-EOF
+#!/bin/bash
+
+pfctl -a com.apple/NetShare -F nat
+
+echo "nat on $vpn_int inet from $vm_net to any -> ($vpn_int) extfilter ei
+nat on $internet_int inet from $vm_net to any -> ($internet_int) extfilter ei
+" | pfctl -a com.apple/NetShare -f -
+pfctl -e -f /etc/pf.conf
+
+sysctl -w net.inet.ip.forwarding=1
+EOF
+
+sudo chmod +x /usr/local/bin/share-vpn
+
+vpn_net_share_daemon="me.share.vpn.net"
+sudo tee /Library/LaunchDaemons/$vpn_net_share_daemon.plist > /dev/null <<-EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>KeepAlive</key>
+    <false/>
+    <key>Label</key>
+    <string>$vpn_net_share_daemon</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/share-vpn</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardErrorPath</key>
+    <string>/dev/null</string>
+    <key>StandardOutPath</key>
+    <string>/dev/null</string>
+    <key>UserName</key>
+    <string>root</string>
+</dict>
+</plist>
+EOF
+
+launchctl print system/$vpn_net_share_daemon > /dev/null 2>&1 || \
+  sudo launchctl bootstrap system /Library/LaunchDaemons/$vpn_net_share_daemon.plist
+
