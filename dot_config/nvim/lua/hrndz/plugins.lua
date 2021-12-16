@@ -94,5 +94,14 @@ return require('packer').startup(function(use)
   -- Need a table?
   use('godlygeek/tabular')
   use('ntpeters/vim-better-whitespace')
+  -- remote editing
+  use({
+    "chipsenkbeil/distant.nvim",
+    config = function()
+      require('distant').setup({
+        ['*'] = require('distant.settings').chip_default()
+      })
+    end
+  })
   -- Add a terminal
 end)
