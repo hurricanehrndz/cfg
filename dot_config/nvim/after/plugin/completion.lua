@@ -10,6 +10,22 @@ if not has_cmp or not has_lspkind then
  do return end
 end
 
+local cmp_formatting = {
+  -- Youtube: How to set up nice formatting for your sources.
+  format = lspkind.cmp_format({
+    with_text = true,
+    menu = {
+      buffer = "[buf]",
+      nvim_lsp = "[LSP]",
+      nvim_lua = "[api]",
+      zsh = "[zpty]",
+      path = "[path]",
+      vsnip = "[snip]",
+      dictionary = "[dictionary]"
+    },
+  }),
+}
+
 lspkind.init()
 cmp.setup({
   snippet = {
@@ -40,21 +56,7 @@ cmp.setup({
       max_item_count = 5,
     },
   }),
-  formatting = {
-    -- Youtube: How to set up nice formatting for your sources.
-    format = lspkind.cmp_format {
-      with_text = true,
-      menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[api]",
-        zsh = "[zpty]",
-        path = "[path]",
-        vsnip = "[snip]",
-        dictionary = "[dictionary]"
-      },
-    },
-  },
+  formatting = cmp_formatting,
 })
 
 local has_cmp_dictionary, cmp_dictionary = pcall(require, "cmp_dictionary")
