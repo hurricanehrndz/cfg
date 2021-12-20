@@ -1,8 +1,18 @@
 vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
 return require('packer').startup(function(use)
-
   -- Packer can manage itself
   use('wbthomason/packer.nvim')
+
+  -- helper functions
+  local config = function(name)
+    return string.format("require('hrndz.plugins.%s')", name)
+  end
+
+  local use_with_config = function(path, name)
+    use({ path, config = config(name) })
+  end
+
+
   -- let's go to space
   use('tjdevries/astronauta.nvim')
 
@@ -17,7 +27,7 @@ return require('packer').startup(function(use)
   use('lewis6991/gitsigns.nvim')
 
   -- A splash of color in your life
-  use('norcalli/nvim-colorizer.lua')
+  use_with_config("norcalli/nvim-colorizer", "colorizer")
   -- Everyone needs an icon
   use('kyazdani42/nvim-web-devicons')
   -- Use the telescope to search between the fuzz
