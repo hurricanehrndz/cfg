@@ -41,16 +41,6 @@ return require('packer').startup(function(use)
   use('hrsh7th/cmp-buffer')
   use('hrsh7th/cmp-cmdline')
   use('tamago324/cmp-zsh')
-  use({
-    'uga-rosa/cmp-dictionary',
-    config = function()
-      require("cmp_dictionary").setup({
-        dic = {
-          ["*"] = "/usr/share/dict/words",
-        }
-      })
-    end
-  })
   use('Shougo/deol.nvim')
   use('hrsh7th/nvim-cmp')
   -- Lua development -- lsp plugin

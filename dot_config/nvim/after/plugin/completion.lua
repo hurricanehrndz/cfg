@@ -50,11 +50,6 @@ cmp.setup({
       keyword_length = 3,
       max_item_count = 5,
     },
-    {
-      name = "dictionary",
-      keyword_length = 2,
-      max_item_count = 5,
-    },
   }),
   formatting = cmp_formatting,
 })
