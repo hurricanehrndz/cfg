@@ -29,7 +29,7 @@ return require('packer').startup(function(use)
   -- A splash of color in your life
   use_with_config("norcalli/nvim-colorizer", "colorizer")
   -- Everyone needs an icon
-  use('kyazdani42/nvim-web-devicons')
+  use_with_config("kyazdani42/nvim-web-devicons", "devicons")
   -- Use the telescope to search between the fuzz
   use({
     'nvim-telescope/telescope.nvim',
