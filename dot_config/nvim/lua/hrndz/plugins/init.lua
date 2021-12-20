@@ -24,7 +24,7 @@ return require('packer').startup(function(use)
   -- Show me end of column
   use('tjdevries/overlength.vim')
   -- But mind the (git) warning signs
-  use('lewis6991/gitsigns.nvim')
+  use_with_config("lewis6991/gitsigns.nvim", "gitsigns")
 
   -- A splash of color in your life
   use_with_config("norcalli/nvim-colorizer", "colorizer")
