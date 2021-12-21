@@ -42,4 +42,3 @@ if (fn['has']('termguicolors') and fn['has']('nvim-0.5.0') and vim.api.nvim_list
   vim.g.terminal_color_background = nil
   vim.g.terminal_color_foreground = nil
 end
-vim.cmd("hi Floaterm guibg=#21252b")
