@@ -1,4 +1,4 @@
-vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
+vim.fn.setenv("MACOSX_DEPLOYMENT_,TARGET", "10.15")
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use('wbthomason/packer.nvim')
@@ -27,53 +27,63 @@ return require('packer').startup(function(use)
   use_with_config("lewis6991/gitsigns.nvim", "gitsigns")
 
   -- A splash of color in your life
-  use_with_config("norcalli/nvim-colorizer", "colorizer")
+  use_with_config("norcalli/nvim-colorizer.lua", "colorizer")
   -- Everyone needs an icon
   use_with_config("kyazdani42/nvim-web-devicons", "devicons")
   -- Use the telescope to search between the fuzz
   use({
-    'nvim-telescope/telescope.nvim',
+    "nvim-telescope/telescope.nvim",
+    config = config("telescope"),
     requires = {
-      {'nvim-lua/popup.nvim'},
-      {'nvim-lua/plenary.nvim'},
-      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
-    }
+      {"nvim-lua/popup.nvim"},
+      {"nvim-lua/plenary.nvim"},
+      {"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
+    },
   })
   use('christoomey/vim-tmux-navigator')
   use('famiu/feline.nvim')
   use_with_config("folke/which-key.nvim", "which_key")
 
   -- Please complete me
-  use 'neovim/nvim-lspconfig'
-  use('hrsh7th/cmp-nvim-lsp')
-  use('hrsh7th/cmp-nvim-lua')
-  use('hrsh7th/cmp-path')
-  use('hrsh7th/cmp-buffer')
-  use('hrsh7th/cmp-cmdline')
-  use('tamago324/cmp-zsh')
-  use('Shougo/deol.nvim')
-  use('hrsh7th/nvim-cmp')
-  -- Lua development -- lsp plugin
-  use("folke/lua-dev.nvim")
-  -- javascript dev
-  use('jose-elias-alvarez/null-ls.nvim')
-  use('jose-elias-alvarez/nvim-lsp-ts-utils')
+  use({
+    "hrsh7th/nvim-cmp",
+    config = config("completion"),
+    requires = {
+      "neovim/nvim-lspconfig",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-cmdline",
+      -- zpty completion
+      "tamago324/cmp-zsh",
+      "Shougo/deol.nvim",
+      -- Lua development -- lsp plugin
+      "folke/lua-dev.nvim",
 
-  -- Snippets
-  use('rafamadriz/friendly-snippets')
-  use('hrsh7th/cmp-vsnip')
-  use('hrsh7th/vim-vsnip')
-  use('onsails/lspkind-nvim') -- pictogram for completion menu
-  -- use('sbdchd/neoformat')
+      -- javascript dev
+      "jose-elias-alvarez/null-ls.nvim",
+      "jose-elias-alvarez/nvim-lsp-ts-utils",
+
+      -- Snippets
+      "rafamadriz/friendly-snippets",
+      "hrsh7th/cmp-vsnip",
+      "hrsh7th/vim-vsnip",
+
+      -- pictogram for completion menu
+      "onsails/lspkind-nvim",
+    },
+  })
 
   -- > Polyglot Plugins <--
   --  Better syntax
   use({
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate maintained',
+    "nvim-treesitter/nvim-treesitter",
+    config = config("treesitter"),
+    run = ":TSUpdate maintained",
     requires = {
       -- color all the braces
-      {'p00f/nvim-ts-rainbow'}
+      "p00f/nvim-ts-rainbow",
     },
   })
   use('sheerun/vim-polyglot')

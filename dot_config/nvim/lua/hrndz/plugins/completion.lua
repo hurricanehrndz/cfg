@@ -4,11 +4,8 @@ vim.o.completeopt = 'menuone,noinsert,noselect'
 -- disable insert completion menu messages
 vim.o.shortmess = vim.o.shortmess .. 'c'
 
-local has_cmp, cmp = pcall(require, 'cmp')
-local has_lspkind, lspkind = pcall(require, 'lspkind')
-if not has_cmp or not has_lspkind then
- do return end
-end
+local cmp = require("cmp")
+local lspkind = require("lspkind")
 
 local cmp_formatting = {
   -- Youtube: How to set up nice formatting for your sources.
