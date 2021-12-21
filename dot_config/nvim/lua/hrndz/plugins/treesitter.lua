@@ -1,7 +1,4 @@
-local has_ts_configs, ts_configs = pcall(require, 'nvim-treesitter.configs')
-if not has_ts_configs then
- return
-end
+local ts_configs = require("nvim-treesitter.configs")
 
 ts_configs.setup({
   ensure_installed = 'maintained',
