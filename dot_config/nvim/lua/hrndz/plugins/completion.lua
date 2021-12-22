@@ -39,7 +39,6 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
-    { name = 'zsh' },
     { name = 'path' },
     { name = 'vsnip' },
     {
@@ -67,3 +66,19 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
+
+_ = vim.cmd([[
+  augroup CmpZsh
+    au!
+    autocmd Filetype zsh lua require("cmp").setup.buffer({
+    \ sources = {
+    \   { name = "zsh" },
+    \   { name = 'path' },
+    \   {
+    \     name = 'buffer',
+    \     keyword_length = 3,
+    \     max_item_count = 5,
+    \   },
+    \ }})
+  augroup END
+]])
