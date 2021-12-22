@@ -1,8 +1,8 @@
 -- completion settings
 -- vim.o.completeopt = "menu,menuone,noinsert"
-vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 -- disable insert completion menu messages
-vim.o.shortmess = vim.o.shortmess .. 'c'
+vim.opt.shortmess:append "c"
 
 local cmp = require("cmp")
 local lspkind = require("lspkind")
