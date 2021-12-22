@@ -49,6 +49,11 @@ cmp.setup({
     { name = 'path' },
     { name = 'vsnip' },
     {
+      name = "dictionary",
+      keyword_length = 2,
+      max_item_count = 6,
+    },
+    {
       name = 'buffer',
       keyword_length = 3,
       max_item_count = 5,
@@ -57,6 +62,12 @@ cmp.setup({
   formatting = cmp_formatting,
 })
 
+
+require("cmp_dictionary").setup({
+  dic = {
+    ["*"] = "/usr/share/dict/words",
+  },
+})
 
 -- Use buffer source for `/`.
 cmp.setup.cmdline('/', {

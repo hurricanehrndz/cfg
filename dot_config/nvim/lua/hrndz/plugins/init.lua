@@ -59,6 +59,8 @@ return require('packer').startup(function(use)
       "Shougo/deol.nvim",
       -- Lua development -- lsp plugin
       "folke/lua-dev.nvim",
+      -- dictionary
+      "uga-rosa/cmp-dictionary",
 
       -- javascript dev
       "jose-elias-alvarez/null-ls.nvim",
