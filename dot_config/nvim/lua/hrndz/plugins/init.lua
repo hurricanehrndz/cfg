@@ -67,9 +67,9 @@ return require('packer').startup(function(use)
       "jose-elias-alvarez/nvim-lsp-ts-utils",
 
       -- Snippets
-      "rafamadriz/friendly-snippets",
-      "hrsh7th/cmp-vsnip",
-      "hrsh7th/vim-vsnip",
+      "honza/vim-snippets",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
 
       -- pictogram for completion menu
       "onsails/lspkind-nvim",
