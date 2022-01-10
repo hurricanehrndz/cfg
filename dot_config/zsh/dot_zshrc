@@ -13,6 +13,11 @@ for file in ${config_files}; do
 done
 unset config_files
 zmodload -a zsh/zpty zpty
+# Load environment variables from a file; this approach allows me to not
+# commit secrets like API keys to Git
+if [[ -e "$HOME/.env" ]]; then
+  source "$HOME/.env"
+fi
 
 if [[ $TERM != "dumb" && (-z $INSIDE_EMACS || $INSIDE_EMACS == "vterm") ]]; then
   (( $+commands[starship] )) && eval "$(starship init zsh)"
