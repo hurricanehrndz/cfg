@@ -34,6 +34,7 @@ brew "neofetch"
 brew "neovim", args: ["HEAD"]
 brew "neovim-remote"
 brew "ninja"
+brew "npm"
 brew "pinentry-mac"
 brew "poetry"
 brew "ripgrep"
@@ -47,7 +48,6 @@ brew "starship"
 brew "tealdeer"
 brew "tmux"
 brew "tree"
-brew "yarn"
 brew "ykman"
 brew "ykpers"
 brew "zoxide"
@@ -63,6 +63,8 @@ cask "spotify"
 cask "vagrant"
 cask "visual-studio-code"
 EOF
+
+npm install --global yarn
 
 if ! grep -qc "/usr/local/bin/zsh" /etc/shells; then
   echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells > /dev/null
