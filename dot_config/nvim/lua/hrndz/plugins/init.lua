@@ -37,7 +37,6 @@ return require('packer').startup(function(use)
   })
   use('christoomey/vim-tmux-navigator')
   use('famiu/feline.nvim')
-  use_with_config("folke/which-key.nvim", "which_key")
 
   -- Please complete me
   use({
