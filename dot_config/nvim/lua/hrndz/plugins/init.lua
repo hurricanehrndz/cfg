@@ -12,10 +12,6 @@ return require('packer').startup(function(use)
     use({ path, config = config(name) })
   end
 
-
-  -- let's go to space
-  use('tjdevries/astronauta.nvim')
-
   -- > Look and feel <--
   -- Embrace the darkside
   use('navarasu/onedark.nvim')
