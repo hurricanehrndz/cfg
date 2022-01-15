@@ -19,7 +19,6 @@ return require('packer').startup(function(use)
   -- Use the guides
   use_with_config("lukas-reineke/indent-blankline.nvim", "indentline")
   -- Show me end of column
-  use_with_config("tjdevries/overlength.vim", "overlength")
   use_with_config("lewis6991/gitsigns.nvim", "gitsigns")
 
   -- A splash of color in your life
