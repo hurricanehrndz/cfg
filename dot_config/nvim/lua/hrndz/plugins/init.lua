@@ -14,7 +14,8 @@ return require('packer').startup(function(use)
 
   -- > Look and feel <--
   -- Embrace the darkside
-  use('navarasu/onedark.nvim')
+  use("EdenEast/nightfox.nvim")
+  use("folke/tokyonight.nvim")
   -- Use the guides
   use_with_config("lukas-reineke/indent-blankline.nvim", "indentline")
   -- Show me end of column

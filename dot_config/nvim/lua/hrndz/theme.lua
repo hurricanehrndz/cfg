@@ -7,22 +7,25 @@ end
 vim.o.background = 'dark'
 vim.cmd('syntax on')
 
-local has_onedark, onedark = pcall(require, 'onedark')
-if has_onedark and vim.g.hrnd_theme == 'onedark' then
+local has_nightfox, nightfox = pcall(require, 'nightfox')
+if has_nightfox and vim.g.hrnd_theme == 'nightfox' then
   vim.g.onedark_disable_terminal_colors = true
-  onedark.setup()
+  nightfox.load('nightfox')
 end
 
-local has_gruvbox, _ = pcall(function() vim.fn['gruvbox_material#get_configuration']() end)
-if has_gruvbox and vim.g.hrnd_theme == 'gruvbox' then
-  vim.g.gruvbox_material_backgroud = 'hard'
-  vim.g.gruvbox_material_enable_italic = 1
-  vim.g.gruvbox_material_enable_bold = 1
-  vim.cmd('colorscheme gruvbox-material')
+
+local has_tokyonight, _ = pcall(require, "tokyonight")
+if has_tokyonight and vim.g.hrnd_theme == "tokyonight" then
+  vim.g.tokyonight_style = "night"
+  vim.g.tokyonight_italic_functions = true
+  vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+
+  -- Load the colorscheme
+  vim.cmd[[colorscheme tokyonight]]
 end
 
 -- neovim/neovim/issues/11335
-if (fn['has']('termguicolors') and fn['has']('nvim-0.5.0') and vim.api.nvim_list_uis()[1]['ext_termcolors']) then
+--[[ if (fn['has']('termguicolors') and fn['has']('nvim-0.5.0') and vim.api.nvim_list_uis()[1]['ext_termcolors']) then
   vim.g.terminal_color_0 = nil
   vim.g.terminal_color_1 = nil
   vim.g.terminal_color_2 = nil
@@ -41,4 +44,4 @@ if (fn['has']('termguicolors') and fn['has']('nvim-0.5.0') and vim.api.nvim_list
   vim.g.terminal_color_15 = nil
   vim.g.terminal_color_background = nil
   vim.g.terminal_color_foreground = nil
-end
+end ]]--
