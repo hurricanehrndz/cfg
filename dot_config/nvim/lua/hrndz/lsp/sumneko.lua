@@ -4,14 +4,7 @@ local root_path = ""
 local binary = ""
 
 root_path = vim.fn.getenv("HOME") .. "/.cache/nvim/lua-language-server/"
-if vim.fn.has("mac") == 1 then
-  binary = root_path .. "bin/macOS/lua-language-server"
-elseif vim.fn.has("unix") == 1 then
-  binary = root_path .. "bin/Linux/lua-language-server"
-else
-  print("Unsupported system for sumneko")
-end
-
+binary = root_path .. "bin/lua-language-server"
 
 local M = {}
 M.setup = function(on_attach, capabilities)
@@ -23,7 +16,7 @@ M.setup = function(on_attach, capabilities)
     lspconfig = {
       on_attach = on_attach,
       capabilities = capabilities,
-      cmd = { binary, "-E", root_path .. "main.lua" },
+      cmd = { binary },
       flags = {
         debounce_text_changes = 150,
       },
