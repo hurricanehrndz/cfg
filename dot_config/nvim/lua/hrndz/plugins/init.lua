@@ -37,6 +37,7 @@ return require('packer').startup(function(use)
     },
   })
   use('christoomey/vim-tmux-navigator')
+  use("akinsho/toggleterm.nvim")
   use('famiu/feline.nvim')
 
   -- Please complete me
