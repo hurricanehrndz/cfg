@@ -1,33 +1,16 @@
-local has_astronauta, _ = pcall(require, "astronauta.keymap")
-if not has_astronauta then
-  return
-end
-
-local nnoremap = vim.keymap.nnoremap
-local inoremap = vim.keymap.inoremap
-
-local buf_nnoremap = function(opts)
-  opts.buffer = 0
-  nnoremap(opts)
-end
-
-local buf_inoremap = function(opts)
-  opts.buffer = 0
-  inoremap(opts)
-end
-
-local custom_attach = function(client)
+local custom_attach = function(client, bufnr)
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+  local opts = {noremap = true, buffer = bufnr}
 
-  buf_inoremap({ "<C-x><C-x>", vim.lsp.buf.signature_help })
+  vim.keymap.set("n", "<C-x><C-x>", vim.lsp.buf.signature_help, opts)
 
-  buf_nnoremap({ "gD", vim.lsp.buf.declaration })
-  buf_nnoremap({ "gd", vim.lsp.buf.definition })
-  buf_nnoremap({ "K", vim.lsp.buf.hover })
-  buf_nnoremap({ "[d", vim.diagnostic.goto_prev })
-  buf_nnoremap({ "]d", vim.diagnostic.goto_next })
-  buf_nnoremap({ "gT", vim.lsp.buf.type_definition })
-  buf_nnoremap({ "<space>cr", vim.lsp.buf.rename })
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
+  vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, opts)
 
   if client.resolved_capabilities.document_formatting then
     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
