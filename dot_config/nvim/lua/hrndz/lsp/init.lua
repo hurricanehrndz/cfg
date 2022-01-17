@@ -1,6 +1,6 @@
 local custom_attach = function(client, bufnr)
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-  local opts = {noremap = true, buffer = bufnr}
+  local opts = { noremap = true, buffer = bufnr }
 
   vim.keymap.set("n", "<C-x><C-x>", vim.lsp.buf.signature_help, opts)
 
