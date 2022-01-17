@@ -1,13 +1,26 @@
 local null_ls = require("null-ls")
 local b = null_ls.builtins
+
+local with_diagnostics_code = function(builtin)
+    return builtin.with({
+        diagnostics_format = "#{m} [#{c}]",
+    })
+end
+
 local sources = {
+    -- formatting
     b.formatting.prettier.with({
       disabled_filetypes = { "typescript", "typescriptreact" },
     }),
     b.formatting.shfmt.with({
       extra_args = { "-i", "2", "-ci" }
     }),
-    b.diagnostics.shellcheck.with({ diagnostics_format = "#{m} [#{c}]" }),
+    b.formatting.stylua,
+
+    -- diagnostics
+    with_diagnostics_code(b.diagnostics.shellcheck),
+
+    -- hover
     b.hover.dictionary,
 }
 
