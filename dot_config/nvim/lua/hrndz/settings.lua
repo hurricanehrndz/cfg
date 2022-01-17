@@ -8,8 +8,8 @@ g.loaded_python_provider = 0
 g.loaded_python3_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
-g.filetype_pp = 'puppet'
-g.hrnd_theme = 'tokyonight'
+g.filetype_pp = "puppet"
+g.hrnd_theme = "tokyonight"
 
 -- >> window-scoped options <<--
 -- show line numbers
@@ -25,7 +25,7 @@ wo.colorcolumn = "120"
 
 -- >> edior options <<--
 -- cursor
-o.guicursor=''
+o.guicursor = ""
 -- abandon buffer when unloading
 o.hidden = true
 -- refresh rate of diagnostic msg

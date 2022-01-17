@@ -2,7 +2,7 @@
 -- vim.o.completeopt = "menu,menuone,noinsert"
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 -- disable insert completion menu messages
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -24,7 +24,7 @@ local cmp_formatting = {
       zsh = "[zpty]",
       path = "[path]",
       luasnip = "[snip]",
-      dictionary = "[dictionary]"
+      dictionary = "[dictionary]",
     },
   }),
 }
@@ -65,32 +65,31 @@ cmp.setup({
       end
     end, { "i", "s" }),
     ["<c-y>"] = cmp.mapping(
-      cmp.mapping.confirm {
+      cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
-      },
+      }),
       { "i", "c" }
     ),
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lua' },
-    { name = 'nvim_lsp' },
-    { name = 'path' },
-    { name = 'vsnip' },
+    { name = "nvim_lua" },
+    { name = "nvim_lsp" },
+    { name = "path" },
+    { name = "vsnip" },
     {
       name = "dictionary",
       keyword_length = 2,
       max_item_count = 6,
     },
     {
-      name = 'buffer',
+      name = "buffer",
       keyword_length = 3,
       max_item_count = 5,
     },
   }),
   formatting = cmp_formatting,
 })
-
 
 require("cmp_dictionary").setup({
   dic = {
@@ -99,19 +98,19 @@ require("cmp_dictionary").setup({
 })
 
 -- Use buffer source for `/`.
-cmp.setup.cmdline('/', {
+cmp.setup.cmdline("/", {
   sources = {
-    { name = 'buffer' }
-  }
+    { name = "buffer" },
+  },
 })
 
 -- Use cmdline & path source for ':'.
-cmp.setup.cmdline(':', {
+cmp.setup.cmdline(":", {
   sources = cmp.config.sources({
-    { name = 'path' }
+    { name = "path" },
   }, {
-    { name = 'cmdline' }
-  })
+    { name = "cmdline" },
+  }),
 })
 
 _ = vim.cmd([[

@@ -1,5 +1,5 @@
 return {
   extension = {
-    ['pp'] = 'puppet',
+    ["pp"] = "puppet",
   },
 }

@@ -1,18 +1,17 @@
 local fn = vim.fn
 
-if fn['has']('termguicolors') then
+if fn["has"]("termguicolors") then
   vim.o.termguicolors = true
 end
 
-vim.o.background = 'dark'
-vim.cmd('syntax on')
+vim.o.background = "dark"
+vim.cmd("syntax on")
 
-local has_nightfox, nightfox = pcall(require, 'nightfox')
-if has_nightfox and vim.g.hrnd_theme == 'nightfox' then
+local has_nightfox, nightfox = pcall(require, "nightfox")
+if has_nightfox and vim.g.hrnd_theme == "nightfox" then
   vim.g.onedark_disable_terminal_colors = true
-  nightfox.load('nightfox')
+  nightfox.load("nightfox")
 end
-
 
 local has_tokyonight, _ = pcall(require, "tokyonight")
 if has_tokyonight and vim.g.hrnd_theme == "tokyonight" then
@@ -21,7 +20,7 @@ if has_tokyonight and vim.g.hrnd_theme == "tokyonight" then
   vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 
   -- Load the colorscheme
-  vim.cmd[[colorscheme tokyonight]]
+  vim.cmd([[colorscheme tokyonight]])
 end
 
 -- neovim/neovim/issues/11335
@@ -44,4 +43,5 @@ end
   vim.g.terminal_color_15 = nil
   vim.g.terminal_color_background = nil
   vim.g.terminal_color_foreground = nil
-end ]]--
+end ]]
+--

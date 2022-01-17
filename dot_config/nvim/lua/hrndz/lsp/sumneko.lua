@@ -20,7 +20,7 @@ M.setup = function(on_attach, capabilities)
       flags = {
         debounce_text_changes = 150,
       },
-    }
+    },
   })
   lspconfig.sumneko_lua.setup(luadev_config)
 end

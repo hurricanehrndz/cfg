@@ -1,6 +1,6 @@
 local lsp = vim.lsp
 local api = vim.api
-local util = require 'vim.lsp.util'
+local util = require("vim.lsp.util")
 
 local M = {}
 

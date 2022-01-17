@@ -32,7 +32,6 @@ M.setup = function(on_attach, capabilities)
       debounce_text_changes = 150,
     },
     capabilities = capabilities,
-
   })
 end
 

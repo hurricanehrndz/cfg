@@ -1,4 +1,4 @@
-local has_gitsigns, gitsigns = pcall(require, 'gitsigns')
+local has_gitsigns, gitsigns = pcall(require, "gitsigns")
 
 if has_gitsigns then
   gitsigns.setup({
@@ -7,8 +7,8 @@ if has_gitsigns then
       noremap = true,
       buffer = true,
 
-      ["n ]c"] = { expr = true, [[&diff ? "]c" : '<cmd>lua require("gitsigns").next_hunk()<CR>']]},
-      ["n [c"] = { expr = true, [[&diff ? "[c" : '<cmd>lua require("gitsigns").prev_hunk()<CR>']]},
+      ["n ]c"] = { expr = true, [[&diff ? "]c" : '<cmd>lua require("gitsigns").next_hunk()<CR>']] },
+      ["n [c"] = { expr = true, [[&diff ? "[c" : '<cmd>lua require("gitsigns").prev_hunk()<CR>']] },
 
       ["n <space>hs"] = '<cmd>lua require("gitsigns").stage_hunk()<CR>',
       ["n <space>hu"] = '<cmd>lua require("gitsigns").undo_stage_hunk()<CR>',
@@ -19,7 +19,7 @@ if has_gitsigns then
 
       -- Text objects
       ["o ih"] = ':<C-U>lua require("gitsigns").select_hunk()<CR>',
-      ["x ih"] = ':<C-U>lua require("gitsigns").select_hunk()<CR>'
+      ["x ih"] = ':<C-U>lua require("gitsigns").select_hunk()<CR>',
     },
   })
 end
