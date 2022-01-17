@@ -1,20 +1,9 @@
-local eslint_opts = {
-  condition = function(utils)
-    return utils.root_has_file(".eslintrc.js")
-  end,
-  diagnostics_format = "#{m} [#{c}]",
-}
-
-
 local null_ls = require("null-ls")
 local b = null_ls.builtins
 local sources = {
     b.formatting.prettier.with({
       disabled_filetypes = { "typescript", "typescriptreact" },
     }),
-    b.diagnostics.eslint_d.with(eslint_opts),
-    b.formatting.eslint_d.with(eslint_opts),
-    b.code_actions.eslint_d.with(eslint_opts),
     b.formatting.shfmt.with({
       extra_args = { "-i", "2", "-ci" }
     }),
