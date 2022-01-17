@@ -12,8 +12,13 @@ local custom_attach = function(client, bufnr)
   vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
   vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, opts)
 
-  if client.resolved_capabilities.document_formatting then
-    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+  if client.supports_method("textDocument/formatting") then
+    vim.cmd([[
+      augroup HrndzLspFormatting
+        autocmd!
+        autocmd BufWritePost <buffer> lua require("hrndz.lsp.formatting").sync(vim.fn.expand("<abuf>"))
+      augroup END
+    ]])
   end
 end
 
