@@ -1,21 +1,21 @@
 -- Install packer if required
-require('hrndz.packer')
+require("hrndz.packer")
 
 -- Sensible defaults - mine
-require('hrndz.settings')
+require("hrndz.settings")
 
 -- Setup colors
-require('hrndz.theme')
-require('hrndz.statusline')
+require("hrndz.theme")
+require("hrndz.statusline")
 
 -- Install plugins
-require('hrndz.plugins')
+require("hrndz.plugins")
 
 -- Key mappings
-require('hrndz.keymaps')
+require("hrndz.keymaps")
 
 -- Auto Command Groups
-require('hrndz.autocmds')
+require("hrndz.autocmds")
 
 -- LSP config
-require('hrndz.lsp')
+require("hrndz.lsp")
