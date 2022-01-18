@@ -8,6 +8,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 # OS Name
 export OS_NAME="$(uname)"
+export ARCH="$(uname -m)"
 
 
 if [ "${SHELL##*/}" = "zsh" ] && [ -e "/etc/zsh/zprofile" ]; then
@@ -16,11 +17,16 @@ if [ "${SHELL##*/}" = "zsh" ] && [ -e "/etc/zsh/zprofile" ]; then
     emulate sh -c 'source /etc/profile'
 fi
 
-
 # Load brew env
+if [ "$OS_NAME" = "Darwin" ] && [ "$ARCH" = "arm64" ]; then
+  BREW="/opt/homebrew/bin/brew"
+fi
+if [ "$OS_NAME" = "Darwin" ] && [ "$ARCH" != "arm64" ]; then
+  BREW="/usr/local/bin/brew"
+fi
 if [ "$OS_NAME" = "Darwin" ]; then
-  BREW="$(ls /(opt|usr)/(homebrew|local)/bin/brew)"
   eval $($BREW shellenv zsh)
+  export SSH_AUTH_SOCK="$(launchctl getenv SSH_AUTH_SOCK)"
 fi
 
 
@@ -56,7 +62,6 @@ fi
 export VIRSH_DEFAULT_CONNECT_URI='qemu:///system'
 
 # autosuggetions
-# export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8,underline"
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # Set GNUPGHOME
