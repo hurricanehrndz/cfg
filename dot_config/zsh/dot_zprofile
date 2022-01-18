@@ -26,7 +26,6 @@ if [ "$OS_NAME" = "Darwin" ] && [ "$ARCH" != "arm64" ]; then
 fi
 if [ "$OS_NAME" = "Darwin" ]; then
   eval $($BREW shellenv zsh)
-  export SSH_AUTH_SOCK="$(launchctl getenv SSH_AUTH_SOCK)"
 fi
 
 
