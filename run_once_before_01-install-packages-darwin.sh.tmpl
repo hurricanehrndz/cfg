@@ -1,80 +1,12 @@
 {{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/zsh
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-fonts"
-tap "homebrew/core"
-brew "awscli"
-brew "bash"
-brew "bat"
-brew "bottom"
-brew "chezmoi"
-brew "zstd"
-brew "ddrescue"
-brew "direnv"
-brew "dust"
-brew "efm-langserver"
-brew "exa"
-brew "fd"
-brew "fzf"
-brew "gawk"
-brew "git"
-brew "git-delta"
-brew "gnupg"
-brew "grc"
-brew "grex"
-brew "hopenpgp-tools"
-brew "hyperfine"
-brew "less"
-brew "lua@5.1"
-brew "luarocks"
-brew "neofetch"
-brew "neovim", args: ["HEAD"]
-brew "neovim-remote"
-brew "ninja"
-brew "npm"
-brew "pinentry-mac"
-brew "poetry"
-brew "ripgrep"
-brew "rustup-init"
-brew "sd"
-brew "sheldon"
-brew "shellcheck"
-brew "shfmt"
-brew "sk"
-brew "starship"
-brew "tealdeer"
-brew "tmux"
-brew "tree"
-brew "ykman"
-brew "ykpers"
-brew "zoxide"
-brew "zsh"
-cask "brave-browser"
-cask "discord"
-cask "flameshot"
-cask "font-sauce-code-pro-nerd-font"
-cask "iterm2"
-cask "multipass"
-cask "slack"
-cask "spotify"
-cask "vagrant"
-cask "visual-studio-code"
-EOF
-
-npm install --global yarn
-
-if ! grep -qc "/usr/local/bin/zsh" /etc/shells; then
-  echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells > /dev/null
-fi
-
-{{ if (eq .chezmoi.arch "arm64") -}}
-if [[ ! -e /usr/local/bin/zsh ]]; then
-  sudo ln -sf /opt/homebrew/bin/zsh /usr/local/bin/zsh
-fi
-{{ end -}}
+brew bundle --no-lock --file=$HOME/.local/share/hrndz/Brewfile
+# enable yarn
+corepack enable
+pushd ~/.local/share/yarn/global/
+yarn global add
+popd
 
 {{ end -}}
 # vim: set ft=zsh :
