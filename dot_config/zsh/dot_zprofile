@@ -65,3 +65,8 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # Set GNUPGHOME
 export GNUPGHOME="$HOME/.config/gnupg"
+
+# nvim zsh comp
+if [ -d $HOME/.zsh/comp ]; then
+  fpath=("$HOME/.zsh/comp" $fpath)
+fi
