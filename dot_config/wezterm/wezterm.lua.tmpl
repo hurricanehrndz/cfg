@@ -53,7 +53,8 @@ return {
   -- start up
 {{ if (eq .chezmoi.os "darwin") -}}
 {{ if stat ("/opt/homebrew//bin/zsh") }}
-  default_gui_startup_args = { "start", "--", "/opt/homebrew/bin/zsh", "--login", "-c", [[tmux new-session -A -s main]]},
+  default_gui_startup_args = { "start", "--", "/opt/homebrew/bin/zsh", "--login"},
+  -- default_gui_startup_args = { "start", "--", "/opt/homebrew/bin/zsh", "--login", "-c", [[tmux new-session -A -s main]]},
 {{ else if stat ("/usr/local/bin/zsh") }}
   default_gui_startup_args = { "start", "/usr/local/bin/zsh", "--login", "-c", [['tmux new-session -A -s main']] },
 {{- else if (eq .chezmoi.os "linux") }}
