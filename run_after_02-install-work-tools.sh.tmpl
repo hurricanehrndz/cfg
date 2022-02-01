@@ -2,6 +2,20 @@
 #!/bin/zsh
 # vim: set ft=zsh :
 {{ if stat ("/etc/yelp") }}
-{{ joinPath .chezmoi.sourceDir "yelp/setup-aws_okta.gpg" | include | decrypt }}
+vpn_int=$(ifconfig -a inet | grep -B 1 "10.2" | grep utun | cut -d ":" -f 1)
+if [[ -z $vpn_int ]]; then
+  echo "Required connections not found, exiting..."
+  exit
+fi
+aws_okta_path="$HOME/.local/bin/aws-okta"
+if [[ ! -f "$aws_okta_path" ]]; then
+  virtualenv_home="$HOME/.local/share/.virtualenvs"
+  mkdir -p "$virtualenv_home"
+  python3 -mvenv "$virtualenv_home/aws-okta"
+  source "$virtualenv_home/aws-okta/bin/activate"
+  pip install -i https://pypi.yelpcorp.com/simple/ aws-okta
+  ln -sf "$virtualenv_home/aws-okta/bin/aws-okta" $aws_okta_path
+  deactivate
+fi
 {{ end }}
 {{ end }}
