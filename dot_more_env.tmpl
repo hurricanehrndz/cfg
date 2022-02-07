@@ -1,7 +1,0 @@
-{{ if stat ("/etc/yelp") }}
-AWS_OKTA_CONFIG="$HOME/.aws/aws_okta.yaml"
-export AWS_OKTA_CONFIG
-if [[ -d "$HOME/Library/Application Support/multipass/bin"  ]]; then
-  path=("$HOME/Library/Application Support/multipass/bin" $path)
-fi
-{{ end }}

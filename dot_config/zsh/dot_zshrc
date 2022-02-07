@@ -15,9 +15,9 @@ unset config_files
 zmodload -a zsh/zpty zpty
 # Load environment variables from a file; this approach allows me to not
 # commit secrets like API keys to Git
-if [[ -e "$HOME/.more_env" ]]; then
-  source "$HOME/.more_env"
-fi
+# machine-specific configuraion
+SYSTEM_ENV="$HOME/.local/share/hrndz/env"
+[[ -e "$SYSTEM_ENV" ]] && source "$SYSTEM_ENV"
 
 if [[ $TERM != "dumb" && (-z $INSIDE_EMACS || $INSIDE_EMACS == "vterm") ]]; then
   (( $+commands[starship] )) && eval "$(starship init zsh)"
