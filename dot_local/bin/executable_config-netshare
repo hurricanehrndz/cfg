@@ -10,7 +10,7 @@ vpn_int=$(ifconfig -a inet | grep -B 1 "10.2" | grep utun | cut -d ":" -f 1)
 internet_int=$(route get deploy.apple.com 2> /dev/null | grep interface | cut -d ' ' -f 4)
 # Exits script if it cant find vpn connection
 if [[ -z $vpn_int || -z "$internet_int" ]]; then
-  echo "Required connections not found, exiting..."
+  echo "Net Share: required connections not found, exiting..."
   exit
 fi
 

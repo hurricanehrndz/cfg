@@ -4,7 +4,7 @@
 {{ if stat ("/etc/yelp") }}
 vpn_int=$(ifconfig -a inet | grep -B 1 "10.2" | grep utun | cut -d ":" -f 1)
 if [[ -z $vpn_int ]]; then
-  echo "Required connections not found, exiting..."
+  echo "AWS-OKTA: required connections not found, exiting..."
   exit
 fi
 aws_okta_path="$HOME/.local/bin/aws-okta"

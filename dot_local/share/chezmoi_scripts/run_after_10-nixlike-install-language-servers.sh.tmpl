@@ -20,8 +20,3 @@ if [[ ! -e "$SUMKEKO_DIR/bin/.update" ]] || [[ "$#sumneko_update_flag" -ge 1 ]];
   popd
   touch "$SUMKEKO_DIR/bin/.update"
 fi
-
-{{ if (eq .chezmoi.os "darwin") -}}
-# upgrades
-brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
-{{ end -}}

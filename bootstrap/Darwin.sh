@@ -23,6 +23,9 @@ encryption = "gpg"
 EOF
 
 brew install --force chezmoi
+brew_update_flag_path="$HOME/.local/share/hrndz/.update"
+mkdir -p "${brew_update_flag_path%/*}"
+touch "$brew_update_flag_path"
 chezmoi init --apply hurricanehrndz
 
 # load services
