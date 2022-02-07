@@ -15,6 +15,7 @@ export GNUPGHOME="$HOME/.config/gnupg/"
 mkdir -p $GNUPGHOME
 chmod 0700 $GNUPGHOME
 
+mkdir -p "$HOME/.config/chezmoi"
 cat >| $HOME/.config/chezmoi/chezmoi.toml <<-EOF
 encryption = "gpg"
 [gpg]
