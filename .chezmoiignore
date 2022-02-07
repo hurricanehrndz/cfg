@@ -2,7 +2,7 @@
 Library
 Library/**
 {{ end }}
-bootstrap-Darwin.sh
+bootstrap/
 yelp/
 README.md
 stylua.toml
