@@ -2,22 +2,10 @@
 #!/bin/zsh
 # vim: set ft=zsh :
 
-brew bundle --no-lock --file=$HOME/.local/share/hrndz/Brewfile
-# enable yarn
-corepack enable
-pushd ~/.local/share/yarn/global/
-yarn global add
-popd
-
-# install asdf and plugins
-export ASDF_DATA_DIR="$HOME/.asdf"
-git clone https://github.com/asdf-vm/asdf.git "$ASDF_DATA_DIR" --branch v0.9.0
-if [[ -d "$ASDF_DATA_DIR" ]]; then
-  source "$ASDF_DATA_DIR/asdf.sh"
+if [[ -f $HOME/.local/share/hrndz/Brewfile ]]; then
+  BREWFILE="$HOME/.local/share/hrndz/Brewfile"
+else
+  BREWFILE="$HOME/.local/share/chezmoi/dot_local/share/hrndz/Brewfile"
 fi
-ASDF_PLUGINS=(terraform python direnv poetry)
-for plugin in $ASDF_PLUGINS; do
-  asdf plugin-add $plugin
-  asdf install $plugin latest
-done
+brew bundle --no-lock --file="$BREWFILE"
 {{ end -}}
