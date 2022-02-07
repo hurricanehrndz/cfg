@@ -1,5 +1,6 @@
 {{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/zsh
+# vim: set ft=zsh :
 
 brew bundle --no-lock --file=$HOME/.local/share/hrndz/Brewfile
 # enable yarn
@@ -20,4 +21,3 @@ for plugin in $ASDF_PLUGINS; do
   asdf install $plugin latest
 done
 {{ end -}}
-# vim: set ft=zsh :

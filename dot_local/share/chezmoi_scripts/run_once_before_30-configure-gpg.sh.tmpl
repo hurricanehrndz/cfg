@@ -1,3 +1,4 @@
+{{- if (ne .chezmoi.os "windows") -}}
 #!/bin/zsh
 # vim: set ft=zsh :
 setopt extendedglob
@@ -8,3 +9,4 @@ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$MY_KEY"
 echo "$MY_KEY:6:" | gpg --import-ownertrust
 gpg --card-status
 gpg --list-secret-keys
+{{ end -}}

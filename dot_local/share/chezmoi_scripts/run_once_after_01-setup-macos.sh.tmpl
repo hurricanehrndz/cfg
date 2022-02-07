@@ -1,0 +1,3 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+{{ joinPath .chezmoi.sourceDir "dot_local/bin/executable_config-netshare" | include }}
+{{ end -}}
