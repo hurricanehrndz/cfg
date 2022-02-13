@@ -24,8 +24,13 @@ fi
 if [ "$OS_NAME" = "Darwin" ] && [ "$ARCH" != "arm64" ]; then
   BREW="/usr/local/bin/brew"
 fi
-if [ "$OS_NAME" = "Darwin" ]; then
+if [ "$OS_NAME" = "Darwin" ] && [ -n "$BREW" ]; then
   eval $($BREW shellenv zsh)
+  if [ -f $(brew --prefix)/etc/brew-wrap ];then
+    export HOMEBREW_BREWFILE_LEAVES=1
+    export HOMEBREW_BREWFILE_ON_REQUEST=1
+    source $(brew --prefix)/etc/brew-wrap
+  fi
 fi
 
 

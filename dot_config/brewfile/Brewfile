@@ -1,0 +1,83 @@
+
+# tap repositories and their packages
+
+tap homebrew/core
+brew awscli
+brew bash
+brew bat
+brew bottom
+brew chezmoi
+brew colima
+brew corepack
+brew ddrescue
+brew docker
+brew docker-compose
+brew dust
+brew exa
+brew fd
+brew fzf
+brew gawk
+brew git
+brew git-crypt
+brew git-delta
+brew git-filter-repo
+brew gnupg
+brew grc
+brew grex
+brew hopenpgp-tools
+brew hyperfine
+brew less
+brew lua@5.1
+brew luarocks
+brew mas
+brew neofetch
+brew neovim --HEAD
+brew neovim-remote
+brew ninja
+brew node
+brew pinentry-mac
+brew reattach-to-user-namespace
+brew ripgrep
+brew rustup-init
+brew sd
+brew sheldon
+brew shellcheck
+brew shfmt
+brew sk
+brew starship
+brew stylua
+brew tealdeer
+brew tflint
+brew tmux
+brew tree
+brew ykman
+brew ykpers
+brew zoxide
+brew zsh
+brew zstd
+
+tap homebrew/bundle
+
+tap homebrew/cask-fonts
+cask font-sauce-code-pro-nerd-font
+
+tap homebrew/cask-versions
+
+tap homebrew/cask
+cask amethyst
+cask discord
+cask element
+cask flameshot
+cask iterm2
+cask microsoft-auto-update
+cask microsoft-edge
+cask slack
+cask spotify
+cask vagrant
+cask visual-studio-code
+
+tap rcmdnk/file
+brew brew-file
+
+tap wez/wezterm
+cask wezterm-nightly

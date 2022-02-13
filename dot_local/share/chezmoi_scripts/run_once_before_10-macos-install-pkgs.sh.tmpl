@@ -2,10 +2,10 @@
 #!/bin/zsh
 # vim: set ft=zsh :
 
-if [[ -f $HOME/.local/share/hrndz/Brewfile ]]; then
-  BREWFILE="$HOME/.local/share/hrndz/Brewfile"
+if [[ -f "$HOME/.config/brewfile/Brewfile" ]]; then
+  BREWFILE="$HOME/.config/brewfile/Brewfile"
 else
-  BREWFILE="$HOME/.local/share/chezmoi/dot_local/share/hrndz/Brewfile"
+  BREWFILE="$HOME/.local/share/chezmoi/dot_config/brewfile/Brewfile"
 fi
 brew bundle --no-lock --file="$BREWFILE"
 {{ end -}}
