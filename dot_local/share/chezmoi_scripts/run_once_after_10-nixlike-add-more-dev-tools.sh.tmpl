@@ -13,7 +13,9 @@ fi
 
 # install asdf and plugins
 export ASDF_DATA_DIR="$HOME/.asdf"
-git clone https://github.com/asdf-vm/asdf.git "$ASDF_DATA_DIR" --branch v0.9.0
+if [[ ! -d "$ASDF_DATA_DIR" ]]; then
+  git clone https://github.com/asdf-vm/asdf.git "$ASDF_DATA_DIR" --branch v0.9.0
+fi
 if [[ -d "$ASDF_DATA_DIR" ]]; then
   source "$ASDF_DATA_DIR/asdf.sh"
 fi
