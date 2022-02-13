@@ -17,5 +17,12 @@ if [[ ! -f "$aws_okta_path" ]]; then
   ln -sf "$virtualenv_home/aws-okta/bin/aws-okta" $aws_okta_path
   deactivate
 fi
+
+GIT_FAT="$HOME/.local/bin/git-fat"
+if [[ ! -f "$GIT_FAT" ]]; then
+  echo "Downloading git-fat..."
+  curl -sSL https://raw.githubusercontent.com/hurricanehrndz/git-fat/master/git-fat -o "$GIT_FAT"
+  chmod +x "$GIT_FAT"
+fi
 {{ end }}
 {{ end }}
