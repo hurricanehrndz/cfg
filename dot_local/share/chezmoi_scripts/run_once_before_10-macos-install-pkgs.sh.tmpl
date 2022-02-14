@@ -7,5 +7,5 @@ if [[ -f "$HOME/.config/brewfile/Brewfile" ]]; then
 else
   BREWFILE="$HOME/.local/share/chezmoi/dot_config/brewfile/Brewfile"
 fi
-brew bundle --no-lock --file="$BREWFILE"
+brew-file --leaves --on_request -f $BREWFILE install
 {{ end -}}
