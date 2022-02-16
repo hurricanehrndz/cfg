@@ -62,3 +62,6 @@ alias tm='tmux new-session -A -s main'
 alias vimdiff='nvim -d'
 
 alias rg='rg -i -L'
+
+alias iscp='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+alias issh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
