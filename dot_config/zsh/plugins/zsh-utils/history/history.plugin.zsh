@@ -8,7 +8,6 @@ mkdir -p "$(dirname "$HISTFILE")"
 
 setopt BANG_HIST              # Treat the '!' character specially during expansion.
 setopt SHARE_HISTORY          # Imports new commands from the history file, and appended to the history file
-setopt EXTENDED_HISTORY       # Write the history file in the ':start:elapsed;command' format.
 setopt HIST_EXPIRE_DUPS_FIRST # Expire a duplicate event first when trimming history.
 setopt HIST_FCNTL_LOCK        # Use system fnctl to lock file on write operations
 setopt HIST_IGNORE_DUPS       # Do not record an event that was just recorded again.
