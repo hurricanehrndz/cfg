@@ -33,4 +33,9 @@ function zvm_after_init() {
   bindkey   -M   viins   '\C-X\C-E'      edit-command-line
 }
 
+function import-history() {
+  fc -P
+  fc -p $HISTFILE
+}
+
 ZVM_CURSOR_STYLE_ENABLED=false

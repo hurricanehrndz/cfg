@@ -20,5 +20,8 @@ SYSTEM_ENV="$HOME/.local/share/hrndz/env"
 [[ -e "$SYSTEM_ENV" ]] && source "$SYSTEM_ENV"
 
 if [[ $TERM != "dumb" && (-z $INSIDE_EMACS || $INSIDE_EMACS == "vterm") ]]; then
-  (( $+commands[starship] )) && eval "$(starship init zsh)"
+  if (( $+commands[starship] )); then
+    eval "$(starship init zsh)"
+    precmd_functions+=(import-history)
+  fi
 fi
