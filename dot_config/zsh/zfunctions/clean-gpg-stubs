@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+# vim:set ft=zsh:
+# source: https://adtac.in/2019/09/29/gpg-multiple-cards.html
+
+keygrips=$(
+  gpg-connect-agent 'keyinfo --list' /bye 2>/dev/null \
+    | grep -v OK \
+    | awk '{if ($4 == "T") { print $3 ".key" }}')
+while read grip; do
+  rm -v ~/.gnupg/private-keys-v1.d/$grip
+done <<<"$keygrips"
+gpg --card-status 2>/dev/null 1>/dev/null
