@@ -9,9 +9,9 @@ if [[ -z $vpn_int ]]; then
 fi
 aws_okta_path="$HOME/.local/bin/aws-okta"
 if [[ ! -f "$aws_okta_path" ]]; then
-  virtualenv_home="$HOME/.local/share/.virtualenvs"
+  virtualenv_home="$HOME/.local/share/venvs"
   mkdir -p "$virtualenv_home"
-  python3 -mvenv "$virtualenv_home/aws-okta"
+  /usr/local/bin/python3 -mvenv "$virtualenv_home/aws-okta"
   source "$virtualenv_home/aws-okta/bin/activate"
   pip install -i https://pypi.yelpcorp.com/simple/ aws-okta
   ln -sf "$virtualenv_home/aws-okta/bin/aws-okta" $aws_okta_path
