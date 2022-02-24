@@ -1,22 +1,52 @@
 #!/bin/zsh
 # vim: set ft=zsh :
 
-SUMNEKO_ULR="https://github.com/sumneko/lua-language-server"
+SUMNEKO_URL="https://github.com/sumneko/lua-language-server"
 SUMKEKO_DIR="$HOME/.cache/nvim/lua-language-server"
+
+LS_UPDATE_FLAG="$HOME/.cache/nvim/.update_lsps"
+LS_UPDATE_FLAG_OUTDATED=($LS_UPDATE_FLAG(Nmd+6))
 
 if [[ ! -d "$SUMKEKO_DIR" ]]; then
   mkdir -p "$SUMKEKO_DIR"
-  git clone "$SUMNEKO_ULR" "$SUMKEKO_DIR"
+  git clone "$SUMNEKO_URL" "$SUMKEKO_DIR"
 fi
 
-sumneko_update_flag=("$SUMKEKO_DIR/bin/.update"(Nmd+6))
-if [[ ! -e "$SUMKEKO_DIR/bin/.update" ]] || [[ "$#sumneko_update_flag" -ge 1 ]]; then
+if [[ ! -e "$LS_UPDATE_FLAG" ]] || [[ "$#LS_UPDATE_FLAG_OUTDATED" -ge 1 ]]; then
+  # Update Lua LSP
   pushd "$SUMKEKO_DIR"
   git submodule update --init --recursive
   pushd "./3rd/luamake"
-  "./compile/install.sh"
+  case "$(uname)" in
+    Linux)
+      ninja -f compile/ninja/linux.ninja
+      ;;
+    Darwin)
+      ninja -f compile/ninja/macos.ninja
+      ;;
+    *)
+      echo "Unknown OS"
+      exit 1
+      ;;
+  esac
   popd
   "./3rd/luamake/luamake" rebuild
   popd
-  touch "$SUMKEKO_DIR/bin/.update"
+
+  # Update Powershell LSP
+  pses_ver=$(curl -sSL https://github.com/PowerShell/PowerShellEditorServices/releases/latest.atom | \
+    awk '/releases\/download/{
+      gsub(/.*download/, "")
+      ver = gensub(/\/(v.+)\/.*/,"\\1","g")
+      print ver
+    }'
+  )
+  PSES_URL="https://github.com/PowerShell/PowerShellEditorServices/releases/download/"
+  PSES_URL+="$pses_ver/PowerShellEditorServices.zip"
+  curl -o /tmp/pses.zip -sSL "$PSES_URL" > /dev/null 2>&1
+  if [[ -f /tmp/pses.zip ]]; then
+    unzip -o -d "$HOME/.cache/nvim/" /tmp/pses.zip "PowerShellEditorServices/*"
+    rm -f /tmp/pses.zip
+  fi
+  touch "$LS_UPDATE_FLAG"
 fi
