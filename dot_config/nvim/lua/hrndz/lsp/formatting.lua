@@ -6,7 +6,7 @@ local M = {}
 
 -- use lsp formatting if it's available (and if it's good)
 -- otherwise, fall back to null-ls
-local preferred_formatting_clients = { "eslint" }
+local preferred_formatting_clients = { "eslint", "powershell_es" }
 local fallback_formatting_client = "null-ls"
 
 function M.sync(bufnr)

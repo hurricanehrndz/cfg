@@ -37,6 +37,7 @@ for _, server in ipairs({
   "null-ls",
   "sumneko",
   "tsserver",
+  "pses",
 }) do
   require("hrndz.lsp." .. server).setup(custom_attach, updated_capabilities)
 end
