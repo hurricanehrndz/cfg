@@ -45,7 +45,7 @@ if [[ ! -e "$LS_UPDATE_FLAG" ]] || [[ "$#LS_UPDATE_FLAG_OUTDATED" -ge 1 ]]; then
   PSES_URL+="$pses_ver/PowerShellEditorServices.zip"
   curl -o /tmp/pses.zip -sSL "$PSES_URL" > /dev/null 2>&1
   if [[ -f /tmp/pses.zip ]]; then
-    unzip -o -d "$HOME/.cache/nvim/" /tmp/pses.zip "PowerShellEditorServices/*"
+    unzip -o -d "$HOME/.cache/nvim/PSES" /tmp/pses.zip
     rm -f /tmp/pses.zip
   fi
   touch "$LS_UPDATE_FLAG"
