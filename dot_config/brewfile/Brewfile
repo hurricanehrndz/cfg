@@ -37,6 +37,7 @@ brew neovim-remote
 brew ninja
 brew node
 brew pinentry-mac
+brew pre-commit
 brew reattach-to-user-namespace
 brew ripgrep
 brew rustup-init
