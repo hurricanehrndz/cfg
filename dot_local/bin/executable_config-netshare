@@ -14,16 +14,12 @@ if [[ -z $vpn_int || -z "$internet_int" ]]; then
   exit
 fi
 
-dnscrypt_launchd_daemon="/Library/Application Support/OpenDNS Roaming Client/com.opendns.osx.DNSCryptProxy.plist"
-alt_dnscrypt_launchd_daemon="/Library/LaunchDaemons/alt.opendns.osx.DNSCryptProxy.plist"
-vm_gateway="192.168.64.1"
-vm_net="192.168.64.0/24"
+vm_gateway="$(ifconfig bridge100 2>/dev/null| awk '/inet/{print $2; exit}')"
+vm_net="${vm_gateway/%.1/.0/24}"
 
-if [[ -f "$dnscrypt_launchd_daemon" ]] && [[ ! -f "$alt_dnscrypt_launchd_daemon" ]]; then
-  sed -e "s%com.opendns\(.osx.DNSCryptProxy\)%alt\1%g; s%127.0.0.1%$vm_gateway%g" \
-    "$dnscrypt_launchd_daemon" | sudo tee "$alt_dnscrypt_launchd_daemon" > /dev/null
-  echo "Starting Alt DNSCryptProxy..."
-  sudo launchctl bootstrap system $alt_dnscrypt_launchd_daemon
+if [[ -z "$vm_gateway" ]]; then
+  echo "No compatible interfaces found.."
+  exit
 fi
 
 echo "Writing VPN share script to /usr/local/bin"
