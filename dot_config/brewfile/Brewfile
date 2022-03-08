@@ -23,6 +23,7 @@ brew git-delta
 brew git-filter-repo
 brew gnu-tar
 brew gnupg
+brew gnutls
 brew grc
 brew grex
 brew hopenpgp-tools
@@ -36,8 +37,11 @@ brew neovim --HEAD
 brew neovim-remote
 brew ninja
 brew node
+brew openldap
+brew p11-kit
 brew pinentry-mac
 brew pre-commit
+brew python@3.10
 brew reattach-to-user-namespace
 brew ripgrep
 brew rustup-init

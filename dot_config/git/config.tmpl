@@ -53,7 +53,7 @@
     untracked = cyan
 
 [core]
-    pager        = delta --theme=$BAT_THEME
+    pager        = delta
     whitespace   = -indent-with-non-tab,trailing-space,cr-at-eol
     excludesfile = $XDG_CONFIG_HOME/git/config/ignore
 
@@ -115,5 +115,9 @@
 [commit]
     gpgsign = false
     verbose = true
+
+[delta]
+    line-numbers = true
+     side-by-side = true
 
 # vim: set ft=gitconfig:
