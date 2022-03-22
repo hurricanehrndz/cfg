@@ -27,7 +27,6 @@ fi
 if [ "$OS_NAME" = "Darwin" ] && [ -n "$BREW" ]; then
   eval $($BREW shellenv zsh)
   if [ -f $(brew --prefix)/etc/brew-wrap ];then
-    export HOMEBREW_BREWFILE_LEAVES=1
     export HOMEBREW_BREWFILE_ON_REQUEST=1
     source $(brew --prefix)/etc/brew-wrap
   fi
