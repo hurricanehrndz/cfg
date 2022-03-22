@@ -22,7 +22,7 @@ encryption = "gpg"
   recipient = "21D77144BCC519FD64EAA2C0919DA52AC863D46D"
 EOF
 
-$BREW_BIN install --force chezmoi rcmdnk/file/brew-file
+$BREW_BIN install --force chezmoi git-crypt gnupg rcmdnk/file/brew-file
 # activate brew-file
 if [[ -f $(brew --prefix)/etc/brew-wrap ]];then
   source $(brew --prefix)/etc/brew-wrap
@@ -31,7 +31,13 @@ fi
 brew_update_flag_path="$HOME/.local/share/hrndz/.update"
 mkdir -p "${brew_update_flag_path%/*}"
 touch "$brew_update_flag_path"
-chezmoi init --apply hurricanehrndz
+
+# Run chezmoi
+git clone https://github.com/hurricanehrndz/dotfiles.git "$HOME/.local/share/chezmoi"
+pushd "$HOME/.local/share/chezmoi"
+git-crypt unlock
+popd
+chezmoi apply
 
 # load services
 gpgconf --kill gpg-agent
