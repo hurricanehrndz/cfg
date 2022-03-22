@@ -3,6 +3,7 @@ Library
 Library/**
 {{ end }}
 bootstrap/
-yelp/
+sensitive/
+dot_local/share/chezmoi_scripts/
 README.md
 stylua.toml
