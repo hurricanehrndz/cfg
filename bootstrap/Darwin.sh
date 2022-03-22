@@ -35,7 +35,7 @@ for key in ${KEYS[@]}; do
 done
 
 # Run chezmoi
-git clone https://github.com/hurricanehrndz/dotfiles.git "$HOME/.local/share/chezmoi"
+git clone https://github.com/hurricanehrndz/cfg.git "$HOME/.local/share/chezmoi"
 pushd "$HOME/.local/share/chezmoi"
 git-crypt unlock
 popd
