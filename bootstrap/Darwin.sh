@@ -15,13 +15,6 @@ export GNUPGHOME="$HOME/.config/gnupg/"
 mkdir -p $GNUPGHOME
 chmod 0700 $GNUPGHOME
 
-mkdir -p "$HOME/.config/chezmoi"
-cat >| $HOME/.config/chezmoi/chezmoi.toml <<-EOF
-encryption = "gpg"
-[gpg]
-  recipient = "21D77144BCC519FD64EAA2C0919DA52AC863D46D"
-EOF
-
 $BREW_BIN install --force chezmoi git-crypt gnupg rcmdnk/file/brew-file
 # activate brew-file
 if [[ -f $(brew --prefix)/etc/brew-wrap ]];then
@@ -31,6 +24,15 @@ fi
 brew_update_flag_path="$HOME/.local/share/hrndz/.update"
 mkdir -p "${brew_update_flag_path%/*}"
 touch "$brew_update_flag_path"
+
+# Setup gpg
+KEYS=("21D77144BCC519FD64EAA2C0919DA52AC863D46D" "C68DA2648035BCCE55710E3E0D2565B7C6058A69")
+for key in ${KEYS[@]}; do
+  gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$key"
+  echo "$key:6:" | gpg --import-ownertrust
+  gpg --card-status
+  gpg --list-secret-keys
+done
 
 # Run chezmoi
 git clone https://github.com/hurricanehrndz/dotfiles.git "$HOME/.local/share/chezmoi"
