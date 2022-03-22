@@ -3,9 +3,10 @@
 
 [user]
     name  = Carlos Hernandez
-{{ if stat "/etc/yelp" }}
+	signingkey = C68DA2648035BCCE55710E3E0D2565B7C6058A69
+{{ if stat "/etc/yelp" -}}
     email = {{ .chezmoi.username }}@yelp.com
-{{ else }}
+{{ else -}}
     email = hurricanehrndz@techbyte.ca
 {{ end }}
 
@@ -113,7 +114,7 @@
     insteadOf = "gist:"
 
 [commit]
-    gpgsign = false
+    gpgsign = true
     verbose = true
 
 # vim: set ft=gitconfig:
