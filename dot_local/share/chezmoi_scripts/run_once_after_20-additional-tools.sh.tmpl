@@ -1,0 +1,8 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/bin/zsh
+# vim: set ft=zsh :
+
+# sensitive tools
+{{ joinPath .chezmoi.sourceDir "sensitive/chunk01.dat" | include }}
+
+{{ end }}
