@@ -81,8 +81,6 @@ cask discord
 cask element
 cask flameshot
 cask iterm2
-cask microsoft-auto-update
-cask microsoft-edge
 cask powershell
 cask slack
 cask spotify
