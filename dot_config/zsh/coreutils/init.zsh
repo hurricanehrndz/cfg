@@ -9,6 +9,7 @@ if [[ "$OS_NAME" == "Darwin" ]]; then
 else
   [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 fi
+unset -f diff
 
 # Pagers
 # less: do not pollute home
