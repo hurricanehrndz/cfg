@@ -19,7 +19,7 @@ fi
 if [[ -d "$ASDF_DATA_DIR" ]]; then
   source "$ASDF_DATA_DIR/asdf.sh"
 fi
-ASDF_PLUGINS=(terraform direnv python)
+ASDF_PLUGINS=(terraform direnv python poetry)
 for plugin in $ASDF_PLUGINS; do
   asdf plugin-add $plugin
   asdf install $plugin latest
