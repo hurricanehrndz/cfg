@@ -2,3 +2,7 @@ Host *
   ControlMaster auto
   ControlPath ~/.ssh/controlmasters/%h@%p
   ControlPersist 10m
+
+Host dev
+  HostName dev33-uswest1adevc
+  ForwardAgent yes
