@@ -81,6 +81,7 @@ cask powershell
 cask rancher
 cask slack
 cask spotify
+cask utm
 cask vagrant
 cask visual-studio-code
 
