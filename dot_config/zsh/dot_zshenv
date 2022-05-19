@@ -1,4 +1,7 @@
+# shellcheck shell=bash
 ZDOTDIR=$HOME/.config/zsh
+export ZDOTDIR
 
 # Start compinit in my zshrc
+# shellcheck disable=SC2034
 skip_global_compinit=1
