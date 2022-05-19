@@ -9,5 +9,5 @@ if [[ -d "$ASDF_DATA_DIR" ]]; then
   path=("$latest_direnv_version/bin" $path)
 
   # Hook direnv into your shell.
-  eval "$(direnv hook zsh)"
+  eval "$(direnv hook $SHELL)"
 fi
