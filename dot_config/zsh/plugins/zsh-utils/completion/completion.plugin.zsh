@@ -17,6 +17,7 @@ setopt AUTO_MENU           # Show completion menu on a successive tab press.
 setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
 setopt AUTO_PARAM_SLASH    # If completed parameter is a directory, add a trailing slash.
 setopt EXTENDED_GLOB       # Needed for file modification glob modifiers with compinit
+setopt CASE_GLOB           # Case sensitive globbing
 unsetopt MENU_COMPLETE     # Do not autoselect the first completion entry.
 unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor.
 
@@ -25,7 +26,8 @@ unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor.
 #
 
 # better matching
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # Use caching to make completion for commands such as dpkg and apt usable.
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
@@ -33,13 +35,6 @@ zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
 # autoload bash completion
 autoload bashcompinit
 bashcompinit
-
-# load skim completion
-if [[ "$OS_NAME" == "Darwin" ]]; then
-  source /$HOMEBREW_CELLAR/sk/*/share/zsh/site-functions/completion.zsh([1])
-else
-  source /usr/share/bash-completion/completions/sk
-fi
 
 #
 # Init
