@@ -77,7 +77,7 @@ return require("packer").startup(function(use)
   use({
     "nvim-treesitter/nvim-treesitter",
     config = config("treesitter"),
-    run = ":TSUpdate maintained",
+    run = ":TSUpdate",
     requires = {
       -- color all the braces
       "p00f/nvim-ts-rainbow",
