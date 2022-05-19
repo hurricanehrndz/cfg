@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # vim:set ft=zsh sw=2 sts=2 ts=2 et:
 
 # see: https://wiki.archlinux.org/index.php/XDG_Base_Directory
@@ -7,8 +8,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 # OS Name
-export OS_NAME="$(uname)"
-export ARCH="$(uname -m)"
+OS_NAME="$(uname)"
+ARCH="$(uname -m)"
+export OS_NAME ARCH
 
 
 if [ "${SHELL##*/}" = "zsh" ] && [ -e "/etc/zsh/zprofile" ]; then
@@ -25,7 +27,7 @@ if [ "$OS_NAME" = "Darwin" ] && [ "$ARCH" != "arm64" ]; then
   BREW="/usr/local/bin/brew"
 fi
 if [ "$OS_NAME" = "Darwin" ] && [ -n "$BREW" ]; then
-  eval $($BREW shellenv zsh)
+  eval "$($BREW shellenv zsh)"
   if [ -f $($BREW --prefix)/etc/brew-wrap ];then
     export HOMEBREW_BREWFILE_ON_REQUEST=1
     source "$($BREW --prefix)/etc/brew-wrap"
