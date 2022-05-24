@@ -29,6 +29,7 @@ brew grc
 brew grex
 brew hopenpgp-tools
 brew hyperfine
+brew lazygit
 brew less
 brew lua@5.1
 brew luarocks
@@ -43,7 +44,6 @@ brew openssl@3
 brew p11-kit
 brew pinentry-mac
 brew pre-commit
-brew qemu
 brew reattach-to-user-namespace
 brew ripgrep
 brew rustup-init

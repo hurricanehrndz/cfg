@@ -2,9 +2,13 @@
 Library
 Library/**
 {{ end }}
+
 bootstrap/
 sensitive/
 dot_local/share/chezmoi_scripts/
 README.md
 LICENSE
 stylua.toml
+
+# symlinks
+.config/brewfile/src.*
