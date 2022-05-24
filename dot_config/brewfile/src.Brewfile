@@ -51,7 +51,6 @@ brew sd
 brew sheldon
 brew shellcheck
 brew shfmt
-brew sk
 brew starship
 brew stylua
 brew tealdeer
