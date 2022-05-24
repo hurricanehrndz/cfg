@@ -2,10 +2,10 @@
 #!/bin/zsh
 # vim: set ft=zsh :
 
-if [[ -f "$HOME/.config/brewfile/src.Brewfile" ]]; then
-  BREWFILE="$HOME/.config/brewfile/src.Brewfile"
+if [[ -f "$HOME/.config/brewfile/Brewfile" ]]; then
+  BREWFILE="$HOME/.config/brewfile/Brewfile"
 else
-  BREWFILE="$HOME/.local/share/chezmoi/dot_config/brewfile/Brewfile"
+  BREWFILE="$HOME/.local/share/chezmoi/dot_config/brewfile/src.Brewfile"
 fi
 brew-file --leaves --on_request -f $BREWFILE install
 {{ end -}}
