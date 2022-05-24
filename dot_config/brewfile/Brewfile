@@ -13,6 +13,7 @@ brew detect-secrets
 brew dust
 brew exa
 brew fd
+brew ffmpeg
 brew fzf
 brew gawk
 brew gh
