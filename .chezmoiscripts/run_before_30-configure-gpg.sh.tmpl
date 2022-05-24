@@ -5,6 +5,10 @@ setopt extendedglob
 
 MY_KEY="21D77144BCC519FD64EAA2C0919DA52AC863D46D"
 
+if gpg --export-ownertrust | grep -q $MY_KEY; then
+  exit 0
+fi
+
 gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$MY_KEY"
 echo "$MY_KEY:6:" | gpg --import-ownertrust
 gpg --card-status

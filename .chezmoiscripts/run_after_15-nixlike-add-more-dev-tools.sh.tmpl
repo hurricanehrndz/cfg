@@ -1,0 +1,42 @@
+{{- if (ne .chezmoi.os "windows") -}}
+#!/bin/zsh
+# vim: set ft=zsh :
+
+# enable yarn
+enable_yarn_tools() {
+  echo "Adding yarn packages..."
+  if (( $+commands[corepack] )); then
+    corepack enable
+
+    pushd ~/.local/share/yarn/global/
+    yarn global add
+    popd
+  fi
+}
+
+install_asdf_plugin() {
+  local plugin_name
+  plugin_name="$1"
+  if [[ "$HOME/.local/share/asdf/plugins/${plugin_name}" ]]; then
+    asdf plugin-add $plugin_name
+    asdf install $plugin_name latest
+  fi
+}
+
+
+(( $+commands[yarn] )) || enable_yarn_tools
+
+# install asdf and plugins
+export ASDF_DATA_DIR="$HOME/.asdf"
+if [[ ! -d "$ASDF_DATA_DIR" ]]; then
+  git clone https://github.com/asdf-vm/asdf.git "$ASDF_DATA_DIR" --branch v0.10.1
+fi
+if [[ -d "$ASDF_DATA_DIR" ]]; then
+  source "$ASDF_DATA_DIR/asdf.sh"
+  asdf update
+fi
+ASDF_PLUGINS=(terraform direnv python poetry)
+for plugin in $ASDF_PLUGINS; do
+  install_asdf_plugin "$plugin"
+done
+{{ end -}}
