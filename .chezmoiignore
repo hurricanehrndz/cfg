@@ -12,3 +12,11 @@ stylua.toml
 
 # symlinks
 .config/brewfile/src.*
+
+# asdf
+.local/share/asdf/plugins
+.local/share/asdf/downloads
+.local/share/asdf/installs
+.local/share/asdf/repository
+.local/share/asdf/shims
+.local/share/asdf/tmp

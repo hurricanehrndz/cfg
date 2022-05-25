@@ -18,6 +18,7 @@ install_asdf_plugin() {
   local plugin_name
   plugin_name="$1"
   if [[ ! -d "$ASDF_DATA_DIR/plugins/${plugin_name}" ]]; then
+    echo "Installing $plugin..."
     asdf plugin-add $plugin_name
     asdf install $plugin_name latest
   fi
@@ -28,12 +29,8 @@ install_asdf_plugin() {
 
 # install asdf and plugins
 export ASDF_DATA_DIR="$HOME/.local/share/asdf"
-if [[ ! -d "$ASDF_DATA_DIR" ]]; then
-  git clone https://github.com/asdf-vm/asdf.git "$ASDF_DATA_DIR" --branch v0.10.1
-fi
 if [[ -d "$ASDF_DATA_DIR" ]]; then
-  source "$ASDF_DATA_DIR/asdf.sh"
-  asdf update
+  source "$ASDF_DATA_DIR/lib/asdf.sh"
 fi
 ASDF_PLUGINS=(terraform direnv python poetry)
 for plugin in $ASDF_PLUGINS; do
