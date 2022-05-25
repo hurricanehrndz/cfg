@@ -4,14 +4,27 @@
 typeset -U config_files
 config_files=($ZDOTDIR/*/conf.zsh)
 
-# load sheldon plugins
-(( $+commands[sheldon] )) && source <(sheldon source)
+# load completions functions
+fpath+="$HOME/.config/zsh/plugins/zsh-completions/src"
+
+plugins=(
+  "zsh-utils/editor/*.plugin.zsh"
+  "zsh-utils/history/*.plugin.zsh"
+  "zsh-utils/directory/*.plugin.zsh"
+  "zsh-autosuggestions/*.plugin.zsh"
+  "zsh-utils/completion/*.plugin.zsh"
+  "fast-syntax-highlighting/*.plugin.zsh"
+)
+for plugin in "${plugins[@]}"; do
+  for f ($HOME/.config/zsh/plugins/$~plugin) source $f
+done
 
 # load everything but the path and init files
 for file in ${config_files}; do
   source "$file"
 done
 unset config_files
+
 # Load environment variables from a file; this approach allows me to not
 # commit secrets like API keys to Git
 # machine-specific configuraion
@@ -21,6 +34,5 @@ SYSTEM_ENV="$HOME/.local/share/hrndz/env"
 if [[ $TERM != "dumb" && (-z $INSIDE_EMACS || $INSIDE_EMACS == "vterm") ]]; then
   if (( $+commands[starship] )); then
     eval "$(starship init zsh)"
-    precmd_functions+=(import-history)
   fi
 fi
