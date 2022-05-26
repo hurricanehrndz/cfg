@@ -20,8 +20,8 @@ M.setup = function(on_attach, capabilities)
   lspconfig.tsserver.setup({
     init_options = ts_utils.init_options,
     on_attach = function(client)
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
 
       on_attach(client)
 
