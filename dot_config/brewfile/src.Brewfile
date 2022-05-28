@@ -6,6 +6,7 @@ brew awscli
 brew bash
 brew bat
 brew bottom
+brew buku
 brew chezmoi
 brew corepack
 brew ddrescue
@@ -27,6 +28,7 @@ brew gnutls
 brew gopass
 brew grc
 brew grex
+brew guile
 brew hopenpgp-tools
 brew hyperfine
 brew lazygit
@@ -39,9 +41,6 @@ brew neovim --HEAD
 brew neovim-remote
 brew ninja
 brew node
-brew openldap
-brew openssl@3
-brew p11-kit
 brew pinentry-mac
 brew pre-commit
 brew reattach-to-user-namespace
@@ -70,6 +69,7 @@ tap homebrew/cask-fonts
 cask font-sauce-code-pro-nerd-font
 
 tap homebrew/cask-versions
+cask google-chrome-beta
 
 tap homebrew/cask
 cask amethyst
