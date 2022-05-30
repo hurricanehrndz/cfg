@@ -135,4 +135,7 @@ if-shell "test ! -d #{TPM_HOME}" {
    run-shell "git clone https://github.com/tmux-plugins/tpm #{TPM_HOME}"
 }
 
+# Update environment
+set -g update-environment -r
+
 run '#{TPM_HOME}/tpm'
