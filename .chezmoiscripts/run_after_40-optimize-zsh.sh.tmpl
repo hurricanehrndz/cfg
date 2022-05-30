@@ -38,6 +38,16 @@ if (( $+commands[starship] )); then
   starship init zsh --print-full-init >! "$STARSHIP_CONF"
 fi
 
+# grc
+GRC_INIT="$HOME/.config/zsh/grc/init.zsh"
+mkdir -p "$(dirname $GRC_INIT)"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  [[ -s "$($BREW --prefix)/etc/grc.zsh" ]] && cat "$HOMEBREW_PREFIX/etc/grc.zsh" >! "$GRC_INIT"
+else
+  [[ -s "/etc/grc.zsh" ]] && cat /etc/grc.zsh >! "$GRC_INIT"
+fi
+echo "unset -f diff" >> "$GRC_INIT"
+
 # clean zsh compiled files
 fd -e zwc --base-directory "$XDG_DATA_HOME/zsh/plugins" -x rm {}
 fd -e zwc --base-directory "$XDG_CONFIG_HOME/zsh" -x rm {}
