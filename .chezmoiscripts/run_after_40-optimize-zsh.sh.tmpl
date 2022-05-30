@@ -1,0 +1,61 @@
+#!/bin/zsh
+# vim: set ft=zsh :
+
+function zcompile-many() {
+  local f
+  for f; do zcompile -R -- "$f".zwc "$f"; done
+}
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ "$(uname -m)" == "arm"* ]] then
+    BREW="/opt/homebrew/bin/brew"
+  else
+    BREW="/usr/local/bin/brew"
+  fi
+else
+  BREW="$(command -v brew)"
+fi
+
+if [[ -n "$BREW" ]]; then
+  BREW_INIT="$HOME/.config/zsh/brew/init.zsh"
+  mkdir -p "$(dirname $BREW_INIT)"
+  $BREW shellenv zsh >! "$BREW_INIT"
+
+  if [[ -f $($BREW --prefix)/etc/brew-wrap ]]; then
+    cat "$($BREW --prefix)/etc/brew-wrap" >> "$BREW_INIT"
+  fi
+fi
+
+DIRENV_CONF="$HOME/.config/zsh/direnv/conf.zsh"
+if (( $+commands[starship] )); then
+  mkdir -p "$(dirname $DIRENV_CONF)"
+  direnv hook zsh >! "$DIRENV_CONF"
+fi
+
+STARSHIP_CONF="$HOME/.config/zsh/starship/conf.zsh"
+if (( $+commands[starship] )); then
+  mkdir -p "$(dirname $STARSHIP_CONF)"
+  starship init zsh --print-full-init >! "$STARSHIP_CONF"
+fi
+
+# clean zsh compiled files
+fd -e zwc --base-directory "$XDG_DATA_HOME/zsh/plugins" -x rm {}
+fd -e zwc --base-directory "$XDG_CONFIG_HOME/zsh" -x rm {}
+
+if [[ -e $XDG_DATA_HOME/zsh/plugins/fast-syntax-highlighting ]]; then
+  mv -- $XDG_DATA_HOME/zsh/plugins/fast-syntax-highlighting/{'→chroma','tmp'}
+  zcompile-many $XDG_DATA_HOME/zsh/plugins/fast-syntax-highlighting/{fast*,functions/*,**/*.ch,**/*.zsh}
+  mv -- $XDG_DATA_HOME/zsh/plugins/fast-syntax-highlighting/{'tmp','→chroma'}
+fi
+if [[ -e $XDG_DATA_HOME/zsh/plugins/zsh-autosuggestions ]]; then
+  zcompile-many $XDG_DATA_HOME/zsh/plugins/zsh-autosuggestions/{zsh-autosuggestions.zsh,src/**/*.zsh}
+fi
+zcompile-many $XDG_DATA_HOME/zsh/plugins/oh-my-zsh/plugins/git/*.zsh
+zcompile-many $XDG_DATA_HOME/zsh/plugins/zsh-utils/**/*.zsh
+zcompile-many $XDG_DATA_HOME/zsh/plugins/fzf/**/*.zsh
+
+zcompile-many $XDG_CONFIG_HOME/zsh/**/*.zsh
+
+zcompile-many $ZDOTDIR/.zcompdump
+
+unfunction zcompile-many

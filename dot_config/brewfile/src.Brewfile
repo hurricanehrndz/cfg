@@ -11,6 +11,7 @@ brew chezmoi
 brew corepack
 brew ddrescue
 brew detect-secrets
+brew direnv
 brew dust
 brew exa
 brew fd

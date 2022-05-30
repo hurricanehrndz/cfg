@@ -2,5 +2,5 @@
 
 (( $+commands[fzf] )) || return
 
-source $HOME/.config/zsh/plugins/fzf/shell/completion.zsh
-source $HOME/.config/zsh/plugins/fzf/shell/key-bindings.zsh
+source $XDG_DATA_HOME/zsh/plugins/fzf/shell/completion.zsh
+source $XDG_DATA_HOME/zsh/plugins/fzf/shell/key-bindings.zsh

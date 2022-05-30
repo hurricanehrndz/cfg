@@ -13,6 +13,9 @@ stylua.toml
 # symlinks
 .config/brewfile/src.*
 
+# zsh complied files
+**/*.zwc
+
 # asdf
 .local/share/asdf/plugins
 .local/share/asdf/downloads

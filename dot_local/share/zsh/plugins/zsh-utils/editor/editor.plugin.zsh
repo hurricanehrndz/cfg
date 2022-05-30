@@ -18,7 +18,6 @@ bindkey -v
 
 # my key bindings
 bindkey   -M   viins   '\C-X\C-S'      prepend_sudo
-bindkey   -M   viins   '\C-Y'          autosuggest-accept
 bindkey   -M   vicmd   '\C-X\C-E'      edit-command-line
 bindkey   -M   viins   '\C-X\C-E'      edit-command-line
 bindkey '^P' history-beginning-search-backward

@@ -1,11 +1,36 @@
 # vim: ft=zsh :
 
-# all of our zsh files
+# make globally unique
+typeset -gU cdpath fpath mailpath PATH path
+
+HOMEBREW_BREWFILE_ON_REQUEST=1
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+XDG_CONFIG_HOME="$HOME/.config"
+XDG_DATA_HOME="$HOME/.local/share"
+XDG_CACHE_HOME="$HOME/.cache"
+XDG_BIN_HOME="$HOME/.local/bin"
+GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+export XDG_DATA_HOME XDG_CONFIG_HOME XDG_CACHE_HOME XDG_BIN_HOME GNUPGHOME
+
+# XDG bin path
+path=("$XDG_BIN_HOME" $path)
+
 typeset -U config_files
-config_files=($ZDOTDIR/*/conf.zsh)
+config_files=($ZDOTDIR/*/*.zsh)
+
+# load the path files
+for file in ${(M)config_files:#*/path.zsh}; do
+  source "$file"
+done
+
+# load init files
+for file in ${(M)config_files:#*/init.zsh}; do
+  source "$file"
+done
 
 # load completions functions
-fpath+="$HOME/.config/zsh/plugins/zsh-completions/src"
+fpath+="$XDG_DATA_HOME/zsh/plugins/zsh-completions/src"
 
 plugins=(
   "zsh-utils/editor/*.plugin.zsh"
@@ -17,7 +42,7 @@ plugins=(
   "zsh-autosuggestions/*.plugin.zsh"
 )
 for plugin in "${plugins[@]}"; do
-  for f ($HOME/.config/zsh/plugins/$~plugin) source $f
+  for f ($XDG_DATA_HOME/zsh/plugins/$~plugin) source $f
 done
 
 # load everything but the path and init files
@@ -31,9 +56,4 @@ unset config_files
 # machine-specific configuraion
 SYSTEM_ENV="$HOME/.local/share/hrndz/env"
 [[ -e "$SYSTEM_ENV" ]] && source "$SYSTEM_ENV"
-
-if [[ $TERM != "dumb" && (-z $INSIDE_EMACS || $INSIDE_EMACS == "vterm") ]]; then
-  if (( $+commands[starship] )); then
-    eval "$(starship init zsh)"
-  fi
-fi
+unset SYSTEM_ENV
