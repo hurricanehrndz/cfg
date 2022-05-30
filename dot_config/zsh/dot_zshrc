@@ -11,10 +11,10 @@ plugins=(
   "zsh-utils/editor/*.plugin.zsh"
   "zsh-utils/history/*.plugin.zsh"
   "zsh-utils/directory/*.plugin.zsh"
-  "zsh-autosuggestions/*.plugin.zsh"
   "zsh-utils/completion/*.plugin.zsh"
   "oh-my-zsh/plugins/git/*.plugin.zsh"
   "fast-syntax-highlighting/*.plugin.zsh"
+  "zsh-autosuggestions/*.plugin.zsh"
 )
 for plugin in "${plugins[@]}"; do
   for f ($HOME/.config/zsh/plugins/$~plugin) source $f
