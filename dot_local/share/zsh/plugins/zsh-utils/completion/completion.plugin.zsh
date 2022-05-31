@@ -32,9 +32,8 @@ zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
 
-# autoload bash completion
-autoload bashcompinit
-bashcompinit
+# automatically load bash completion functions
+autoload -U +X bashcompinit && bashcompinit
 
 #
 # Init
