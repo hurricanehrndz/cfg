@@ -31,7 +31,7 @@ alias type='type -a'
 alias mkdir='mkdir -p'
 alias cm='chezmoi'
 
-alias tm='tmux new-session -A -s main'
+alias tm='tmux new-session -A -s main -e TMUX_SESSION_NAME=main'
 alias vimdiff='nvim -d'
 
 alias rg='rg -i -L'
