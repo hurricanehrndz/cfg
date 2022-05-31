@@ -110,5 +110,4 @@ return require("packer").startup(function(use)
       })
     end,
   })
-  -- Add a terminal
 end)
