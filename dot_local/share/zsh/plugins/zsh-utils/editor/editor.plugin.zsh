@@ -20,5 +20,5 @@ bindkey -v
 bindkey   -M   viins   '\C-X\C-S'      prepend_sudo
 bindkey   -M   vicmd   '\C-X\C-E'      edit-command-line
 bindkey   -M   viins   '\C-X\C-E'      edit-command-line
-bindkey '^P' history-beginning-search-backward
-bindkey '^N' history-beginning-search-forward
+bindkey   -M   viins   '^P'            history-search-backward
+bindkey   -M   viins   '^N'            history-search-forward
