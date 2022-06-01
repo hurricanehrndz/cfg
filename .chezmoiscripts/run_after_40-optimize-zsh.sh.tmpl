@@ -18,11 +18,11 @@ fi
 
 if [[ -n "$BREW" ]]; then
   BREW_INIT="$HOME/.config/zsh/brew/init.zsh"
+  BREW_CONF="$HOME/.config/zsh/brew/conf.zsh"
   mkdir -p "$(dirname $BREW_INIT)"
-  $BREW shellenv zsh >! "$BREW_INIT"
-
+  env -i bash --noprofile --norc -c "$BREW shellenv" >| "$BREW_INIT"
   if [[ -f $($BREW --prefix)/etc/brew-wrap ]]; then
-    cat "$($BREW --prefix)/etc/brew-wrap" >> "$BREW_INIT"
+    \cp "$($BREW --prefix)/etc/brew-wrap" $BREW_CONF
   fi
 fi
 
