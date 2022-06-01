@@ -9,7 +9,8 @@ export LESSHISTFILE="-"
 export PAGER="less"
 # less options
 export LESS='-F -g -i -M -R -S -w -X -z-5 -j12'
-if [[ -n "$(command -v bat)" ]]; then
+
+if (( $+commands[bat] )); then
   alias cat='bat'
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
   export BAT_THEME="TwoDark"
