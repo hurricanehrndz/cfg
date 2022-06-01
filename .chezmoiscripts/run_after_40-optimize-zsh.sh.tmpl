@@ -27,7 +27,7 @@ if [[ -n "$BREW" ]]; then
 fi
 
 DIRENV_CONF="$HOME/.config/zsh/direnv/conf.zsh"
-if (( $+commands[starship] )); then
+if (( $+commands[direnv] )); then
   mkdir -p "$(dirname $DIRENV_CONF)"
   direnv hook zsh >! "$DIRENV_CONF"
 fi
