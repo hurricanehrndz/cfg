@@ -51,6 +51,12 @@ if [[ -n "$GRC_SRC" ]]; then
   echo "unset -f diff" >> "$GRC_INIT"
 fi
 
+if (( $+commands[zoxide] )); then
+  ZOXIDE_CONF="$HOME/.config/zsh/zoxide/init.zsh"
+  mkdir -p "$(dirname $ZOXIDE_CONF)"
+  zoxide init zsh >| "$ZOXIDE_CONF"
+fi
+
 # clean zsh compiled files
 fd -e zwc --base-directory "$XDG_DATA_HOME/zsh/plugins" -x rm {}
 fd -e zwc --base-directory "$XDG_CONFIG_HOME/zsh" -x rm {}
