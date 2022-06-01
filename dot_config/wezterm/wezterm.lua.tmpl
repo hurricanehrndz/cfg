@@ -52,13 +52,9 @@ return {
   keys = simple_keybinding,
   -- start up
 {{ if (eq .chezmoi.os "darwin") -}}
-{{ if stat ("/opt/homebrew//bin/zsh") }}
-  default_gui_startup_args = { "start", "--", "/opt/homebrew/bin/zsh", "--login" },
-{{ else if stat ("/usr/local/bin/zsh") }}
-  default_gui_startup_args = { "start", "--", "/usr/local/bin/zsh", "--login" },
+  default_gui_startup_args = { "start", "--", "/bin/zsh", "--login" },
 {{- else if (eq .chezmoi.os "linux") }}
   default_gui_startup_args = { "start", "--", "/usr/bin/zsh", "--login" },
-{{ end }}
 {{ end }}
   -- other
   exit_behavior = "Close",

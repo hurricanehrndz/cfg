@@ -61,13 +61,9 @@ bind-key -n 'M-z' resize-pane -Z
 
 # shell
 {{ if (eq .chezmoi.os "darwin") -}}
-{{ if stat ("/opt/homebrew//bin/zsh") }}
-set-option -g default-shell "/opt/homebrew/bin/zsh"
-{{ else if stat ("/usr/local/bin/zsh") }}
-set-option -g default-shell "/usr/local/bin/zsh"
+set-option -g default-shell "/bin/zsh"
 {{- else if (eq .chezmoi.os "linux") }}
 set-option -g default-shell "/usr/bin/zsh"
-{{ end }}
 {{ end }}
 
 # tmux popup
