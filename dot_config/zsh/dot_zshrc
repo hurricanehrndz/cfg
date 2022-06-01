@@ -26,13 +26,10 @@ for file in ${(M)config_files:#*/path.zsh}; do
   source "$file"
 done
 
-# load init files
+# load init files -- completion paths initialized here
 for file in ${(M)config_files:#*/init.zsh}; do
   source "$file"
 done
-
-# load completions functions
-fpath+="$XDG_DATA_HOME/zsh/plugins/zsh-completions/src"
 
 plugins=(
   "zsh-utils/editor/*.plugin.zsh"
