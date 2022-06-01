@@ -1,7 +1,7 @@
 # vim: ft=zsh :
 
 # make globally unique
-typeset -gU cdpath fpath mailpath PATH path
+typeset -gU cdpath fpath mailpath PATH path config_files
 
 HOMEBREW_BREWFILE_ON_REQUEST=1
 ZSH_AUTOSUGGEST_USE_ASYNC=1
@@ -19,7 +19,6 @@ export XDG_DATA_HOME XDG_CONFIG_HOME XDG_CACHE_HOME XDG_BIN_HOME GNUPGHOME
 # XDG bin path
 path=("$XDG_BIN_HOME" $path)
 
-typeset -U config_files
 config_files=($ZDOTDIR/*/*.zsh)
 
 # load the path files
