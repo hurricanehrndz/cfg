@@ -40,7 +40,7 @@ fi
 
 # grc
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  [[ -s "$($BREW --prefix)/etc/grc.zsh" ]] && GRC_SRC="$HOMEBREW_PREFIX/etc/grc.zsh"
+  [[ -s "$($BREW --prefix)/etc/grc.zsh" ]] && GRC_SRC="$($BREW --prefix)/etc/grc.zsh"
 else
   [[ -s "/etc/grc.zsh" ]] && GRC_SRC="/etc/grc.zsh"
 fi
