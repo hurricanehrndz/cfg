@@ -38,7 +38,6 @@ plugins=(
   "zsh-utils/history/*.plugin.zsh"
   "zsh-utils/directory/*.plugin.zsh"
   "zsh-utils/completion/*.plugin.zsh"
-  "oh-my-zsh/plugins/git/*.plugin.zsh"
   "fast-syntax-highlighting/*.plugin.zsh"
   "zsh-autosuggestions/*.plugin.zsh"
 )
