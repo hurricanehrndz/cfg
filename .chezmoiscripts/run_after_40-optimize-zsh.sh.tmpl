@@ -26,18 +26,6 @@ if [[ -n "$BREW" ]]; then
   fi
 fi
 
-DIRENV_CONF="$HOME/.config/zsh/direnv/conf.zsh"
-if (( $+commands[direnv] )); then
-  mkdir -p "$(dirname $DIRENV_CONF)"
-  direnv hook zsh >! "$DIRENV_CONF"
-fi
-
-STARSHIP_CONF="$HOME/.config/zsh/starship/conf.zsh"
-if (( $+commands[starship] )); then
-  mkdir -p "$(dirname $STARSHIP_CONF)"
-  starship init zsh --print-full-init >! "$STARSHIP_CONF"
-fi
-
 ASDF_INIT="$HOME/.config/zsh/asdf/init.zsh"
 if [[ -f "$HOME/.local/share/asdf/lib/asdf.sh" ]]; then
   mkdir -p "$(dirname $ASDF_INIT)"
@@ -50,6 +38,18 @@ EOF
   {
     cat "$HOME/.local/share/asdf/lib/asdf.sh"
   }>> "$ASDF_INIT"
+fi
+
+DIRENV_CONF="$HOME/.config/zsh/direnv/conf.zsh"
+if (( $+commands[direnv] )); then
+  mkdir -p "$(dirname $DIRENV_CONF)"
+  direnv hook zsh >! "$DIRENV_CONF"
+fi
+
+STARSHIP_CONF="$HOME/.config/zsh/starship/conf.zsh"
+if (( $+commands[starship] )); then
+  mkdir -p "$(dirname $STARSHIP_CONF)"
+  starship init zsh --print-full-init >! "$STARSHIP_CONF"
 fi
 
 # grc
