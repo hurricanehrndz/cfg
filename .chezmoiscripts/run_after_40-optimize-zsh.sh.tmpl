@@ -38,6 +38,20 @@ if (( $+commands[starship] )); then
   starship init zsh --print-full-init >! "$STARSHIP_CONF"
 fi
 
+ASDF_INIT="$HOME/.config/zsh/asdf/init.zsh"
+if [[ -f "$HOME/.local/share/asdf/lib/asdf.sh" ]]; then
+  mkdir -p "$(dirname $ASDF_INIT)"
+  cat <<'EOF' >| $ASDF_INIT
+# asdf
+export ASDF_DATA_DIR=${XDG_DATA_HOME}/asdf
+path=(${ASDF_DATA_DIR}/bin $path)
+fpath=(${ASDF_DATA_DIR}/completions $fpath)
+EOF
+  {
+    cat "$HOME/.local/share/asdf/lib/asdf.sh"
+  }>> "$ASDF_INIT"
+fi
+
 # grc
 if [[ "$OSTYPE" == "darwin"* ]]; then
   [[ -s "$($BREW --prefix)/etc/grc.zsh" ]] && GRC_SRC="$($BREW --prefix)/etc/grc.zsh"
