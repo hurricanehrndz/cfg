@@ -49,4 +49,6 @@ if (( $#_comp_files )); then
 else
   compinit -i
 fi
+[[ ${ZDOTDIR:-$HOME}/.zcompdump.zwc -nt ${ZDOTDIR:-$HOME}/.zcompdump ]] || zcompile -R -- $ZDOTDIR/.zcompdump
+
 unset _comp_files
