@@ -29,7 +29,6 @@ brew gnutls
 brew gopass
 brew grc
 brew grex
-brew guile
 brew hopenpgp-tools
 brew hyperfine
 brew lazygit
@@ -42,6 +41,8 @@ brew neovim --HEAD
 brew neovim-remote
 brew ninja
 brew node
+brew openldap
+brew p11-kit
 brew pinentry-mac
 brew pre-commit
 brew reattach-to-user-namespace
@@ -89,5 +90,10 @@ cask visual-studio-code
 tap rcmdnk/file
 brew brew-file
 
+tap str4d.xyz/rage https://str4d.xyz/rage
+
 tap wez/wezterm
 cask wezterm-nightly
+
+# Other Homebrew packages
+brew rage
