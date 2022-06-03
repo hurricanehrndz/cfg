@@ -2,6 +2,7 @@
 # tap repositories and their packages
 
 tap homebrew/core
+brew age
 brew awscli
 brew bash
 brew bat
@@ -90,10 +91,5 @@ cask visual-studio-code
 tap rcmdnk/file
 brew brew-file
 
-tap str4d.xyz/rage https://str4d.xyz/rage
-
 tap wez/wezterm
 cask wezterm-nightly
-
-# Other Homebrew packages
-brew rage
