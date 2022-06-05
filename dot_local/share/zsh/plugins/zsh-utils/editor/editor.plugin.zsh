@@ -20,7 +20,7 @@ zle -N edit-command-line
 bindkey -v
 
 # my key bindings
-bindkey   -M   vicmd   '\C-X\C-E'      edit-command-line
-bindkey   -M   viins   '\C-X\C-E'      edit-command-line
-bindkey   -M   viins   '^P'            history-search-backward
-bindkey   -M   viins   '^N'            history-search-forward
+bindkey   -M   vicmd   '^X^E'      edit-command-line
+bindkey   -M   viins   '^X^E'      edit-command-line
+bindkey   -M   viins   '^P'        history-search-backward
+bindkey   -M   viins   '^N'        history-search-forward
