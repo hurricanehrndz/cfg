@@ -26,7 +26,6 @@ brew git-delta
 brew git-filter-repo
 brew gnu-tar
 brew gnupg
-brew gnutls
 brew gopass
 brew grc
 brew grex
@@ -43,14 +42,12 @@ brew neovim-remote
 brew ninja
 brew node
 brew openldap
-brew p11-kit
 brew pinentry-mac
 brew pre-commit
 brew reattach-to-user-namespace
 brew ripgrep
 brew rustup-init
 brew sd
-brew sheldon
 brew shellcheck
 brew shfmt
 brew starship
@@ -83,7 +80,6 @@ cask iterm2
 cask powershell
 cask rancher
 cask slack
-cask spotify
 cask utm
 cask vagrant
 cask visual-studio-code
