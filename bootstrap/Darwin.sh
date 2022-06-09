@@ -17,10 +17,11 @@ if [[ ! -d $GNUPGHOME ]]; then
   chmod 0700 $GNUPGHOME
 fi
 
-$BREW_BIN install --force chezmoi git-crypt gnupg rcmdnk/file/brew-file
 # activate brew-file
 if [[ -f $(brew --prefix)/etc/brew-wrap ]];then
   source $(brew --prefix)/etc/brew-wrap
+else
+  $BREW_BIN install --force chezmoi git-crypt gnupg rcmdnk/file/brew-file
 fi
 
 brew_update_flag_path="$HOME/.local/share/hrndz/.update"
