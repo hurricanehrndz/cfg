@@ -62,8 +62,7 @@ alias ".."="cd .." \
       "....."="cd ../../../.."
 
 # grep
-alias grep="rg" \
-      gi="grep -i"
+alias grep="rg"
 
 # sudo
 alias s="sudo -E" \
