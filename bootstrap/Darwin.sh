@@ -12,8 +12,10 @@ if [[ -z "$BREW_PREFIX" ]]; then
 fi
 
 export GNUPGHOME="$HOME/.config/gnupg/"
-mkdir -p $GNUPGHOME
-chmod 0700 $GNUPGHOME
+if [[ ! -d $GNUPGHOME ]]; then
+  mkdir -p $GNUPGHOME
+  chmod 0700 $GNUPGHOME
+fi
 
 $BREW_BIN install --force chezmoi git-crypt gnupg rcmdnk/file/brew-file
 # activate brew-file
@@ -30,13 +32,16 @@ KEYS=("21D77144BCC519FD64EAA2C0919DA52AC863D46D" "C68DA2648035BCCE55710E3E0D2565
 for key in ${KEYS[@]}; do
   gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$key"
   echo "$key:6:" | gpg --import-ownertrust
-  gpg --card-status
-  gpg --list-secret-keys
 done
-
+gpg --card-status &> /dev/null
+gpg --list-secret-keys &> /dev/null
+  
 # Run chezmoi
-git clone https://github.com/hurricanehrndz/cfg.git "$HOME/.local/share/chezmoi"
+if [[ ! -d  "$HOME/.local/share/chezmoi" ]]; then
+  git clone https://github.com/hurricanehrndz/cfg.git "$HOME/.local/share/chezmoi"
+fi
 pushd "$HOME/.local/share/chezmoi"
+git pull
 git-crypt unlock
 popd
 chezmoi apply
