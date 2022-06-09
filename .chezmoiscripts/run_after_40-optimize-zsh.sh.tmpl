@@ -1,6 +1,10 @@
 #!/bin/zsh
 # vim: set ft=zsh :
 
+XDG_BIN_HOME="$HOME/.local/bin"
+XDG_DATA_HOME="$HOME/.local/share"
+XDG_CONFIG_HOME="$HOME/.config"
+
 function zcompile-many() {
   local f
   for f; do zcompile -R -- "$f".zwc "$f"; done
