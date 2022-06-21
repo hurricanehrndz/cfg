@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
 # vim:set ft=zsh:
 
+export LC_CTYPE=C
 tr -cd "[:graph:]" < /dev/urandom | head -c $1 | xargs -0
