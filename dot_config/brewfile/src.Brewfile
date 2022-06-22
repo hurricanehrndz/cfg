@@ -85,6 +85,7 @@ cask vagrant
 cask visual-studio-code
 
 tap cirruslabs/cli
+brew cirrus
 brew tart
 
 tap rcmdnk/file
