@@ -84,8 +84,17 @@ cask utm
 cask vagrant
 cask visual-studio-code
 
+tap cirruslabs/cli
+brew tart
+
 tap rcmdnk/file
 brew brew-file
 
 tap wez/wezterm
 cask wezterm-nightly
+
+# App Store applications
+appstore 1037126344  Apple Configurator  (2.15.1)
+appstore 409183694   Keynote             (12.1)
+appstore 1496833156  Playgrounds         (4.1)
+appstore 1475387142  Tailscale           (1.24.2)
