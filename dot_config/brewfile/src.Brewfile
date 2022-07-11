@@ -80,6 +80,7 @@ cask iterm2
 cask powershell
 cask rancher
 cask slack
+cask telegram
 cask utm
 cask vagrant
 cask visual-studio-code
