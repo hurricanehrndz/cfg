@@ -44,6 +44,7 @@ brew node
 brew openldap
 brew pinentry-mac
 brew pre-commit
+brew qemu
 brew reattach-to-user-namespace
 brew ripgrep
 brew rustup-init
