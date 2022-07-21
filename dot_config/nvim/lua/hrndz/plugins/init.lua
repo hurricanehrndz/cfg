@@ -100,7 +100,22 @@ return require("packer").startup(function(use)
   use("lambdalisue/suda.vim")
   -- Need a table?
   use("godlygeek/tabular")
-  use("ntpeters/vim-better-whitespace")
+  use({
+    "ntpeters/vim-better-whitespace",
+    config = function()
+      vim.g.better_whitespace_filetypes_blacklist = {
+        "diff",
+        "git",
+        "qf",
+        "gitcommit",
+        "unite",
+        "help",
+        "markdown",
+        "fugitive",
+        "toggleterm",
+      }
+    end,
+  })
   -- remote editing
   use({
     "chipsenkbeil/distant.nvim",
