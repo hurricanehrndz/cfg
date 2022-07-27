@@ -11,8 +11,8 @@ function prepend-sudo { # Insert "sudo " at the beginning of the line
 zle -N prepend-sudo
 
 # Note: requires vi key bindings in zsh!
-bindkey -M viins '^Xs' prepend-sudo
-bindkey -M vicmd '^Xs' prepend-sudo
+bindkey -M viins '^X^S' prepend-sudo
+bindkey -M vicmd '^X^S' prepend-sudo
 
 autoload -U edit-command-line
 zle -N edit-command-line
