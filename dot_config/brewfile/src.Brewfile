@@ -37,7 +37,7 @@ brew lua@5.1
 brew luarocks
 brew mas
 brew neofetch
-brew neovim --HEAD
+brew neovim
 brew neovim-remote
 brew ninja
 brew node
