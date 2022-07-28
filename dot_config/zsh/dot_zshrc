@@ -2,8 +2,7 @@
 
 # make globally unique
 typeset -gU cdpath fpath mailpath PATH path config_files
-
-HOMEBREW_BREWFILE_ON_REQUEST=1
+HOMEBREW_BUNDLE_FILE="$HOME/.config/brewfile/Brewfile"
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 XDG_CONFIG_HOME="$HOME/.config"

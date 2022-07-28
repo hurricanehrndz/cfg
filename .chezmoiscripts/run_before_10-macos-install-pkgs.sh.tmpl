@@ -3,9 +3,9 @@
 # vim: set ft=zsh :
 
 if [[ -f "$HOME/.config/brewfile/Brewfile" ]]; then
-  BREWFILE="$HOME/.config/brewfile/Brewfile"
+  HOMEBREW_BUNDLE_FILE="$HOME/.config/brewfile/Brewfile"
 else
-  BREWFILE="$HOME/.local/share/chezmoi/dot_config/brewfile/src.Brewfile"
+  HOMEBREW_BUNDLE_FILE="$HOME/.local/share/chezmoi/dot_config/brewfile/src.Brewfile"
 fi
-brew-file --leaves --on_request -f $BREWFILE install
+brew bundle --file $HOMEBREW_BUNDLE_FILE
 {{ end -}}
