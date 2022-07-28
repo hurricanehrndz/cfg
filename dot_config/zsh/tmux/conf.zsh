@@ -24,6 +24,6 @@ function update_nvim_remote_socat() {
   fi
 }
 
-if [[ -n "$TMUX" ]]; then
-  update_nvim_remote_socat
-fi
+# if [[ -n "$TMUX" ]]; then
+#   update_nvim_remote_socat
+# fi
