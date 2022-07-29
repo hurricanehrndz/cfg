@@ -78,11 +78,7 @@ return {
     bottom = 0,
   },
   -- start up
-{{ if (eq .chezmoi.os "darwin") -}}
-  default_gui_startup_args = { "start", "--", "/bin/zsh", "--login" },
-{{- else if (eq .chezmoi.os "linux") }}
-  default_gui_startup_args = { "start", "--", "/usr/bin/zsh", "--login" },
-{{ end }}
+  default_gui_startup_args = { "start", "--", "{{ env "SHELL" }}", "--login" },
   -- other
   exit_behavior = "Close",
 }
