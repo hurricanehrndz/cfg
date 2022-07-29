@@ -27,6 +27,8 @@ if [[ -n "$BREW" ]]; then
   env -i bash --noprofile --norc -c "$BREW shellenv" >| "$BREW_INIT"
   if [[ -f $($BREW --prefix)/etc/brew-wrap ]]; then
     \cp "$($BREW --prefix)/etc/brew-wrap" $BREW_CONF
+  else
+    rm -f $BREW_CONF
   fi
 fi
 

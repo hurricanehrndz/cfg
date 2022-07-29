@@ -1,11 +1,19 @@
 {{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/zsh
 # vim: set ft=zsh :
+brew_update_flag_path="$HOME/.local/share/hrndz/.update"
+brew_update_flag=("$brew_update_flag_path"(Nmd+6))
 
 if [[ -f "$HOME/.config/brewfile/Brewfile" ]]; then
   HOMEBREW_BUNDLE_FILE="$HOME/.config/brewfile/Brewfile"
 else
   HOMEBREW_BUNDLE_FILE="$HOME/.local/share/chezmoi/dot_config/brewfile/src.Brewfile"
 fi
-brew bundle --file $HOMEBREW_BUNDLE_FILE
+
+if [[ ! -e "$brew_update_flag_path" ]] || [[ "$#brew_update_flag" -ge 1 ]]; then
+  brew bundle --file $HOMEBREW_BUNDLE_FILE
+  brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
+  brew upgrade neovim --fetch-HEAD
+  touch "$brew_update_flag_path"
+fi
 {{ end -}}
