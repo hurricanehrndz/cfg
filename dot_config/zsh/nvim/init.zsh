@@ -2,10 +2,16 @@
 
 # Default editor (will set zsh binds to vi mode)
 if [[ -n "$(command -v nvim)" ]]; then
-  export EDITOR="nvim"
-  export VISUAL="nvim"
+  if [[ -n "${NVIM}" || -n "${NVIM_LISTEN_ADDRESS}" ]]; then
+    export EDITOR="nvr -l"
+    export VISUAL="nvr --remote-tab-wait +'set bufhidden=wipe'"
+    alias vi='nvr -l'
+  else
+    export EDITOR="nvim"
+    export VISUAL="nvim"
+    alias vi='nvim'
+  fi
   export CMP_ZSH_CACHE_DIR="$HOME/.cache/cmp/zsh"
-  alias vi='nvim'
 else
   export EDITOR="vi"
   export VISUAL="vi"
