@@ -27,8 +27,8 @@ set  -g history-limit     10000
 # ---------------------
 set -g set-clipboard on
 
-set -g @extrakto_clip_tool_run "fg"
-set -g @extrakto_clip_tool "yank"
+set -g @extrakto_clip_tool_run "tmux_osc52"
+set -g @extrakto_clip_tool "auto"
 set -g @extrakto_popup_size "65%"
 set -g @extrakto_grab_area "window 500"
 
@@ -38,7 +38,7 @@ bind r source-file $HOME/.config/tmux/tmux.conf \; display "TMUX conf reloaded!"
 
 # begin selection with v, yank with y
 bind-key -T copy-mode-vi v send-keys -X begin-selection
-bind-key -T copy-mode-vi y send-keys -X copy-pipe 'yank > #{pane_tty}'
+bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
 # Smart pane switching with awareness of Vim splits.
 # See: https://github.com/christoomey/vim-tmux-navigator
