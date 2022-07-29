@@ -1,7 +1,8 @@
 require("toggleterm").setup({
   open_mapping = [[<c-\>]],
   hide_numbers = true,
-  direction = "float",
+  direction = "horizontal",
+  size = 15,
 })
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
