@@ -5,15 +5,14 @@ brew_update_flag_path="$HOME/.local/share/hrndz/.update"
 brew_update_flag=("$brew_update_flag_path"(Nmd+6))
 
 if [[ -f "$HOME/.config/brewfile/Brewfile" ]]; then
-  HOMEBREW_BUNDLE_FILE="$HOME/.config/brewfile/Brewfile"
+  HOMEBREW_FILE="$HOME/.config/brewfile/Brewfile"
 else
-  HOMEBREW_BUNDLE_FILE="$HOME/.local/share/chezmoi/dot_config/brewfile/src.Brewfile"
+  HOMEBREW_FILE="$HOME/.local/share/chezmoi/dot_config/brewfile/src.Brewfile"
 fi
 
 if [[ ! -e "$brew_update_flag_path" ]] || [[ "$#brew_update_flag" -ge 1 ]]; then
-  brew bundle --file $HOMEBREW_BUNDLE_FILE
-  brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
-  brew upgrade neovim --fetch-HEAD
+  brew-file --leaves --on_request -f $BREWFILE install
+  brew cu
   touch "$brew_update_flag_path"
 fi
 {{ end -}}
