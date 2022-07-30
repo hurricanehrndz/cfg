@@ -5,7 +5,7 @@ require("toggleterm").setup({
   size = 15,
 })
 
-vim.env.GIT_EDITOR = "nvr --remote-tab-wait +'set bufhidden=delete'"
+vim.env.GIT_EDITOR = "nvr --remote-tab-wait +'set bufhidden=wipe'"
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 local term_open_group = vim.api.nvim_create_augroup("HrndzTermOpen", { clear = true })
