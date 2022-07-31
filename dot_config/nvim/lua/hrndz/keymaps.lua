@@ -24,9 +24,6 @@ api.nvim_set_keymap("t", "<A-j>", [[<cmd>TmuxNavigateDown<CR>]], nmap)
 api.nvim_set_keymap("t", "<A-k>", [[<cmd>TmuxNavigateUp<CR>]], nmap)
 api.nvim_set_keymap("t", "<A-l>", [[<cmd>TmuxNavigateRight<CR>]], nmap)
 
--- esc from terminal
-api.nvim_set_keymap("t", "<esc>", [[<C-\><C-N><esc>]], nmap)
-
 -- save with zz
 api.nvim_set_keymap("n", "zz", [[<cmd>update<CR>]], nmap)
 api.nvim_set_keymap("n", "<space>zz", [[<cmd>SudaWrite<CR>]], nmap)
