@@ -1,0 +1,5 @@
+---
+os:
+  editCommand: "nvr -s -l" # see 'Configuring File Editing' section
+  editCommandTemplate: "{{editor}} +{{line}} -- {{filename}}"
+  openCommand: "nvr -s -l {{filename}}"
