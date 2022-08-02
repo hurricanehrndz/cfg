@@ -23,10 +23,20 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
+local lazygit = Terminal:new({
+  cmd = "lazygit",
+  count = 99,
+  hidden = true,
+  direction = "float",
+  close_on_exit = true,
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+  end,
+})
 
 function _LAZYGIT_TOGGLE()
   lazygit:toggle()
 end
 
-vim.api.nvim_set_keymap("n", ",g", [[<cmd>lua _LAZYGIT_TOGGLE()<CR>]], { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-g>", [[<cmd>lua _LAZYGIT_TOGGLE()<CR>]], { noremap = true })
