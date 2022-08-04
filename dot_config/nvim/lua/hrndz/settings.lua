@@ -51,7 +51,7 @@ o.listchars = [[tab:→ ,eol:↲,space:␣,trail:•,extends:⟩,precedes:⟨]]
 -- set max with of text
 o.textwidth = 120
 -- set selection to exclusive
-o.selection = "exclusive"
+-- o.selection = "exclusive"
 o.smartcase = true
 -- enable undofile
 o.undofile = true
