@@ -83,3 +83,15 @@ alias rg='rg -i -L'
 
 alias iscp='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias issh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+alias ssh='TERM=xterm-256color ssh'
+function sshf() {
+  local args uid
+  args=("$@")
+  if [[ "${args[1]}" =~ [0-9]+ ]]; then
+    uid="${args[1]}"
+    args=("${args[@]:1}")
+  else
+    uid=1000
+  fi
+  ssh -R /run/user/$uid/gnupg/S.gpg-agent:$(gpgconf --list-dirs agent-extra-socket) -A "$args[@]"
+}
