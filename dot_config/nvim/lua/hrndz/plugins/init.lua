@@ -72,6 +72,13 @@ return require("packer").startup(function(use)
     },
   })
 
+  use({
+    "vimwiki/vimwiki",
+    config = function()
+      vim.g.vimwiki_list = { { path = "~/src/me/vimwiki/", syntax = "markdown", ext = ".md" } }
+    end,
+  })
+
   -- > Polyglot Plugins <--
   --  Better syntax
   use({
@@ -86,6 +93,8 @@ return require("packer").startup(function(use)
   use("sheerun/vim-polyglot")
 
   -- All hail to the Pope (tpope) + Other tools <--
+  -- For the Git
+  use("tpope/vim-fugitive")
   -- Need to swap some braces? This is the dentist!
   use("tpope/vim-surround")
   -- Embrace the peanut gallery
