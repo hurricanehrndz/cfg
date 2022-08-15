@@ -72,12 +72,7 @@ return require("packer").startup(function(use)
     },
   })
 
-  use({
-    "vimwiki/vimwiki",
-    config = function()
-      vim.g.vimwiki_list = { { path = "~/src/me/vimwiki/", syntax = "markdown", ext = ".md" } }
-    end,
-  })
+  use_with_config("vimwiki/vimwiki", "vimwiki")
 
   -- > Polyglot Plugins <--
   --  Better syntax
