@@ -21,7 +21,7 @@ wo.signcolumn = "yes"
 -- disable line wrap
 wo.wrap = false
 -- enable color column
-wo.colorcolumn = "120"
+wo.colorcolumn = "80"
 
 -- >> edior options <<--
 -- cursor
@@ -49,7 +49,7 @@ o.sidescrolloff = 10
 -- strings to use in list command for punctuation
 o.listchars = [[tab:→ ,eol:↲,space:␣,trail:•,extends:⟩,precedes:⟨]]
 -- set max with of text
-o.textwidth = 120
+o.textwidth = 79
 -- set selection to exclusive
 -- o.selection = "exclusive"
 o.smartcase = true
