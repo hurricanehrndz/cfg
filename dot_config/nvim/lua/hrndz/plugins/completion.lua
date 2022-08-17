@@ -13,16 +13,21 @@ local has_cmp, cmp = pcall(require, "cmp")
 if not has_cmp then
   return
 end
-local lspkind = require("lspkind")
 
 local has_luasnip, luasnip = pcall(require, "luasnip")
 if not has_luasnip then
   return
 end
 
+local has_lspkind, lspkind = pcall(require, "lspkind")
+if not has_lspkind then
+  return
+end
+
 -- Load snippets
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_snipmate").lazy_load()
+
 local cmp_formatting = {
   -- Youtube: How to set up nice formatting for your sources.
   format = lspkind.cmp_format({
