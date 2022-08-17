@@ -13,9 +13,16 @@ local has_cmp, cmp = pcall(require, "cmp")
 if not has_cmp then
   return
 end
-local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
+local has_luasnip, luasnip = pcall(require, "luasnip")
+if not has_luasnip then
+  return
+end
+
+-- Load snippets
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_snipmate").lazy_load()
 local cmp_formatting = {
   -- Youtube: How to set up nice formatting for your sources.
   format = lspkind.cmp_format({
@@ -81,7 +88,7 @@ cmp.setup({
     { name = "nvim_lua" },
     { name = "nvim_lsp" },
     { name = "path" },
-    { name = "vsnip" },
+    { name = "luasnip" },
     {
       name = "dictionary",
       keyword_length = 2,
