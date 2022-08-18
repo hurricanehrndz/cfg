@@ -10,6 +10,7 @@ brew bottom
 brew buku
 brew chezmoi
 brew corepack
+brew coreutils
 brew ddrescue
 brew detect-secrets
 brew direnv
@@ -24,27 +25,31 @@ brew git
 brew git-crypt
 brew git-delta
 brew git-filter-repo
-brew glib
 brew gnu-tar
 brew gnupg
+brew gnutls
 brew gopass
 brew grc
 brew grex
 brew hopenpgp-tools
+brew hugo
 brew hyperfine
 brew lazygit
 brew less
 brew lua@5.1
 brew luarocks
 brew mas
+brew mdbook
 brew neofetch
 brew neovim
 brew neovim-remote
 brew ninja
 brew node
 brew openldap
+brew p11-kit
 brew pinentry-mac
 brew pre-commit
+brew python@3.9
 brew qemu
 brew reattach-to-user-namespace
 brew ripgrep
@@ -86,6 +91,8 @@ cask telegram
 cask utm
 cask vagrant
 cask visual-studio-code
+
+tap buo/cask-upgrade
 
 tap cirruslabs/cli
 brew cirrus
