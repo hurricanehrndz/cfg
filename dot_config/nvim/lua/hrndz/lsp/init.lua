@@ -1,4 +1,4 @@
-local custom_attach = function(client, bufnr)
+local custom_attach = function(_, bufnr)
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
   -- disable lsp range formatting via gq
   vim.bo.formatexpr = 'formatprg'
@@ -13,15 +13,6 @@ local custom_attach = function(client, bufnr)
   vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
   vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, opts)
-
-  if client.supports_method("textDocument/formatting") then
-    vim.cmd([[
-      augroup HrndzLspFormatting
-        autocmd!
-        autocmd BufWritePost <buffer> lua require("hrndz.lsp.formatting").sync(vim.fn.expand("<abuf>"))
-      augroup END
-    ]])
-  end
 end
 
 -- Setup lspconfig.
