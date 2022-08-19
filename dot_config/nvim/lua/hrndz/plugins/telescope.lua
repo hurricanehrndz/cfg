@@ -5,7 +5,7 @@ telescope.load_extension("fzf")
 -- string maps
 -- search for current word under cursor
 vim.keymap.set("n", "<space>fw", function()
-  return require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })
+  return require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>", nil, nil) })
 end)
 vim.keymap.set("n", "<space>fs", require("telescope.builtin").grep_string)
 vim.keymap.set("n", "<space>fg", require("telescope.builtin").live_grep)
