@@ -37,7 +37,19 @@ vim.keymap.set(
 )
 
 -- buffer finder
-vim.keymap.set("n", "<space>fb", require("telescope.builtin").buffers)
+vim.keymap.set(
+  "n",
+  "<M-b>",
+  function()
+    return require("telescope.builtin").buffers(
+      require('telescope.themes').get_dropdown({
+        previewer = false,
+        initial_mode = 'normal'
+      })
+    )
+  end,
+  opts
+)
 
 -- help finder
 vim.keymap.set("n", "<M-/>", require("telescope.builtin").help_tags)
