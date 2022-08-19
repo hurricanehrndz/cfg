@@ -71,6 +71,8 @@ return require("packer").startup(function(use)
       "onsails/lspkind-nvim",
     },
   })
+  -- signature
+  use_with_config("ray-x/lsp_signature.nvim", "lsp-signature")
 
   use_with_config("vimwiki/vimwiki", "vimwiki")
 
