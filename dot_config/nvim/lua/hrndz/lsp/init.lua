@@ -22,8 +22,9 @@ if not has_lsp or not has_cmp_lsp then
   return
 end
 
-local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
-updated_capabilities = cmp_lsp.update_capabilities(updated_capabilities)
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities = cmp_lsp.update_capabilities(capabilities)
 
 for _, server in ipairs({
   "eslint",
@@ -32,5 +33,5 @@ for _, server in ipairs({
   "tsserver",
   "pses",
 }) do
-  require("hrndz.lsp." .. server).setup(custom_attach, updated_capabilities)
+  require("hrndz.lsp." .. server).setup(custom_attach, capabilities)
 end
