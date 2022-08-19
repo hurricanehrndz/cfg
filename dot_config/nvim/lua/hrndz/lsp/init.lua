@@ -26,6 +26,26 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities = cmp_lsp.update_capabilities(capabilities)
 
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+vim.diagnostic.config({
+  underline = true,
+  signs = true,
+  virtual_text = false,
+  float = {
+    show_header = true,
+    source = "always",
+    border = "rounded",
+    focusable = false,
+  },
+  update_in_insert = false, -- default to false
+  severity_sort = true, -- default to false
+})
+
 for _, server in ipairs({
   "eslint",
   "null-ls",
