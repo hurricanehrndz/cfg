@@ -35,8 +35,7 @@ end, opts)
 vim.keymap.set("n", "<space>fb", require("telescope.builtin").buffers)
 
 -- help finder
-vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags)
-
+vim.keymap.set("n", "<M-/>", require("telescope.builtin").help_tags)
 
 local plenary_ft = require("plenary.filetype")
 plenary_ft.add_file("defs")
