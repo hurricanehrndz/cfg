@@ -1,5 +1,23 @@
 ---
+promptToReturnFromSubprocess: false
+
 os:
   editCommand: "nvr -s -l" # see 'Configuring File Editing' section
   editCommandTemplate: "{{editor}} +{{line}} -- {{filename}}"
   openCommand: "nvr -s -l {{filename}}"
+
+keybinding:
+  universal:
+    files:
+      commitChanges: "C"
+      commitChangesWithEditor: "c"
+
+customCommands:
+  - key: "<c-g>"
+    command: "nvr -cc 'lua _LAZYGIT_TOGGLE()'"
+    context: "global"
+
+keybinding:
+  files:
+    commitChanges: 'C'
+    commitChangesWithEditor: 'c'
