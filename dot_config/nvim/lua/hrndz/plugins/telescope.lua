@@ -14,22 +14,27 @@ vim.keymap.set("n", "<space>fg", require("telescope.builtin").live_grep)
 
 -- file finder
 vim.keymap.set("n", "<C-p>", require("telescope.builtin").git_files)
-vim.keymap.set("n", "<space>ff", function()
-  require("telescope.builtin").find_files({
-    prompt_prefix = "🔍",
-    find_command = {
-      "rg",
-      "--no-ignore",
-      "--hidden",
-      "--no-binary",
-      "--iglob",
-      "!.git/*",
-      "--iglob",
-      "!.git-crypt/*",
-      "--files",
-    },
-  })
-end, opts)
+vim.keymap.set(
+  "n",
+  "<space>ff",
+  function()
+    return require("telescope.builtin").find_files({
+      prompt_prefix = "🔍",
+      find_command = {
+        "rg",
+        "--no-ignore",
+        "--hidden",
+        "--no-binary",
+        "--iglob",
+        "!.git/*",
+        "--iglob",
+        "!.git-crypt/*",
+        "--files",
+      },
+    })
+  end,
+  opts
+)
 
 -- buffer finder
 vim.keymap.set("n", "<space>fb", require("telescope.builtin").buffers)
