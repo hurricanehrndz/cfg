@@ -1,7 +1,7 @@
 local custom_attach = function(_, bufnr)
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
   -- disable lsp range formatting via gq
-  vim.bo.formatexpr = 'formatprg'
+  vim.bo.formatexpr = "formatprg"
   local opts = { noremap = true, buffer = bufnr }
 
   vim.keymap.set("n", "<C-x><C-x>", vim.lsp.buf.signature_help, opts)
