@@ -4,15 +4,20 @@ local custom_attach = function(_, bufnr)
   vim.bo.formatexpr = "formatprg"
   local opts = { noremap = true, buffer = bufnr }
 
-  vim.keymap.set("n", "<C-x><C-x>", vim.lsp.buf.signature_help, opts)
+  vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+  vim.keymap.set("n", "gD", "<cmd>Telescope lsp_declarations<CR>", opts)
 
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
   vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "<M-d>", "<cmd>Telescope diagnostics<CR>", opts)
+  vim.keymap.set("n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts)
+  vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+  vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
-  vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, opts)
+  vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  -- vim.keymap.set("n", "<M-f>", "<cmd>Format<cr>", opts)
+  vim.keymap.set("n", "<M-a>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 end
 
 -- Setup lspconfig.
