@@ -11,6 +11,7 @@ local sources = {
   -- formatting
   b.formatting.prettier.with({
     disabled_filetypes = { "typescript", "typescriptreact" },
+    extra_args = { "--prose-wrap", "always" },
   }),
   b.formatting.shfmt.with({
     extra_args = { "-i", "2", "-ci" },
