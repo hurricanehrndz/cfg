@@ -74,6 +74,12 @@ return require("packer").startup(function(use)
   -- signature
   use_with_config("ray-x/lsp_signature.nvim", "lsp-signature")
 
+  -- Diagnostic help
+  use({
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = config("trouble"),
+  })
 
   -- > Polyglot Plugins <--
   --  Better syntax
