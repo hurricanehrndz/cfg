@@ -41,7 +41,7 @@ alias gp='git push'                     \
 alias gcl='git clone --recursive-submodules'
 
 # Git rebase sign commits
-alias grsc='git rebase --exec "git --amend --no-edit -n -S" -i'
+alias grsc='git rebase --exec "git commit --amend --no-edit -n -S" -i'
 
 # git log
 _git_log_oneline_format='%C(green)%h%C(reset) %s%C(red)%d %C(reset)%C(blue)Sig:%G?%C(reset)%n'
