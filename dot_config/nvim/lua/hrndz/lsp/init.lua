@@ -17,7 +17,7 @@ local custom_attach = function(_, bufnr)
   vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
   vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   -- vim.keymap.set("n", "<M-f>", "<cmd>Format<cr>", opts)
-  vim.keymap.set("n", "<M-a>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  vim.keymap.set("n", "<M-a>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 end
 
 -- Setup lspconfig.
