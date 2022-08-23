@@ -81,6 +81,16 @@ return require("packer").startup(function(use)
     config = config("trouble"),
   })
 
+  -- file management
+  use({
+    "kyazdani42/nvim-tree.lua",
+    requires = {
+      "kyazdani42/nvim-web-devicons", -- optional, for file icons
+    },
+    config = config("nvim-tree"),
+    tag = "nightly", -- optional, updated every week. (see issue #1193)
+  })
+
   -- > Polyglot Plugins <--
   --  Better syntax
   use({
