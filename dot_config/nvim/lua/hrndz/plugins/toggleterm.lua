@@ -1,8 +1,9 @@
 require("toggleterm").setup({
-  open_mapping = [[<c-\>]],
+  open_mapping = nil,
   hide_numbers = true,
   direction = "float",
   size = 15,
+  start_in_insert = true,
 })
 
 vim.env.GIT_EDITOR = "nvr --remote-tab-wait +'set bufhidden=wipe'"
@@ -12,12 +13,12 @@ local term_open_group = vim.api.nvim_create_augroup("HrndzTermOpen", { clear = t
 vim.api.nvim_create_autocmd("TermOpen", {
   pattern = { "term://*" },
   callback = function()
-    local opts = { noremap = true }
-    vim.api.nvim_buf_set_keymap(0, "t", "<M-/>", [[<C-\><C-n>]], opts)
-    vim.api.nvim_buf_set_keymap(0, "t", "<M-h>", [[<C-\><C-n><C-W>h]], opts)
-    vim.api.nvim_buf_set_keymap(0, "t", "<M-j>", [[<C-\><C-n><C-W>j]], opts)
-    vim.api.nvim_buf_set_keymap(0, "t", "<M-k>", [[<C-\><C-n><C-W>k]], opts)
-    vim.api.nvim_buf_set_keymap(0, "t", "<M-l>", [[<C-\><C-n><C-W>l]], opts)
+    local opts = { buffer = 0, noremap = true, silent = true }
+    vim.keymap.set("t", "<M-/>", [[<C-\><C-n>]], opts)
+    vim.keymap.set("t", "<M-h>", [[<C-\><C-n><C-W>h]], opts)
+    vim.keymap.set("t", "<M-j>", [[<C-\><C-n><C-W>j]], opts)
+    vim.keymap.set("t", "<M-k>", [[<C-\><C-n><C-W>k]], opts)
+    vim.keymap.set("t", "<M-l>", [[<C-\><C-n><C-W>l]], opts)
   end,
   group = term_open_group,
 })
@@ -31,7 +32,8 @@ local lazygit = Terminal:new({
   close_on_exit = true,
   on_open = function(term)
     vim.cmd("startinsert!")
-    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+    local opts = { noremap = true, silent = true, buffer = term.bufnr }
+    vim.keymap.set("n", "q", "<cmd>close<CR>", opts)
   end,
 })
 
@@ -39,4 +41,9 @@ function _LAZYGIT_TOGGLE()
   lazygit:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<C-g>", [[<cmd>lua _LAZYGIT_TOGGLE()<CR>]], { noremap = true })
+local opts = { noremap = true, silent = true }
+vim.keymap.set("n", "<C-g>", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+for i=1,7 do
+  vim.keymap.set("n", "<M-" .. i .. ">", "<cmd>" .. i .."ToggleTerm<CR>", opts)
+  vim.keymap.set("t", "<M-" .. i .. ">", "<cmd>" .. i .."ToggleTerm<CR>", opts)
+end
