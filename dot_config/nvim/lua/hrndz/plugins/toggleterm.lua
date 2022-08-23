@@ -19,6 +19,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.keymap.set("t", "<M-j>", [[<C-\><C-n><C-W>j]], opts)
     vim.keymap.set("t", "<M-k>", [[<C-\><C-n><C-W>k]], opts)
     vim.keymap.set("t", "<M-l>", [[<C-\><C-n><C-W>l]], opts)
+    for i=1,7 do
+      vim.keymap.set("t", "<M-" .. i .. ">", "<cmd>" .. i .."ToggleTerm<CR>", opts)
+    end
   end,
   group = term_open_group,
 })
@@ -45,5 +48,4 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<C-g>", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 for i=1,7 do
   vim.keymap.set("n", "<M-" .. i .. ">", "<cmd>" .. i .."ToggleTerm<CR>", opts)
-  vim.keymap.set("t", "<M-" .. i .. ">", "<cmd>" .. i .."ToggleTerm<CR>", opts)
 end
