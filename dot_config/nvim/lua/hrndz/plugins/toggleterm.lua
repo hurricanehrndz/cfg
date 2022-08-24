@@ -15,7 +15,6 @@ toggleterm.setup({
   persist_mode = false,
 })
 
-
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({
   cmd = "lazygit",
