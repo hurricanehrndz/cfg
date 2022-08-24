@@ -12,11 +12,6 @@ keybinding:
       commitChanges: "C"
       commitChangesWithEditor: "c"
 
-customCommands:
-  - key: "<c-g>"
-    command: "nvr -cc 'lua _LAZYGIT_TOGGLE()'"
-    context: "global"
-
 keybinding:
   files:
     commitChanges: 'C'
