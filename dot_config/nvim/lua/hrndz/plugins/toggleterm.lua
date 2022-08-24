@@ -10,6 +10,7 @@ toggleterm.setup({
   open_mapping = nil,
   hide_numbers = true,
   direction = "float",
+  close_on_exit = true,
   start_in_insert = true,
   -- can not persist, if I want to always start in insert
   persist_mode = false,
@@ -25,6 +26,10 @@ local lazygit = Terminal:new({
   close_on_exit = true,
   persist_mode = false,
   start_in_insert = true,
+  on_open = function(term)
+    local map_opts = {buffer = term.bufnr, noremap = true, silent = true}
+    vim.keymap.set("n", "q", "<cmd>close<CR>", map_opts)
+  end,
 })
 
 function _LAZYGIT_TOGGLE()
