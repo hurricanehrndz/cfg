@@ -33,8 +33,8 @@ function _LAZYGIT_TOGGLE()
 end
 
 local opts = { noremap = true, silent = true }
-local lg_toggle = [[<cmd>lua _LAZYGIT_TOGGLE()<CR>]]
-local lg_term_toggle = [[<C-\><C-n>]] .. lg_toggle
+local lg_toggle = [[<Cmd>lua _LAZYGIT_TOGGLE()<CR>]]
+local lg_term_toggle = [[<Cmd>lua vim.cmd('stopinsert')<CR> | ]] .. lg_toggle
 vim.keymap.set("n", "<C-g>", lg_toggle, opts)
 vim.keymap.set("t", "<C-g>", lg_term_toggle, opts)
 
@@ -43,11 +43,11 @@ vim.api.nvim_create_autocmd("TermOpen", {
   pattern = { "term://*" },
   callback = function()
     local bufopts = { buffer = 0, noremap = true, silent = true }
-    vim.keymap.set("t", "<M-/>", [[<C-\><C-n>]], bufopts)
-    vim.keymap.set("t", "<M-h>", [[<C-\><C-n><C-W>h]], bufopts)
-    vim.keymap.set("t", "<M-j>", [[<C-\><C-n><C-W>j]], bufopts)
-    vim.keymap.set("t", "<M-k>", [[<C-\><C-n><C-W>k]], bufopts)
-    vim.keymap.set("t", "<M-l>", [[<C-\><C-n><C-W>l]], bufopts)
+    vim.keymap.set("t", "<M-/>", [[<cmd>lua vim.cmd('stopinsert')<CR>]], bufopts)
+    vim.keymap.set("t", "<M-h>", [[<cmd>wincmd h<CR>]], bufopts)
+    vim.keymap.set("t", "<M-j>", [[<cmd>wincmd j<CR>]], bufopts)
+    vim.keymap.set("t", "<M-k>", [[<cmd>wincmd k<CR>]], bufopts)
+    vim.keymap.set("t", "<M-l>", [[<cmd>wincmd l<CR>]], bufopts)
   end,
   group = term_open_group,
 })
@@ -55,7 +55,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 for i = 1, 5 do
   local keymap = string.format("<M-%s>", i)
   local normal_action = string.format([[<cmd>lua require('toggleterm').toggle(%s)<CR>]], i)
-  local term_action = [[<C-\><C-n>]] .. normal_action
+  local term_action = [[<Cmd>lua vim.cmd('stopinsert')<CR> | ]] .. normal_action
   vim.keymap.set("n", keymap, normal_action, opts)
   vim.keymap.set("t", keymap, term_action, opts)
 end
