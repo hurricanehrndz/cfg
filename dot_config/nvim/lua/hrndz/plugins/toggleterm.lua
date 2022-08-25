@@ -38,7 +38,7 @@ end
 
 local opts = { noremap = true, silent = true }
 local lg_toggle = [[<Cmd>lua _LAZYGIT_TOGGLE()<CR>]]
-local lg_term_toggle = [[<Cmd>lua vim.cmd('stopinsert')<CR> | ]] .. lg_toggle
+local lg_term_toggle = [[<Cmd>lua vim.cmd('stopinsert')<CR>]] .. lg_toggle
 vim.keymap.set("n", "<C-g>", lg_toggle, opts)
 vim.keymap.set("t", "<C-g>", lg_term_toggle, opts)
 
@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 for i = 1, 5 do
   local keymap = string.format("<M-%s>", i)
   local normal_action = string.format([[<cmd>lua require('toggleterm').toggle(%s)<CR>]], i)
-  local term_action = [[<Cmd>lua vim.cmd('stopinsert')<CR> | ]] .. normal_action
+  local term_action = [[<Cmd>lua vim.cmd('stopinsert')<CR>]] .. normal_action
   vim.keymap.set("n", keymap, normal_action, opts)
   vim.keymap.set("t", keymap, term_action, opts)
 end
