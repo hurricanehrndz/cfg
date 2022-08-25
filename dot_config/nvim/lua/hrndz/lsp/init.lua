@@ -1,31 +1,41 @@
-local custom_attach = function(_, bufnr)
-  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-  -- disable lsp range formatting via gq
-  vim.bo.formatexpr = "formatprg"
-  local opts = { noremap = true, buffer = bufnr }
-
-  vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
-  vim.keymap.set("n", "gD", "<cmd>Telescope lsp_declarations<CR>", opts)
-
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-  vim.keymap.set("n", "<M-d>", "<cmd>Telescope diagnostics<CR>", opts)
-  vim.keymap.set("n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts)
-  vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-  vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
-  vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  -- vim.keymap.set("n", "<M-f>", "<cmd>Format<cr>", opts)
-  vim.keymap.set("n", "<M-a>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-end
-
 -- Setup lspconfig.
 local has_lsp, _ = pcall(require, "lspconfig")
 local has_cmp_lsp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
 if not has_lsp or not has_cmp_lsp then
   return
 end
+
+local custom_attach = function(_, bufnr)
+  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+  -- disable lsp range formatting via gq
+  vim.bo.formatexpr = "formatprg"
+  local status_ok, wk = pcall(require, "which-key")
+  if not status_ok then
+    return
+  end
+
+  wk.register({
+    d = { "<Cmd>Telescope lsp_definitions<CR>", "Show lsp definitions"},
+    D = { "<Cmd>Telescope lsp_declarations<CR>", "Show lsp declarations"},
+    I = { "<Cmd>Telescope lsp_implementations<CR>", "Show lsp implementations" },
+    r = { "<cmd>Telescope lsp_references<CR>", "Show lsp references" },
+    s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
+    K = { "<Cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
+    y = { "<Cmd>lua vim.lsp.buf.document_symbol()<CR>", "Search for symbol in document" },
+    a = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Run code action" },
+    n = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol under cursor" },
+
+  }, {prefix = "g", buffer = bufnr})
+
+  wk.register({
+    d =  { "<Cmd>lua vim.diagnostic.goto_prev()", "Go to prev diagnostic" }
+  }, {prefix = "[", buffer = bufnr})
+
+  wk.register({
+    d =  { "<Cmd>lua vim.diagnostic.goto_next()", "Go to next diagnostic" }
+  }, {prefix = "]", buffer = bufnr })
+end
+
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true

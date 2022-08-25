@@ -25,6 +25,9 @@ return require("packer").startup(function(use)
   use_with_config("norcalli/nvim-colorizer.lua", "colorizer")
   -- Everyone needs an icon
   use_with_config("kyazdani42/nvim-web-devicons", "devicons")
+  -- Keybindings
+  use_with_config("folke/which-key.nvim", "whichkey")
+
   -- Use the telescope to search between the fuzz
   use({
     "nvim-telescope/telescope.nvim",
