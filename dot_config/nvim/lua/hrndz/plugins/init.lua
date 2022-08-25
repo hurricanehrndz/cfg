@@ -81,6 +81,12 @@ return require("packer").startup(function(use)
     config = config("trouble"),
   })
 
+  -- wiki stuff
+  use({
+    "mickael-menu/zk-nvim",
+    config = config("zk"),
+  })
+
   -- file management
   use({
     "kyazdani42/nvim-tree.lua",
