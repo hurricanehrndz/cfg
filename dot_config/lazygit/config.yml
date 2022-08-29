@@ -6,6 +6,9 @@ os:
   editCommandTemplate: "{{editor}} +{{line}} -- {{filename}}"
   openCommand: "nvr -s -l {{filename}}"
 
+git:
+  autorefresh: false
+
 keybinding:
   universal:
     files:
