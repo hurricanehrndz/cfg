@@ -28,11 +28,11 @@ local custom_attach = function(_, bufnr)
   }, {prefix = "g", buffer = bufnr})
 
   wk.register({
-    d =  { "<Cmd>lua vim.diagnostic.goto_prev()", "Go to prev diagnostic" }
+    d =  { "<Cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to prev diagnostic" }
   }, {prefix = "[", buffer = bufnr})
 
   wk.register({
-    d =  { "<Cmd>lua vim.diagnostic.goto_next()", "Go to next diagnostic" }
+    d =  { "<Cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic" }
   }, {prefix = "]", buffer = bufnr })
 end
 
