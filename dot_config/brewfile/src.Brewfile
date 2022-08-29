@@ -25,9 +25,9 @@ brew git
 brew git-crypt
 brew git-delta
 brew git-filter-repo
+brew glib
 brew gnu-tar
 brew gnupg
-brew gnutls
 brew gopass
 brew grc
 brew grex
@@ -40,16 +40,15 @@ brew lua@5.1
 brew luarocks
 brew mas
 brew mdbook
+brew ncurses
 brew neofetch
 brew neovim
 brew neovim-remote
 brew ninja
 brew node
 brew openldap
-brew p11-kit
 brew pinentry-mac
 brew pre-commit
-brew python@3.9
 brew qemu
 brew reattach-to-user-namespace
 brew ripgrep
@@ -66,6 +65,7 @@ brew tmux
 brew tree
 brew ykman
 brew ykpers
+brew zk
 brew zoxide
 brew zsh
 brew zstd
@@ -105,7 +105,9 @@ tap wez/wezterm
 cask wezterm-nightly
 
 # App Store applications
-appstore 1037126344  Apple Configurator  (2.15.1)
-appstore 409183694   Keynote             (12.1)
-appstore 1496833156  Playgrounds         (4.1)
-appstore 1475387142  Tailscale           (1.28.0)
+appstore 1037126344  Apple Configurator        (2.15.1)
+appstore 408981434   iMovie                    (10.3.4)
+appstore 409183694   Keynote                   (12.1)
+appstore 1295203466  Microsoft Remote Desktop  (10.7.9)
+appstore 1496833156  Playgrounds               (4.1)
+appstore 1475387142  Tailscale                 (1.28.0)
