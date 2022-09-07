@@ -28,6 +28,7 @@ brew git-filter-repo
 brew glib
 brew gnu-tar
 brew gnupg
+brew go
 brew gopass
 brew grc
 brew grex
