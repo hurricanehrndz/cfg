@@ -13,11 +13,12 @@ if has_nightfox and vim.g.hrnd_theme == "nightfox" then
   nightfox.load("nightfox")
 end
 
-local has_tokyonight, _ = pcall(require, "tokyonight")
+local has_tokyonight, tokyonight = pcall(require, "tokyonight")
 if has_tokyonight and vim.g.hrnd_theme == "tokyonight" then
-  vim.g.tokyonight_style = "night"
-  vim.g.tokyonight_italic_functions = true
-  vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+  tokyonight.setup({
+    style = "night",
+    sidebars = { "qf", "vista_kind", "terminal", "packer" },
+  })
 
   -- Load the colorscheme
   vim.cmd([[colorscheme tokyonight]])
