@@ -1,14 +1,20 @@
 -- Setup lspconfig.
 local has_lsp, _ = pcall(require, "lspconfig")
 local has_cmp_lsp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
-if not has_lsp or not has_cmp_lsp then
+local has_lsp_format, lsp_format = pcall(require, "lsp-format")
+if not has_lsp or not has_cmp_lsp or not has_lsp_format then
   return
 end
 
-local custom_attach = function(_, bufnr)
+-- formatting
+lsp_format.setup({})
+
+local custom_attach = function(client, bufnr)
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
   -- disable lsp range formatting via gq
   vim.bo.formatexpr = "formatprg"
+
+  -- keybinds
   local status_ok, wk = pcall(require, "which-key")
   if not status_ok then
     return
@@ -34,6 +40,9 @@ local custom_attach = function(_, bufnr)
   wk.register({
     d =  { "<Cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic" }
   }, {prefix = "]", buffer = bufnr })
+
+  -- formatting
+  lsp_format.on_attach(client)
 end
 
 
