@@ -21,8 +21,8 @@ local custom_attach = function(client, bufnr)
   end
 
   wk.register({
-    d = { "<Cmd>Telescope lsp_definitions<CR>", "Show lsp definitions"},
-    D = { "<Cmd>Telescope lsp_declarations<CR>", "Show lsp declarations"},
+    d = { "<Cmd>Telescope lsp_definitions<CR>", "Show lsp definitions" },
+    D = { "<Cmd>Telescope lsp_declarations<CR>", "Show lsp declarations" },
     I = { "<Cmd>Telescope lsp_implementations<CR>", "Show lsp implementations" },
     r = { "<Cmd>Telescope lsp_references<CR>", "Show lsp references" },
     s = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
@@ -30,21 +30,19 @@ local custom_attach = function(client, bufnr)
     y = { "<Cmd>lua vim.lsp.buf.document_symbol()<CR>", "Search for symbol in document" },
     a = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Run code action" },
     n = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol under cursor" },
-
-  }, {prefix = "g", buffer = bufnr})
-
-  wk.register({
-    d =  { "<Cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to prev diagnostic" }
-  }, {prefix = "[", buffer = bufnr})
+  }, { prefix = "g", buffer = bufnr })
 
   wk.register({
-    d =  { "<Cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic" }
-  }, {prefix = "]", buffer = bufnr })
+    d = { "<Cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to prev diagnostic" },
+  }, { prefix = "[", buffer = bufnr })
+
+  wk.register({
+    d = { "<Cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic" },
+  }, { prefix = "]", buffer = bufnr })
 
   -- formatting
   lsp_format.on_attach(client)
 end
-
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
