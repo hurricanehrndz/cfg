@@ -42,6 +42,7 @@ if not has_wk then
 end
 
 wk.register({
+  name = "Find",
   f = {
     w = { "<Cmd>Telescope grep_string<CR>", "Find string" },
     g = { "<Cmd>Telescope live_grep<CR>", "Find text" },
