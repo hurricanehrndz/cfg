@@ -50,6 +50,7 @@ brew node
 brew openldap
 brew pinentry-mac
 brew pre-commit
+brew python@3.9
 brew qemu
 brew reattach-to-user-namespace
 brew ripgrep
@@ -63,7 +64,9 @@ brew tealdeer
 brew tflint
 brew tmate
 brew tmux
+brew trash-cli
 brew tree
+brew wget
 brew ykman
 brew ykpers
 brew zk
