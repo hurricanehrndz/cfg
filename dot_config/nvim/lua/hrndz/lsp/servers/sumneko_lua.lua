@@ -6,16 +6,28 @@ M.setup = function(on_attach, capabilities)
   if not has_luadev then
     return
   end
-  local luadev_config = luadev.setup({
-    lspconfig = {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      flags = {
-        debounce_text_changes = 150,
+  luadev.setup({
+    override = function(root_dir, library)
+      local chezmoi_dir = vim.fn.expandcmd("~/.local/share/chezmoi")
+      if require("lua-dev.util").has_file(root_dir, chezmoi_dir) then
+        library.enabled = true
+        library.plugins = true
+        library.types = true
+        library.runtime = true
+      end
+    end,
+  })
+  lspconfig.sumneko_lua.setup({
+    settings = {
+      Lua = {
+        completion = {
+          callSnippet = "Replace",
+        },
       },
     },
+    on_attach = on_attach,
+    capabilities = capabilities,
   })
-  lspconfig.sumneko_lua.setup(luadev_config)
 end
 
 return M
