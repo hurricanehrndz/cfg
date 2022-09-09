@@ -17,6 +17,7 @@ local sources = {
     extra_args = { "-i", "2", "-ci" },
   }),
   b.formatting.stylua,
+  b.formatting.black.with({ extra_args = { "--fast" } }),
 
   -- diagnostics
   with_diagnostics_code(b.diagnostics.shellcheck),

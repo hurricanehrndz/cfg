@@ -1,22 +1,60 @@
 -- Setup lspconfig.
-local has_lsp, _ = pcall(require, "lspconfig")
-local has_cmp_lsp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
-local has_lsp_format, lsp_format = pcall(require, "lsp-format")
-if not has_lsp or not has_cmp_lsp or not has_lsp_format then
+local has_mason, mason = pcall(require, "mason")
+local has_mlsp, mlsp = pcall(require, "mason-lspconfig")
+local has_minstaller, minstaller = pcall(require, "mason-tool-installer")
+local has_cmp, cmp = pcall(require, "cmp_nvim_lsp")
+local has_format, format = pcall(require, "lsp-format")
+
+if not has_mason or not has_minstaller or not has_mlsp or not has_cmp or not has_format then
   return
 end
 
--- formatting
-lsp_format.setup({})
+-- setup async formatting
+format.setup({})
+
+-- mason settings
+local mason_settings = {
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗",
+    },
+  },
+  log_level = vim.log.levels.INFO,
+  max_concurrent_installers = 4,
+}
+mason.setup(mason_settings)
+mlsp.setup({})
+
+-- install and update linters, and formatters
+minstaller.setup({
+  ensure_installed = {
+    "black",
+    "editorconfig-checker",
+    "eslint-lsp",
+    "flake8",
+    "misspell",
+    "prettier",
+    "puppet-editor-services",
+    "pyright",
+    "shellcheck",
+    "shellcheck",
+    "shfmt",
+    "stylua",
+    "typescript-language-server",
+  },
+  auto_update = false,
+  run_on_start = true,
+})
 
 local custom_attach = function(client, bufnr)
-  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
   -- disable lsp range formatting via gq
   vim.bo.formatexpr = "formatprg"
 
   -- keybinds
-  local status_ok, wk = pcall(require, "which-key")
-  if not status_ok then
+  local has_wk, wk = pcall(require, "which-key")
+  if not has_wk then
     return
   end
 
@@ -41,12 +79,12 @@ local custom_attach = function(client, bufnr)
   }, { prefix = "]", buffer = bufnr })
 
   -- formatting
-  lsp_format.on_attach(client)
+  format.on_attach(client)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities = cmp_lsp.update_capabilities(capabilities)
+capabilities = cmp.update_capabilities(capabilities)
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
@@ -68,12 +106,14 @@ vim.diagnostic.config({
   severity_sort = true, -- default to false
 })
 
-for _, server in ipairs({
-  "eslint",
-  "null-ls",
-  "sumneko",
-  "tsserver",
-  "pses",
-}) do
-  require("hrndz.lsp." .. server).setup(custom_attach, capabilities)
+local installed_servers = mlsp.get_installed_servers()
+table.insert(installed_servers, "null-ls")
+
+for _, server_name in ipairs(installed_servers) do
+  local ok, server = pcall(require, "hrndz.lsp.servers." .. server_name)
+  if not ok then
+    vim.api.nvim_err_writeln("failed to setup server: " .. server_name)
+  else
+    server.setup(custom_attach, capabilities)
+  end
 end

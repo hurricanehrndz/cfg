@@ -44,6 +44,15 @@ return require("packer").startup(function(use)
 
   -- Please complete me
   use({
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    requires = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "neovim/nvim-lspconfig",
+      "jose-elias-alvarez/null-ls.nvim",
+    },
+  })
+  use({
     "hrsh7th/nvim-cmp",
     config = config("completion"),
     requires = {
