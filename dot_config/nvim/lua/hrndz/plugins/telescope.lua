@@ -18,47 +18,41 @@ telescope.setup({
 })
 
 telescope.load_extension("fzf")
+local files_cmd = table.concat({
+  "rg",
+  "--no-ignore",
+  "--hidden",
+  "--no-binary",
+  "--iglob",
+  "!.git/*",
+  "--iglob",
+  "!.git-crypt/*",
+  "--files",
+})
+local find_files = string.format("<Cmd>Telescope find_files find_command=%s<CR>", files_cmd)
+local find_buffers = function()
+  local ts = require("telescope.builtin")
+  local themes = require("telescope.themes")
+  return ts.buffers(themes.get_dropdown({ previewer = false }))
+end
 
-local opts = { noremap = true, silent = true }
+local has_wk, wk = pcall(require, "which-key")
+if not has_wk then
+  return
+end
 
--- string maps
--- search for current word under cursor
-vim.keymap.set("n", "<space>fw", function()
-  ---@diagnostic disable-next-line: param-type-mismatch
-  return require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>", nil, nil) })
-end, opts)
-vim.keymap.set("n", "<space>fs", require("telescope.builtin").grep_string, opts)
-vim.keymap.set("n", "<space>fg", require("telescope.builtin").live_grep, opts)
-
--- file finder
-vim.keymap.set("n", "<C-p>", require("telescope.builtin").git_files, opts)
-vim.keymap.set("n", "<space>ff", function()
-  return require("telescope.builtin").find_files({
-    prompt_prefix = "🔍",
-    find_command = {
-      "rg",
-      "--no-ignore",
-      "--hidden",
-      "--no-binary",
-      "--iglob",
-      "!.git/*",
-      "--iglob",
-      "!.git-crypt/*",
-      "--files",
-    },
-  })
-end, opts)
-
--- buffer finder
-vim.keymap.set("n", "<M-b>", function()
-  return require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({
-    previewer = false,
-    initial_mode = "normal",
-  }))
-end, opts)
-
--- help finder
-vim.keymap.set("n", "<M-'>", "<cmd>Telescope help_tags<CR>", opts)
+wk.register({
+  f = {
+    w = { "<Cmd>Telescope grep_string<CR>", "Find string" },
+    g = { "<Cmd>Telescope live_grep<CR>", "Find text" },
+    f = { find_files, "Find files" },
+    h = { "<cmd>Telescope help_tags<CR>", "Help" },
+    b = { find_buffers, "Find buffer" },
+    r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
+    R = { "<cmd>Telescope registers<cr>", "Registers" },
+    c = { "<cmd>Telescope commands<cr>", "Commands" },
+  },
+}, { prefix = "<space>" })
 
 local plenary_ft = require("plenary.filetype")
 plenary_ft.add_file("defs")
