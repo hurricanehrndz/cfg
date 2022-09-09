@@ -21,6 +21,7 @@ local sources = {
 
   -- diagnostics
   with_diagnostics_code(b.diagnostics.shellcheck),
+  b.diagnostics.flake8,
 
   -- hover
   b.hover.dictionary,
