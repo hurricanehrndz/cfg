@@ -12,9 +12,9 @@ telescope.setup({
     mappings = {
       i = {
         ["<esc>"] = actions.close,
-      }
-    }
-  }
+      },
+    },
+  },
 })
 
 telescope.load_extension("fzf")
@@ -24,13 +24,14 @@ local opts = { noremap = true, silent = true }
 -- string maps
 -- search for current word under cursor
 vim.keymap.set("n", "<space>fw", function()
+  ---@diagnostic disable-next-line: param-type-mismatch
   return require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>", nil, nil) })
-end)
-vim.keymap.set("n", "<space>fs", require("telescope.builtin").grep_string)
-vim.keymap.set("n", "<space>fg", require("telescope.builtin").live_grep)
+end, opts)
+vim.keymap.set("n", "<space>fs", require("telescope.builtin").grep_string, opts)
+vim.keymap.set("n", "<space>fg", require("telescope.builtin").live_grep, opts)
 
 -- file finder
-vim.keymap.set("n", "<C-p>", require("telescope.builtin").git_files)
+vim.keymap.set("n", "<C-p>", require("telescope.builtin").git_files, opts)
 vim.keymap.set("n", "<space>ff", function()
   return require("telescope.builtin").find_files({
     prompt_prefix = "🔍",
