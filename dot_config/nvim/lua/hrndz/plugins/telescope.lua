@@ -28,7 +28,7 @@ local files_cmd = table.concat({
   "--iglob",
   "!.git-crypt/*",
   "--files",
-})
+}, ",")
 local find_files = string.format("<Cmd>Telescope find_files find_command=%s<CR>", files_cmd)
 local find_buffers = function()
   local ts = require("telescope.builtin")
