@@ -7,12 +7,6 @@ end
 vim.o.background = "dark"
 vim.cmd("syntax on")
 
-local has_nightfox, nightfox = pcall(require, "nightfox")
-if has_nightfox and vim.g.hrnd_theme == "nightfox" then
-  vim.g.onedark_disable_terminal_colors = true
-  nightfox.load("nightfox")
-end
-
 local has_tokyonight, tokyonight = pcall(require, "tokyonight")
 if has_tokyonight and vim.g.hrnd_theme == "tokyonight" then
   tokyonight.setup({
