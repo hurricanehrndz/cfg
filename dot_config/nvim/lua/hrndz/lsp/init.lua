@@ -39,7 +39,6 @@ minstaller.setup({
     "puppet-editor-services",
     "pyright",
     "shellcheck",
-    "shellcheck",
     "shfmt",
     "stylua",
     "typescript-language-server",
