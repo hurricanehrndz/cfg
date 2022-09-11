@@ -31,7 +31,8 @@ require("luasnip.loaders.from_snipmate").lazy_load()
 local cmp_formatting = {
   -- Youtube: How to set up nice formatting for your sources.
   format = lspkind.cmp_format({
-    with_text = true,
+    mode = "symbol",
+    maxwidth = 50,
     menu = {
       buffer = "[buf]",
       nvim_lsp = "[LSP]",
@@ -39,7 +40,7 @@ local cmp_formatting = {
       zsh = "[zpty]",
       path = "[path]",
       luasnip = "[snip]",
-      dictionary = "[dictionary]",
+      dictionary = "[dic]",
     },
   }),
 }
