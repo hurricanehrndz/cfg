@@ -28,8 +28,10 @@ end
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_snipmate").lazy_load()
 
+lspkind.init()
 local cmp_formatting = {
   -- Youtube: How to set up nice formatting for your sources.
+  fields = { "kind", "abbr", "menu" },
   format = lspkind.cmp_format({
     mode = "symbol",
     maxwidth = 50,
@@ -82,7 +84,6 @@ local cmp_keymaps = {
   ),
 }
 
-lspkind.init()
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -106,6 +107,16 @@ cmp.setup({
       max_item_count = 5,
     },
   }),
+  window = {
+    documentation = {
+      border = "rounded",
+      winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+    },
+    completion = {
+      border = "rounded",
+      winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+    },
+  },
   formatting = cmp_formatting,
 })
 
