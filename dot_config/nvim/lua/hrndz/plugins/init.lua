@@ -83,6 +83,17 @@ return require("packer").startup(function(use)
       "onsails/lspkind-nvim",
     },
   })
+  use({
+    "weilbith/nvim-code-action-menu",
+    cmd = "CodeActionMenu",
+  })
+  use({
+    "filipdutescu/renamer.nvim",
+    config = config("renamer"),
+    branch = "master",
+    requires = { { "nvim-lua/plenary.nvim" } },
+  })
+
   -- signature
   use_with_config("ray-x/lsp_signature.nvim", "lsp-signature")
 

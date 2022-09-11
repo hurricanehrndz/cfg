@@ -48,15 +48,28 @@ minstaller.setup({
   run_on_start = true,
 })
 
+-- keybinds with which-key
+local has_wk, wk = pcall(require, "which-key")
+if not has_wk then
+  return
+end
+
+wk.register({
+  name = "LSP",
+  l = {
+    r = { "<Cmd>lua require('renamer').rename()<CR>", "Rename" },
+    a = { "<Cmd>CodeActionMenu<CR>", "Code Action" },
+    d = { "<Cmd>TroubleToggle<CR>", "Diagnostics" },
+    w = { "<Cmd>Telescope lsp_workspace_diagnostics<CR>", "Workspace Diagnostics" },
+    f = { "<Cmd>Format sync<CR>", "Format" },
+    i = { "<Cmd>LspInfo<CR>", "Info" },
+    m = { "<Cmd>Mason<CR>", "Mason" },
+  },
+}, { prefix = "<space>" })
+
 local custom_attach = function(client, bufnr)
   -- disable lsp range formatting via gq
   vim.bo.formatexpr = "formatprg"
-
-  -- keybinds
-  local has_wk, wk = pcall(require, "which-key")
-  if not has_wk then
-    return
-  end
 
   wk.register({
     d = { "<Cmd>Telescope lsp_definitions<CR>", "Show lsp definitions" },
@@ -65,9 +78,8 @@ local custom_attach = function(client, bufnr)
     r = { "<Cmd>Telescope lsp_references<CR>", "Show lsp references" },
     s = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
     K = { "<Cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
-    y = { "<Cmd>lua vim.lsp.buf.document_symbol()<CR>", "Search for symbol in document" },
-    a = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Run code action" },
-    n = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol under cursor" },
+    y = { "<Cmd>lua vim.lsp.buf.document_symbol()<CR>", "Search for symbol" },
+    l = { "<Cmd>>lua vim.diagnostic.open_float()<CR>", "Show diagnostic" },
   }, { prefix = "g", buffer = bufnr })
 
   wk.register({
