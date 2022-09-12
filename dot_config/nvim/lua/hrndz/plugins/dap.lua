@@ -29,13 +29,6 @@ vim.fn.sign_define("DapBreakpoint", signs.breakpoint)
 vim.fn.sign_define("DapBreakpointRejected", signs.breakpoint_rejected)
 vim.fn.sign_define("DapStopped", signs.stopped)
 
-local debug_python = vim.fn.expand(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python")
-if vim.fn.executable(debug_python) then
-  local dap_python = require("dap-python")
-  dap_python.setup(debug_python)
-  print(debug_python)
-end
-
 local has_dapui, dapui = pcall(require, "dapui")
 if not has_dapui then
   return
@@ -76,3 +69,10 @@ wk.register({
     x = { "<Cmd>lua require'dap'.terminate()<CR>", "Exit" },
   },
 }, { prefix = "<space>" })
+
+-- Setup debug adapters
+local debug_python = vim.fn.expand(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python")
+if vim.fn.executable(debug_python) then
+  local dap_python = require("dap-python")
+  dap_python.setup(debug_python)
+end
