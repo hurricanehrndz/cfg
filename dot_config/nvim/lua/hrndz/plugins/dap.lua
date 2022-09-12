@@ -45,6 +45,12 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
 
+-- enable virtual text
+local has_dap_virtual_txt, dap_virtual_txt = pcall(require, "nvim-dap-virtual-text")
+if has_dap_virtual_txt then
+  dap_virtual_txt.setup()
+end
+
 -- keybinds with which-key
 local has_wk, wk = pcall(require, "which-key")
 if not has_wk then
@@ -54,11 +60,11 @@ end
 wk.register({
   d = {
     name = "Debug",
-    b = { "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", "Breakpoint" },
+    b = { "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", "Toggle breakpoint" },
     c = { "<Cmd>lua require'dap'.continue()<CR>", "Continue" },
-    C = { "<Cmd>Telescope dap commands<CR>", "List Commands" },
-    f = { "<Cmd>Telescope dap frames<CR>", "List Commands" },
-    B = { "<Cmd>Telescope dap list_breakpoints<CR>", "List Breakpoint" },
+    C = { "<Cmd>Telescope dap commands<CR>", "Commands" },
+    f = { "<Cmd>Telescope dap frames<CR>", "Frames" },
+    B = { "<Cmd>Telescope dap list_breakpoints<CR>", "Breakpoints" },
     v = { "<Cmd>Telescope dap variables<CR>", "Variables" },
     i = { "<Cmd>lua require'dap'.step_into()<CR>", "Into" },
     o = { "<Cmd>lua require'dap'.step_over()<CR>", "Over" },
