@@ -18,6 +18,8 @@ telescope.setup({
 })
 
 telescope.load_extension("fzf")
+telescope.load_extension("dap")
+
 local files_cmd = table.concat({
   "rg",
   "--no-ignore",

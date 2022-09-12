@@ -36,11 +36,23 @@ return require("packer").startup(function(use)
       { "nvim-lua/popup.nvim" },
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+      { "nvim-telescope/telescope-dap.nvim" },
     },
   })
   use("christoomey/vim-tmux-navigator")
   use_with_config("akinsho/toggleterm.nvim", "toggleterm")
   use("famiu/feline.nvim")
+
+  -- squash some bugs
+  use({
+    "mfussenegger/nvim-dap",
+    config = config("dap"),
+    requires = {
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+      "mfussenegger/nvim-dap-python",
+    },
+  })
 
   -- Please complete me
   use({
