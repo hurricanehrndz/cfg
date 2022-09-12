@@ -78,7 +78,7 @@ local custom_attach = function(client, bufnr)
     s = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
     K = { "<Cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
     y = { "<Cmd>lua vim.lsp.buf.document_symbol()<CR>", "Search for symbol" },
-    l = { "<Cmd>>lua vim.diagnostic.open_float()<CR>", "Show diagnostic" },
+    l = { "<Cmd>lua vim.diagnostic.open_float()<CR>", "Show diagnostic" },
   }, { prefix = "g", buffer = bufnr })
 
   wk.register({
