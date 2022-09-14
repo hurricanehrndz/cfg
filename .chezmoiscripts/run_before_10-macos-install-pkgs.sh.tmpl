@@ -12,8 +12,9 @@ fi
 
 if [[ ! -e "$brew_update_flag_path" ]] || [[ "$#brew_update_flag" -ge 1 ]]; then
   brew-file --leaves --on_request -f $BREWFILE install
+  brew upgrade
   brew upgrade neovim --fetch-HEAD
-  brew cu
+  brew cu -f -a -y
   touch "$brew_update_flag_path"
 fi
 {{ end -}}
