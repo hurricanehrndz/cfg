@@ -2,7 +2,6 @@
 # tap repositories and their packages
 
 tap homebrew/core
-brew age
 brew awscli
 brew bash
 brew bat
@@ -40,12 +39,9 @@ brew less
 brew lua@5.1
 brew luarocks
 brew mas
-brew mdbook
 brew ncurses
-brew neofetch
 brew neovim
 brew neovim-remote
-brew ninja
 brew node
 brew openldap
 brew pinentry-mac
@@ -56,16 +52,10 @@ brew reattach-to-user-namespace
 brew ripgrep
 brew rustup-init
 brew sd
-brew shellcheck
-brew shfmt
 brew starship
-brew stylua
 brew tealdeer
-brew tflint
-brew tmate
 brew tmux
 brew trash-cli
-brew tree
 brew wget
 brew ykman
 brew ykpers
