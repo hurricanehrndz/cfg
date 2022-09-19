@@ -67,9 +67,6 @@ wk.register({
 }, { prefix = "<space>" })
 
 local custom_attach = function(client, bufnr)
-  -- disable lsp range formatting via gq
-  vim.bo.formatexpr = "formatprg"
-
   wk.register({
     d = { "<Cmd>Telescope lsp_definitions<CR>", "Show lsp definitions" },
     D = { "<Cmd>Telescope lsp_declarations<CR>", "Show lsp declarations" },
