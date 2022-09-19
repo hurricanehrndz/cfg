@@ -54,6 +54,7 @@ brew rustup-init
 brew sd
 brew starship
 brew tealdeer
+brew tmate
 brew tmux
 brew trash-cli
 brew wget
