@@ -8,6 +8,9 @@ g.loaded_ruby_provider = 0
 g.filetype_pp = "puppet"
 g.hrnd_theme = "tokyonight"
 
+-- disable editorconfig autolaoding
+g.loaded_editorconfig = 1
+
 local options = {
   -- >> window-scoped options <<--
   -- show line numbers

@@ -29,7 +29,7 @@ return require("packer").startup(function(use)
   use_with_config("folke/which-key.nvim", "whichkey")
 
   -- editor config
-  use("gpanders/editorconfig.nvim")
+  use_with_config("gpanders/editorconfig.nvim", "editorconfig")
 
   -- Use the telescope to search between the fuzz
   use({
