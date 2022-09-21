@@ -1,19 +1,21 @@
-local create_augroups = require("hrndz.lib.augroups")
+local help_files = vim.api.nvim_create_augroup("HelpFiles", { clear = true })
+vim.api.nvim_create_autocmd("Filetype", {
+  pattern = { "help" },
+  callback = function()
+    local bufopts = { buffer = 0, noremap = true, silent = true }
+    local nvo = { "n", "v", "o" }
+    vim.keymap.set(nvo, "<C-c>", [[<cmd>q<CR>]], bufopts)
+    vim.keymap.set(nvo, "q", [[<cmd>q<CR>]], bufopts)
+  end,
+  group = help_files,
+})
 
-local autocmds = {
-  open_terminal = {
-    { "TermOpen", "*", [[setlocal norelativenumber | setlocal nonumber]] },
-  },
-  help_files = {
-    { "Filetype", "help", [[noremap <buffer> <silent> <C-c> :q<cr>]] },
-    { "Filetype", "help", [[noremap <buffer> <silent> q :q<cr>]] },
-  },
-  spell_files = {
-    { "Filetype", "markdown", [[setl spell spl=en]] },
-    { "Filetype", "gitcommit", [[setl spell spl=en]] },
-    { "Filetype", "gitcommit", [[setl tw=72]] },
-  },
-}
-
--- create augroups
-create_augroups(autocmds)
+local spell_enabled_files = vim.api.nvim_create_augroup("SpellingEnabledFiles", { clear = true })
+vim.api.nvim_create_autocmd("Filetype", {
+  pattern = { "markdown", "gitcommit" },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = "en"
+  end,
+  group = spell_enabled_files,
+})

@@ -27,7 +27,7 @@ local lazygit = Terminal:new({
   persist_mode = false,
   start_in_insert = true,
   on_open = function(term)
-    local map_opts = {buffer = term.bufnr, noremap = true, silent = true}
+    local map_opts = { buffer = term.bufnr, noremap = true, silent = true }
     vim.keymap.set("n", "q", "<cmd>close<CR>", map_opts)
   end,
 })
@@ -52,6 +52,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.keymap.set("t", "<M-j>", [[<cmd>wincmd j<CR>]], bufopts)
     vim.keymap.set("t", "<M-k>", [[<cmd>wincmd k<CR>]], bufopts)
     vim.keymap.set("t", "<M-l>", [[<cmd>wincmd l<CR>]], bufopts)
+    vim.opt_local.relativenumber = false
+    vim.opt_local.number = false
   end,
   group = term_open_group,
 })

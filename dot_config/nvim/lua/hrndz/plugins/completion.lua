@@ -3,6 +3,8 @@
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 -- disable insert completion menu messages
 vim.opt.shortmess:append("c")
+-- completion menu height
+vim.opt.pumheight = 10
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))

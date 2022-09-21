@@ -2,7 +2,7 @@
 require("hrndz.packer")
 
 -- Sensible defaults - mine
-require("hrndz.settings")
+require("hrndz.options")
 
 -- Setup colors
 require("hrndz.theme")
