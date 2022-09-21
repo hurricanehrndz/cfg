@@ -59,7 +59,7 @@ wk.register({
     r = { "<Cmd>lua require('renamer').rename()<CR>", "Rename" },
     a = { "<Cmd>CodeActionMenu<CR>", "Code Action" },
     d = { "<Cmd>TroubleToggle<CR>", "Diagnostics" },
-    w = { "<Cmd>Telescope lsp_workspace_diagnostics<CR>", "Workspace Diagnostics" },
+    w = { "<Cmd>Telescope diagnostics<CR>", "Workspace Diagnostics" },
     f = { "<Cmd>Format sync<CR>", "Format" },
     i = { "<Cmd>LspInfo<CR>", "Info" },
     m = { "<Cmd>Mason<CR>", "Mason" },
