@@ -1,5 +1,7 @@
-local help_files = vim.api.nvim_create_augroup("HelpFiles", { clear = true })
-vim.api.nvim_create_autocmd("Filetype", {
+local api = vim.api
+
+local help_files = api.nvim_create_augroup("HelpFiles", { clear = true })
+api.nvim_create_autocmd("Filetype", {
   pattern = { "help" },
   callback = function()
     local bufopts = { buffer = 0, noremap = true, silent = true }
@@ -10,8 +12,8 @@ vim.api.nvim_create_autocmd("Filetype", {
   group = help_files,
 })
 
-local spell_enabled_files = vim.api.nvim_create_augroup("SpellingEnabledFiles", { clear = true })
-vim.api.nvim_create_autocmd("Filetype", {
+local spell_enabled_files = api.nvim_create_augroup("SpellingEnabledFiles", { clear = true })
+api.nvim_create_autocmd("Filetype", {
   pattern = { "markdown", "gitcommit" },
   callback = function()
     vim.opt_local.spell = true
