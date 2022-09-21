@@ -27,7 +27,8 @@ return require("packer").startup(function(use)
   use_with_config("kyazdani42/nvim-web-devicons", "devicons")
   -- Keybindings
   use_with_config("folke/which-key.nvim", "whichkey")
-
+  -- nofications
+  use("rcarriga/nvim-notify")
   -- editor config
   use_with_config("gpanders/editorconfig.nvim", "editorconfig")
 

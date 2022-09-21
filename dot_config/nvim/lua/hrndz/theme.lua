@@ -18,6 +18,10 @@ if has_tokyonight and vim.g.hrnd_theme == "tokyonight" then
   vim.cmd([[colorscheme tokyonight]])
 end
 
+local has_notify, notify = pcall(require, "notify")
+if has_notify then
+  vim.notify = notify
+end
 -- neovim/neovim/issues/11335
 --[[ if (fn['has']('termguicolors') and fn['has']('nvim-0.5.0') and vim.api.nvim_list_uis()[1]['ext_termcolors']) then
   vim.g.terminal_color_0 = nil
