@@ -28,6 +28,9 @@ return require("packer").startup(function(use)
   -- Keybindings
   use_with_config("folke/which-key.nvim", "whichkey")
 
+  -- editor config
+  use("gpanders/editorconfig.nvim")
+
   -- Use the telescope to search between the fuzz
   use({
     "nvim-telescope/telescope.nvim",
