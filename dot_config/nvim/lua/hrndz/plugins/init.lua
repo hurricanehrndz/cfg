@@ -155,13 +155,15 @@ return require("packer").startup(function(use)
   })
   use("sheerun/vim-polyglot")
 
-  -- All hail to the Pope (tpope) + Other tools <--
-  -- For the Git
-  use("tpope/vim-fugitive")
-  -- Need to swap some braces? This is the dentist!
-  use("tpope/vim-surround")
-  -- Embrace the peanut gallery
-  use("tpope/vim-commentary")
+  -- Nice things to have
+  -- watch out merge up ahead
+  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+  -- keep your comments to yourself
+  use_with_config("numToStr/Comment.nvim", "comment")
+  -- miniature world
+  use_with_config("echasnovski/mini.nvim", "mini")
+
+  -- > The last of vimrc < --
   -- So good, why not do it again
   use("tpope/vim-repeat")
   -- In case you need to break-up and reconcile
