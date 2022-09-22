@@ -18,20 +18,23 @@ return require("packer").startup(function(use)
   use("folke/tokyonight.nvim")
   -- Use the guides
   use_with_config("lukas-reineke/indent-blankline.nvim", "indentline")
-  -- Show me end of column
+  -- Show me some hunks
   use_with_config("lewis6991/gitsigns.nvim", "gitsigns")
-
+  -- ground control to major tom?
+  use("famiu/feline.nvim")
   -- A splash of color in your life
   use_with_config("norcalli/nvim-colorizer.lua", "colorizer")
   -- Everyone needs an icon
   use_with_config("kyazdani42/nvim-web-devicons", "devicons")
-  -- Keybindings
+  -- Show me the Keys!
   use_with_config("folke/which-key.nvim", "whichkey")
-  -- nofications
+  -- nofications, say what?
   use("rcarriga/nvim-notify")
   -- editor config
   use_with_config("gpanders/editorconfig.nvim", "editorconfig")
-  -- undo
+  -- this is not the terminal you are looking for
+  use_with_config("akinsho/toggleterm.nvim", "toggleterm")
+  -- undo, redo, you all get a do
   use("mbbill/undotree")
 
   -- Use the telescope to search between the fuzz
@@ -46,8 +49,6 @@ return require("packer").startup(function(use)
     },
   })
   use("christoomey/vim-tmux-navigator")
-  use_with_config("akinsho/toggleterm.nvim", "toggleterm")
-  use("famiu/feline.nvim")
 
   -- squash some bugs
   use({
