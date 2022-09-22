@@ -38,7 +38,7 @@ end
 
 local opts = { noremap = true, silent = true }
 local lg_toggle = [[<Cmd>lua _LAZYGIT_TOGGLE()<CR>]]
-local lg_term_toggle = [[<Cmd>lua vim.cmd('stopinsert')<CR>]] .. lg_toggle
+local lg_term_toggle = [[q]]
 vim.keymap.set("n", "<C-g>", lg_toggle, opts)
 vim.keymap.set("t", "<C-g>", lg_term_toggle, opts)
 
