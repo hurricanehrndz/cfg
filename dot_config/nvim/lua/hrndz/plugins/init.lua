@@ -164,6 +164,4 @@ return require("packer").startup(function(use)
   use("tpope/vim-repeat")
   -- I am a Super
   use("lambdalisue/suda.vim")
-  -- Need a table?
-  use("godlygeek/tabular")
 end)
