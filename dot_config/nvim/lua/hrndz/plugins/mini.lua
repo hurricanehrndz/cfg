@@ -4,4 +4,4 @@ if not has_surround then
   return
 end
 
-surround.setup()
+surround.setup({})
