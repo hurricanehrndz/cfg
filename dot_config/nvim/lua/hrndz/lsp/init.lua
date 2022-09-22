@@ -72,10 +72,10 @@ wk.register({
 local custom_attach = function(client, bufnr)
   wk.register({
     d = { "<Cmd>Telescope lsp_definitions<CR>", "Show lsp definitions" },
+    D = { "<Cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
     I = { "<Cmd>Telescope lsp_implementations<CR>", "Show lsp implementations" },
     r = { "<Cmd>Telescope lsp_references<CR>", "Show lsp references" },
     s = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
-    K = { "<Cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
     y = { "<Cmd>lua vim.lsp.buf.document_symbol()<CR>", "Search for symbol" },
     l = { "<Cmd>lua vim.diagnostic.open_float()<CR>", "Show diagnostic" },
   }, { prefix = "g", buffer = bufnr })
