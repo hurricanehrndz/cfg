@@ -72,7 +72,6 @@ wk.register({
 local custom_attach = function(client, bufnr)
   wk.register({
     d = { "<Cmd>Telescope lsp_definitions<CR>", "Show lsp definitions" },
-    D = { "<Cmd>Telescope lsp_declarations<CR>", "Show lsp declarations" },
     I = { "<Cmd>Telescope lsp_implementations<CR>", "Show lsp implementations" },
     r = { "<Cmd>Telescope lsp_references<CR>", "Show lsp references" },
     s = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
