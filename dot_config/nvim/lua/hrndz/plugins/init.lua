@@ -36,6 +36,8 @@ return require("packer").startup(function(use)
   use_with_config("akinsho/toggleterm.nvim", "toggleterm")
   -- undo, redo, you all get a do
   use("mbbill/undotree")
+  -- dress it up pretty
+  use("stevearc/dressing.nvim")
 
   -- Use the telescope to search between the fuzz
   use({
@@ -105,12 +107,6 @@ return require("packer").startup(function(use)
   use({
     "weilbith/nvim-code-action-menu",
     cmd = "CodeActionMenu",
-  })
-  use({
-    "filipdutescu/renamer.nvim",
-    config = config("renamer"),
-    branch = "master",
-    requires = { { "nvim-lua/plenary.nvim" } },
   })
 
   -- signature

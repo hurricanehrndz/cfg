@@ -59,7 +59,7 @@ end
 wk.register({
   name = "LSP",
   l = {
-    r = { "<Cmd>lua require('renamer').rename()<CR>", "Rename" },
+    r = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
     a = { "<Cmd>CodeActionMenu<CR>", "Code Action" },
     d = { "<Cmd>TroubleToggle<CR>", "Diagnostics" },
     w = { "<Cmd>Telescope diagnostics<CR>", "Workspace Diagnostics" },
