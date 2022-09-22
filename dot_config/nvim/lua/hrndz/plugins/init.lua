@@ -162,8 +162,6 @@ return require("packer").startup(function(use)
   -- > The last of vimrc < --
   -- So good, why not do it again
   use("tpope/vim-repeat")
-  -- In case you need to break-up and reconcile
-  use("AndrewRadev/splitjoin.vim")
   -- I am a Super
   use("lambdalisue/suda.vim")
   -- Need a table?
