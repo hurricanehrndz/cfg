@@ -30,10 +30,12 @@ mlsp.setup({})
 -- install and update linters, and formatters
 minstaller.setup({
   ensure_installed = {
+    "cbfmt",
     "black",
     "editorconfig-checker",
     "eslint-lsp",
     "flake8",
+    "markdownlint",
     "misspell",
     "prettier",
     "puppet-editor-services",
@@ -42,6 +44,7 @@ minstaller.setup({
     "shfmt",
     "stylua",
     "typescript-language-server",
+    "vale",
   },
   auto_update = false,
   run_on_start = true,
