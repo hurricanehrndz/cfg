@@ -31,6 +31,8 @@ return require("packer").startup(function(use)
   use("rcarriga/nvim-notify")
   -- editor config
   use_with_config("gpanders/editorconfig.nvim", "editorconfig")
+  -- undo
+  use("mbbill/undotree")
 
   -- Use the telescope to search between the fuzz
   use({
@@ -167,20 +169,4 @@ return require("packer").startup(function(use)
   use("lambdalisue/suda.vim")
   -- Need a table?
   use("godlygeek/tabular")
-  use({
-    "ntpeters/vim-better-whitespace",
-    config = function()
-      vim.g.better_whitespace_filetypes_blacklist = {
-        "diff",
-        "git",
-        "qf",
-        "gitcommit",
-        "unite",
-        "help",
-        "markdown",
-        "fugitive",
-        "toggleterm",
-      }
-    end,
-  })
 end)

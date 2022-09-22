@@ -33,3 +33,14 @@ api.nvim_set_keymap("n", ",l", [[<cmd>nohlsearch<CR>]], nmap)
 
 -- delete buffer
 api.nvim_set_keymap("n", "<space>bd", [[<cmd>bd!<CR>]], nmap)
+
+local has_wk, wk = pcall(require, "which-key")
+if not has_wk then
+  return
+end
+wk.register({
+  Name = "Explorer",
+  e = {
+    u = { "<Cmd>UndotreeToggle<CR>", "Undotree" },
+  },
+}, { prefix = "<space>" })
