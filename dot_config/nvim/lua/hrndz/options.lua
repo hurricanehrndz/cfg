@@ -49,8 +49,6 @@ local options = {
   sidescrolloff = 10,
   -- strings to use in list command for punctuation
   listchars = [[tab:→ ,eol:↲,space:␣,trail:•,extends:⟩,precedes:⟨]],
-  -- set selection to exclusive
-  selection = "exclusive",
   smartcase = true,
   -- enable undofile - persistent undo
   undofile = true,
