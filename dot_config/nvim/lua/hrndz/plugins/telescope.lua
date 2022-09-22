@@ -9,6 +9,19 @@ telescope.setup({
   defaults = {
     prompt_prefix = "🔍 ",
     selection_caret = " ",
+    -- layout_strategy = "center",
+    -- layout_config = {
+    --   height = 0.3,
+    --   width = 0.8,
+    -- },
+    -- sorting_strategy = "ascending",
+    layout_strategy = "vertical",
+    layout_config = {
+      anchor = "N",
+      mirror = true,
+      height = 0.8,
+      width = 0.8,
+    },
     mappings = {
       i = {
         ["<esc>"] = actions.close,
@@ -19,6 +32,7 @@ telescope.setup({
 
 telescope.load_extension("fzf")
 telescope.load_extension("dap")
+telescope.load_extension("notify")
 
 local files_cmd = table.concat({
   "rg",
@@ -50,6 +64,7 @@ wk.register({
     g = { "<Cmd>Telescope live_grep<CR>", "Find text" },
     f = { find_files, "Find files" },
     h = { "<cmd>Telescope help_tags<CR>", "Help" },
+    n = { "<cmd>Telescope notify<CR>", "Notifications" },
     b = { find_buffers, "Find buffer" },
     r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
