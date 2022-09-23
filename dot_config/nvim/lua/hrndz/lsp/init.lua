@@ -57,8 +57,8 @@ if not has_wk then
 end
 
 wk.register({
-  name = "LSP",
   l = {
+    name = "LSP",
     r = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
     a = { "<Cmd>CodeActionMenu<CR>", "Code Action" },
     d = { "<Cmd>TroubleToggle<CR>", "Diagnostics" },

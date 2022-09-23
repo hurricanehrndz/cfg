@@ -1,9 +1,9 @@
-local status_ok, which_key = pcall(require, "which-key")
+local status_ok, wk = pcall(require, "which-key")
 if not status_ok then
   return
 end
 
-which_key.setup({
+wk.setup({
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode

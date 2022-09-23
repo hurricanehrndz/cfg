@@ -39,8 +39,8 @@ if not has_wk then
   return
 end
 wk.register({
-  Name = "Explorer",
   e = {
+    name = "Explore",
     u = { "<Cmd>UndotreeToggle<CR>", "Undotree" },
   },
 }, { prefix = "<space>" })
