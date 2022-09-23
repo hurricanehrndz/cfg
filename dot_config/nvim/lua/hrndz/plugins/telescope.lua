@@ -17,22 +17,6 @@ local dropdown_no_preview = themes.get_dropdown({
     end,
   },
 })
---[[ local center_input = {
-  winblind = 10,
-  layout_strategy = "vertical",
-  layout_config = {
-    preview_cutoff = 40,
-    mirror = true,
-    height = 0.9,
-    width = 0.8,
-  },
-  border = true,
-  borderchars = {
-    prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
-    results = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-    preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-  },
-} ]]
 
 telescope.setup({
   defaults = {
