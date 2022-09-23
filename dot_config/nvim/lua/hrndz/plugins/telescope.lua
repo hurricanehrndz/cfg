@@ -49,7 +49,7 @@ local find_files = string.format("<Cmd>Telescope find_files find_command=%s<CR>"
 local find_buffers = function()
   local ts = require("telescope.builtin")
   local themes = require("telescope.themes")
-  return ts.buffers(themes.get_dropdown({ previewer = false }))
+  ts.buffers(themes.get_dropdown({ previewer = false }))
 end
 
 local has_wk, wk = pcall(require, "which-key")
