@@ -24,23 +24,42 @@ api.nvim_set_keymap("t", "<A-j>", [[<cmd>TmuxNavigateDown<CR>]], nmap)
 api.nvim_set_keymap("t", "<A-k>", [[<cmd>TmuxNavigateUp<CR>]], nmap)
 api.nvim_set_keymap("t", "<A-l>", [[<cmd>TmuxNavigateRight<CR>]], nmap)
 
--- save with zz
-api.nvim_set_keymap("n", "zz", [[<cmd>update<CR>]], nmap)
-api.nvim_set_keymap("n", "<space>zz", [[<cmd>SudaWrite<CR>]], nmap)
+-- helper functions
+local qf_list_toggle = function()
+  local qf_exists = false
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win["quickfix"] == 1 then
+      qf_exists = true
+    end
+  end
+  if qf_exists == true then
+    vim.cmd("cclose")
+    return
+  end
+  if not vim.tbl_isempty(vim.fn.getqflist()) then
+    vim.cmd("copen")
+  end
+end
 
--- keybind disable hightlights
-api.nvim_set_keymap("n", ",l", [[<cmd>nohlsearch<CR>]], nmap)
+local qf_list_clear = function()
+  vim.fn.setqflist({})
+end
 
--- delete buffer
-api.nvim_set_keymap("n", "<space>bd", [[<cmd>bd!<CR>]], nmap)
+local trim_whitespace = function()
+  require("mini.trailspace").trim()
+end
 
 local has_wk, wk = pcall(require, "which-key")
 if not has_wk then
   return
 end
 wk.register({
-  e = {
-    name = "Explore",
-    u = { "<Cmd>UndotreeToggle<CR>", "Undotree" },
-  },
-}, { prefix = "<space>" })
+  name = "Actions",
+  q = { qf_list_toggle, "Quickfix toggle" },
+  Q = { qf_list_clear, "Quickfix clear" },
+  s = { "<Cmd>update<CR>", "Save changes" },
+  S = { "<Cmd>SudaWrite<CR>", "Sudo write" },
+  l = { "<Cmd>nohlsearch<CR>", "No search hl" },
+  u = { "<Cmd>UndotreeToggle<CR>", "Undotree" },
+  w = { trim_whitespace, "Trim whitespace" },
+}, { prefix = "," })

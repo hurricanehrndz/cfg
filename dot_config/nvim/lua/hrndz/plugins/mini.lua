@@ -1,15 +1,11 @@
-local has_surround, surround = pcall(require, "mini.surround")
-
-if not has_surround then
+---@diagnostic disable-next-line: missing-parameter
+local mini = vim.fn.glob(vim.fn.stdpath("data") .. "**/mini.lua")
+if mini == "" then
   return
 end
 
-surround.setup({})
-
-local has_align, align = pcall(require, "mini.surround")
-
-if not has_align then
-  return
-end
-
-align.setup({})
+require("mini.ai").setup({})
+require("mini.align").setup({})
+require("mini.misc").setup({})
+require("mini.surround").setup({})
+require("mini.trailspace").setup({})
