@@ -64,6 +64,7 @@ wk.register({
     d = { "<Cmd>TroubleToggle<CR>", "Diagnostics" },
     w = { "<Cmd>Telescope diagnostics<CR>", "Workspace Diagnostics" },
     f = { "<Cmd>Format sync<CR>", "Format" },
+    F = { "<Cmd>FormatToggle<CR>", "Toggle AutoFormat" },
     i = { "<Cmd>LspInfo<CR>", "Info" },
     m = { "<Cmd>Mason<CR>", "Mason" },
   },
