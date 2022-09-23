@@ -44,12 +44,14 @@ brew neovim
 brew neovim-remote
 brew node
 brew openldap
+brew openssl@1.1
 brew pinentry-mac
 brew pre-commit
 brew python@3.9
 brew qemu
 brew reattach-to-user-namespace
 brew ripgrep
+brew rust
 brew rustup-init
 brew sd
 brew starship
