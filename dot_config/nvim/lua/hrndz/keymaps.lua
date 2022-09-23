@@ -62,4 +62,8 @@ wk.register({
   l = { "<Cmd>nohlsearch<CR>", "No search hl" },
   u = { "<Cmd>UndotreeToggle<CR>", "Undotree" },
   w = { trim_whitespace, "Trim whitespace" },
+  f = {
+    name = "File Explorer",
+    l = { "<cmd>NvimTreeFindFileToggle<CR>", "Locate File" },
+  },
 }, { prefix = "," })
