@@ -7,6 +7,7 @@ local packer_repo = "https://github.com/wbthomason/packer.nvim"
 local packer_install_cmd = "!git clone " .. " " .. packer_repo .. " " .. packer_path
 
 -- Install packer if missing as opt plugin
+---@diagnostic disable-next-line: missing-parameter
 if fn.empty(fn.glob(packer_path)) > 0 then
   execute(packer_install_cmd)
   execute("packadd packer.nvim")

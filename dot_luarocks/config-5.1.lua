@@ -1,3 +1,4 @@
+---@diagnostic disable: lowercase-global
 lua_version = "5.1"
 variables = {
   CMAKE = "env ICU_ROOT=/usr/local/opt/icu4c cmake",
