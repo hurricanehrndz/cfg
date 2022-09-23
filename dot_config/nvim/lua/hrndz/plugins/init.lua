@@ -38,6 +38,8 @@ return require("packer").startup(function(use)
   use("mbbill/undotree")
   -- dress it up pretty
   use("stevearc/dressing.nvim")
+  -- to peas in a pod
+  use_with_config("windwp/nvim-autopairs", "autopairs")
 
   -- Use the telescope to search between the fuzz
   use({
