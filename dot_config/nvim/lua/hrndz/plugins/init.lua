@@ -136,7 +136,7 @@ return require("packer").startup(function(use)
     requires = {
       "kyazdani42/nvim-web-devicons", -- optional, for file icons
     },
-    config = config("nvim-tree"),
+    config = config("filemgmt"),
     tag = "nightly", -- optional, updated every week. (see issue #1193)
   })
 
