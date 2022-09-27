@@ -1,4 +1,3 @@
-vim.fn.setenv("MACOSX_DEPLOYMENT_,TARGET", "10.15")
 return require("packer").startup(function(use)
   -- Packer can manage itself
   use("wbthomason/packer.nvim")
