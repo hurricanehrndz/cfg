@@ -150,7 +150,7 @@ return require("packer").startup(function(use)
       "p00f/nvim-ts-rainbow",
     },
   })
-  use("sheerun/vim-polyglot")
+  -- use("sheerun/vim-polyglot")
 
   -- Nice things to have
   -- watch out merge up ahead
