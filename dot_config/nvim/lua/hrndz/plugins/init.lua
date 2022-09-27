@@ -162,7 +162,7 @@ return require("packer").startup(function(use)
 
   -- > The last of vimrc < --
   -- So good, why not do it again
-  use("tpope/vim-repeat")
+  -- use("tpope/vim-repeat")
   -- I am a Super
   use("lambdalisue/suda.vim")
 end)
