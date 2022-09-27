@@ -138,6 +138,7 @@ return require("packer").startup(function(use)
     config = config("filemgmt"),
     tag = "nightly", -- optional, updated every week. (see issue #1193)
   })
+  use("nvim-telescope/telescope-file-browser.nvim")
 
   -- > Polyglot Plugins <--
   --  Better syntax

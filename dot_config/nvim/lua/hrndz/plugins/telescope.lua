@@ -19,6 +19,21 @@ local dropdown_no_preview = themes.get_dropdown({
 })
 
 telescope.setup({
+  extensions = {
+    file_browser = {
+      initial_mode = "normal",
+      layout_strategy = "horizontal",
+      sorting_strategy = "ascending",
+      layout_config = {
+        mirror = false,
+        height = 0.9,
+        prompt_position = "top",
+        preview_cutoff = 120,
+        width = 0.9,
+        preview_width = 0.55,
+      },
+    },
+  },
   defaults = {
     prompt_prefix = "  ",
     selection_caret = " ",
@@ -56,6 +71,7 @@ telescope.setup({
 telescope.load_extension("fzf")
 telescope.load_extension("dap")
 telescope.load_extension("notify")
+telescope.load_extension("file_browser")
 
 local find_files = function()
   ts_builtin.find_files()
@@ -63,6 +79,11 @@ end
 
 local find_buffers = function()
   ts_builtin.buffers(dropdown_no_preview)
+end
+
+local file_browser = function()
+  ---@diagnostic disable-next-line: missing-parameter
+  telescope.extensions.file_browser.file_browser({ path = vim.fn.expand("%:p:h") })
 end
 
 local has_wk, wk = pcall(require, "which-key")
@@ -81,6 +102,7 @@ wk.register({
     b = { find_buffers, "Find buffer" },
     r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
+    e = { file_browser, "Open Explorer" },
     c = { "<cmd>Telescope commands<cr>", "Commands" },
   },
 }, { prefix = "<space>" })
