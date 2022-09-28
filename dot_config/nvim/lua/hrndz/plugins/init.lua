@@ -151,6 +151,8 @@ return require("packer").startup(function(use)
       "p00f/nvim-ts-rainbow",
     },
   })
+  -- faster ft
+  use_with_config("nathom/filetype.nvim", "ft")
 
   -- Nice things to have
   -- watch out merge up ahead
