@@ -1,8 +1,8 @@
--- Install packer if required
-require("hrndz.packer")
-
 -- Sensible defaults - mine
 require("hrndz.options")
+
+-- Install packer if required
+require("hrndz.packer")
 
 -- Setup colors
 require("hrndz.theme")
