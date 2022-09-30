@@ -58,7 +58,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
   group = term_open_group,
 })
 
-for i = 1, 5 do
+for i = 1, 3 do
   local keymap = string.format("<M-%s>", i)
   local normal_action = string.format([[<cmd>lua require('toggleterm').toggle(%s)<CR>]], i)
   local term_action = [[<Cmd>lua vim.cmd('stopinsert')<CR>]] .. normal_action
