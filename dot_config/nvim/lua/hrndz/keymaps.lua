@@ -49,6 +49,18 @@ local trim_whitespace = function()
   require("mini.trailspace").trim()
 end
 
+-- window picker
+local has_winpick, winpick = pcall(require, "winpick")
+if not has_winpick then
+  return
+end
+local pick_window = function()
+  local winid = winpick.select()
+  if winid then
+    vim.api.nvim_set_current_win(winid)
+  end
+end
+
 local has_wk, wk = pcall(require, "which-key")
 if not has_wk then
   return
@@ -62,6 +74,7 @@ wk.register({
   l = { "<Cmd>nohlsearch<CR>", "No search hl" },
   u = { "<Cmd>UndotreeToggle<CR>", "Undotree" },
   w = { trim_whitespace, "Trim whitespace" },
+  W = { pick_window, "Pick window" },
   f = {
     name = "File Explorer",
     l = { "<cmd>NvimTreeFindFileToggle<CR>", "Locate File" },
