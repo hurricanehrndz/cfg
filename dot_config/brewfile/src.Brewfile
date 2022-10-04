@@ -40,7 +40,7 @@ brew lua@5.1
 brew luarocks
 brew mas
 brew ncurses
-brew neovim
+brew neovim --HEAD
 brew neovim-remote
 brew node
 brew openldap
@@ -73,12 +73,12 @@ tap homebrew/cask-fonts
 cask font-sauce-code-pro-nerd-font
 
 tap homebrew/cask-versions
-cask google-chrome-beta
 
 tap homebrew/cask
 cask amethyst
 cask discord
 cask element
+cask firefox
 cask flameshot
 cask iterm2
 cask powershell
