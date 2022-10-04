@@ -40,7 +40,7 @@ local options = {
   -- highlight searches
   hlsearch = true,
   -- copy-paste with system clipboard, no copy to unnamed on put (*)
-  clipboard = "unnamed,unnamedplus",
+  clipboard = "",
   -- some language servers don't like backup files
   backup = false,
   writebackup = false,

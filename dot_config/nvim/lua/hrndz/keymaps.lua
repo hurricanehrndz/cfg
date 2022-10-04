@@ -75,6 +75,8 @@ wk.register({
   u = { "<Cmd>UndotreeToggle<CR>", "Undotree" },
   w = { trim_whitespace, "Trim whitespace" },
   W = { pick_window, "Pick window" },
+  y = { [["+y]], "Copy to clipboard" },
+  Y = { [["+Y]], "Copy line to clipboard" },
   f = {
     name = "File Explorer",
     l = { "<cmd>NvimTreeFindFileToggle<CR>", "Locate File" },
