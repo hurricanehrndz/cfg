@@ -70,6 +70,7 @@ return require("packer").startup(function(use)
     requires = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
       "neovim/nvim-lspconfig",
       "jose-elias-alvarez/null-ls.nvim",
     },

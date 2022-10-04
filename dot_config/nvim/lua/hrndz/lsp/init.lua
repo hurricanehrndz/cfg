@@ -4,9 +4,14 @@ local has_mlsp, mlsp = pcall(require, "mason-lspconfig")
 local has_minstaller, minstaller = pcall(require, "mason-tool-installer")
 local has_cmp, cmp = pcall(require, "cmp_nvim_lsp")
 local has_format, format = pcall(require, "lsp-format")
+local has_lsplines, lsp_lines = pcall(require, "lsp_lines")
 
 if not has_mason or not has_minstaller or not has_mlsp or not has_cmp or not has_format then
   return
+end
+
+if has_lsplines then
+  lsp_lines.setup()
 end
 
 -- setup async formatting
@@ -61,11 +66,13 @@ wk.register({
     name = "LSP",
     r = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
     a = { "<Cmd>CodeActionMenu<CR>", "Code Action" },
-    d = { "<Cmd>TroubleToggle<CR>", "Diagnostics" },
+    d = { "<Cmd>lua vim.diagnostic.open_float()<CR>", "Diagnostic float" },
+    t = { "<Cmd>TroubleToggle<CR>", "Diagnostics" },
     w = { "<Cmd>Telescope diagnostics<CR>", "Workspace Diagnostics" },
     f = { "<Cmd>Format sync<CR>", "Format" },
     F = { "<Cmd>FormatToggle<CR>", "Toggle AutoFormat" },
     i = { "<Cmd>LspInfo<CR>", "Info" },
+    l = { [[<Cmd>lua require("lsp_lines").toggle()<CR>]], "Toggle lsp lines" },
     m = { "<Cmd>Mason<CR>", "Mason" },
   },
 }, { prefix = "<space>" })
@@ -78,7 +85,6 @@ local custom_attach = function(client, bufnr)
     r = { "<Cmd>Telescope lsp_references<CR>", "Show lsp references" },
     s = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
     y = { "<Cmd>lua vim.lsp.buf.document_symbol()<CR>", "Search for symbol" },
-    l = { "<Cmd>lua vim.diagnostic.open_float()<CR>", "Show diagnostic" },
   }, { prefix = "g", buffer = bufnr })
 
   wk.register({
@@ -107,6 +113,7 @@ vim.diagnostic.config({
   underline = true,
   signs = true,
   virtual_text = false,
+  virtual_lines = false,
   float = {
     show_header = true,
     source = "always",
