@@ -1,23 +1,25 @@
 #!/bin/bash
 width=${2:-80%}
 height=${2:-80%}
-session_name="$(tmux display-message -p -F "#{session_name}")"
-window_id="$(tmux display-message -p -F "#{window_id}")"
-pane_id="$(tmux display-message -p -F "#{pane_id}")"
-popup_session_name="popup${window_id}"
-nvim_listen_address="/tmp/nvim_${USER}_${pane_id}"
+TMUX_INFO="$(tmux display-message -p -F "#{window_id}.#{pid}.#{session_id}:#{session_name}")"
+TMUX_SESSION_NAME="${TMUX_INFO##*:}"
+TMUX_UNIQUE_ID="${TMUX_INFO%%:*}"
+TMUX_UNIQUE_ID="${TMUX_UNIQUE_ID//\$/}"
+NVIM_SOCKET="/tmp/nvim.${USER}/${TMUX_UNIQUE_ID}"
+popup_session_name="popup_${SOCKET_INFO}"
 
 read -r -d '' tmux_popup_cmd <<-EOF
 tmux new-session -A -s $popup_session_name \; \
-setenv NVIM_LISTEN_ADDRESS $nvim_listen_address \;
+setenv NVIM $NVIM_SOCKET \; \
+setenv TMUX_POPUP 1 \;
 EOF
 
-if [[ "${session_name}" =~ "popup" ]]; then
-  tmux detach-client
+if [[ ${TMUX_SESSION_NAME} =~ "popup" ]]; then
+    tmux detach-client
 else
-  tmux display-popup \
-    -xC -yC \
-    -w$width -h$height \
-    -d "#{pane_current_path}" \
-    -E "$tmux_popup_cmd"
+    tmux display-popup \
+        -xC -yC \
+        -w"$width" -h"$height" \
+        -d "#{pane_current_path}" \
+        -E "$tmux_popup_cmd"
 fi
