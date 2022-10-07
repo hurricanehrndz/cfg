@@ -43,7 +43,6 @@ installer.setup({
     "markdownlint",
     "misspell",
     "prettier",
-    "puppet-editor-services",
     "pyright",
     "shellcheck",
     "shfmt",
@@ -135,3 +134,8 @@ for _, server_name in ipairs(installed_servers) do
     server.setup(custom_attach, capabilities)
   end
 end
+
+-- setup puppet services, latest git release required
+---@diagnostic disable-next-line: missing-parameter
+vim.env.PATH = vim.fn.expand(vim.fn.stdpath("cache") .. "/puppet-editor-services") .. ":" .. vim.env.PATH
+require("hrndz.lsp.servers.puppet").setup(custom_attach, capabilities)
