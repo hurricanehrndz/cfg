@@ -51,6 +51,7 @@ brew python@3.9
 brew qemu
 brew reattach-to-user-namespace
 brew ripgrep
+brew ruby
 brew rust
 brew rustup-init
 brew sd
