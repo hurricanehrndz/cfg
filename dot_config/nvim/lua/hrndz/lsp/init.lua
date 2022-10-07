@@ -1,12 +1,12 @@
 -- Setup lspconfig.
 local has_mason, mason = pcall(require, "mason")
 local has_mlsp, mlsp = pcall(require, "mason-lspconfig")
-local has_minstaller, minstaller = pcall(require, "mason-tool-installer")
+local has_installer, installer = pcall(require, "mason-tool-installer")
 local has_cmp, cmp = pcall(require, "cmp_nvim_lsp")
 local has_format, format = pcall(require, "lsp-format")
 local has_lsplines, lsp_lines = pcall(require, "lsp_lines")
 
-if not has_mason or not has_minstaller or not has_mlsp or not has_cmp or not has_format then
+if not has_mason or not has_installer or not has_mlsp or not has_cmp or not has_format then
   return
 end
 
@@ -33,7 +33,7 @@ mason.setup(mason_settings)
 mlsp.setup({})
 
 -- install and update linters, and formatters
-minstaller.setup({
+installer.setup({
   ensure_installed = {
     "cbfmt",
     "black",
