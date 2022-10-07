@@ -12,7 +12,7 @@ indent_style = space
 indent_size = 4
 
 [*.sh]
-indent_size = 4
+indent_size = 2
 
 [*.vim]
 indent_size = 4

@@ -16,20 +16,19 @@ local function match_conf(...)
   end
 end
 
-local with_diagnostics_code = function(builtin)
-  return builtin.with({
-    diagnostics_format = "#{m} [#{c}]",
-  })
-end
-
 local sources = {
   -- formatting
   b.formatting.prettier.with({
     disabled_filetypes = { "typescript", "typescriptreact" },
     extra_args = { "--prose-wrap", "always" },
   }),
+  -- google style
   b.formatting.shfmt.with({
-    extra_args = { "-i", "4", "-ci", "-s", "-bn" },
+    extra_args = { "-i", "2", "-ci", "-bn", "-o" },
+  }),
+  b.formatting.beautysh.with({
+    filetypes = { "zsh" },
+    extra_args = { "--indent-size", "2" },
   }),
   b.formatting.stylua,
   b.formatting.black.with({ extra_args = { "--fast" } }),
@@ -43,7 +42,11 @@ local sources = {
   }),
 
   -- diagnostics
-  with_diagnostics_code(b.diagnostics.shellcheck),
+  b.diagnostics.shellcheck.with({
+    diagnostics_format = "#{m} [#{c}]",
+    filetypes = { "sh", "zsh" },
+    extra_args = { "-o", "require-double-brackets" },
+  }),
   b.diagnostics.vale,
   b.diagnostics.markdownlint,
   b.diagnostics.flake8,
