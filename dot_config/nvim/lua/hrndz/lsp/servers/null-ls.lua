@@ -31,6 +31,7 @@ local sources = {
     extra_args = { "--indent-size", "2" },
   }),
   b.formatting.stylua,
+  b.formatting.puppet_lint,
   b.formatting.black.with({ extra_args = { "--fast" } }),
   b.formatting.cbfmt.with({
     extra_args = function(params)
