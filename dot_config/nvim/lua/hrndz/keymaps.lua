@@ -82,3 +82,8 @@ wk.register({
     l = { "<cmd>NvimTreeFindFileToggle<CR>", "Locate File" },
   },
 }, { prefix = "," })
+
+wk.register({
+  name = "Visual Actions",
+  y = { [["+y]], "Copy to clipboard" },
+}, { prefix = ",", mode = "v" })
