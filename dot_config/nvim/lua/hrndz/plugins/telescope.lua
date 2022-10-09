@@ -97,6 +97,7 @@ wk.register({
     w = { "<Cmd>Telescope grep_string<CR>", "Find string" },
     g = { "<Cmd>Telescope live_grep<CR>", "Find text" },
     f = { find_files, "Find files" },
+    F = { "<Cmd>Telescope git_files<CR>", "Find git files" },
     h = { "<cmd>Telescope help_tags<CR>", "Help" },
     n = { "<cmd>Telescope notify<CR>", "Notifications" },
     b = { find_buffers, "Find buffer" },
