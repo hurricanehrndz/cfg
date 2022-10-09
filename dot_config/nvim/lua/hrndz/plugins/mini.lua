@@ -5,7 +5,7 @@ if not has_mini then
 end
 
 misc.setup({})
+require("mini.ai").setup({})
 require("mini.align").setup({})
-require("mini.jump").setup({})
 require("mini.surround").setup({})
 require("mini.trailspace").setup({})
