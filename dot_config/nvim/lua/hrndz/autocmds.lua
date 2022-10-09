@@ -1,5 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local parse_cmd = vim.api.nvim_parse_cmd
 
 local help_files = augroup("HelpFiles", { clear = true })
 autocmd("Filetype", {
@@ -45,8 +46,10 @@ autocmd("BufWrite", {
     if filename:find("src/me/notes") then
       local view = vim.fn.winsaveview()
       local mod_time = os.date("%Y-%m-%dT%H:%M:%S%z")
-      local search_and_replace = "%%s/%s/%s/g"
-      vim.cmd(search_and_replace:format([[^\(lastmod:\).*$]], [[\1 ]] .. mod_time))
+      local re = [[%%s/\v%s/%s/]]
+      local cmd = parse_cmd(re:format([[^(lastmod:).*$]], [[\1 ]] .. mod_time), {})
+      cmd.mods.silent = true
+      vim.cmd(cmd)
       vim.fn.winrestview(view)
     end
   end,
