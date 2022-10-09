@@ -34,3 +34,20 @@ autocmd("TextYankPost", {
     })
   end,
 })
+
+local note_frontmatter_group = augroup("NoteFrontmatter", {})
+autocmd("BufWrite", {
+  group = note_frontmatter_group,
+  pattern = "*.md",
+  callback = function()
+    ---@diagnostic disable-next-line: param-type-mismatch
+    local filename = tostring(vim.fn.expand("%:p:h", false, false))
+    if filename:find("src/me/notes") then
+      local view = vim.fn.winsaveview()
+      local mod_time = os.date("%Y-%m-%dT%H:%M:%S%z")
+      local search_and_replace = "%%s/%s/%s/g"
+      vim.cmd(search_and_replace:format([[^\(lastmod:\).*$]], [[\1 ]] .. mod_time))
+      vim.fn.winrestview(view)
+    end
+  end,
+})
