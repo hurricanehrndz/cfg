@@ -125,17 +125,28 @@ vim.diagnostic.config({
   severity_sort = true, -- default to false
 })
 
+local mason_lsp_handlers = {
+  -- The first entry (without a key) will be the default handler
+  -- and will be called for each installed server that doesn't have
+  -- a dedicated handler.
+  function(server_name)
+    require("lspconfig")[server_name].setup({
+      on_attach = custom_attach,
+      capabilities = capabilities,
+    })
+  end,
+}
 local installed_servers = mlsp.get_installed_servers()
-table.insert(installed_servers, "null-ls")
-
 for _, server_name in ipairs(installed_servers) do
-  local ok, server = pcall(require, "hrndz.lsp.servers." .. server_name)
-  if not ok then
-    vim.api.nvim_err_writeln("failed to setup server: " .. server_name)
-  else
-    server.setup(custom_attach, capabilities)
+  local has_custom_config, server = pcall(require, "hrndz.lsp.servers." .. server_name)
+  if has_custom_config then
+    mason_lsp_handlers[server_name] = server.setup(custom_attach, capabilities)
   end
 end
+-- setup lsp servers
+require("mason-lspconfig").setup_handlers(mason_lsp_handlers)
+-- setup null-ls
+require("hrndz.lsp.servers.null-ls").setup(custom_attach)
 
 -- setup puppet services, latest git release required
 ---@diagnostic disable-next-line: missing-parameter
