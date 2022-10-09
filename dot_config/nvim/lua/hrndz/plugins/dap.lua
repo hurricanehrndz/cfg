@@ -1,4 +1,3 @@
----@diagnostic disable: missing-parameter
 local has_dap, dap = pcall(require, "dap")
 
 if not has_dap then
@@ -36,19 +35,19 @@ end
 
 require("dapui").setup()
 dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
+  dapui.open({})
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
+  dapui.close({})
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
+  dapui.close({})
 end
 
 -- enable virtual text
 local has_dap_virtual_txt, dap_virtual_txt = pcall(require, "nvim-dap-virtual-text")
 if has_dap_virtual_txt then
-  dap_virtual_txt.setup()
+  dap_virtual_txt.setup({})
 end
 
 -- keybinds with which-key
@@ -77,7 +76,8 @@ wk.register({
 }, { prefix = "<space>" })
 
 -- Setup debug adapters
-local debug_python = vim.fn.expand(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python")
+---@diagnostic disable-next-line: param-type-mismatch
+local debug_python = vim.fn.expand(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python", false, false)
 if vim.fn.executable(debug_python) then
   local dap_python = require("dap-python")
   dap_python.setup(debug_python)

@@ -82,8 +82,8 @@ local find_buffers = function()
 end
 
 local file_browser = function()
-  ---@diagnostic disable-next-line: missing-parameter
-  telescope.extensions.file_browser.file_browser({ path = vim.fn.expand("%:p:h") })
+  ---@diagnostic disable-next-line: param-type-mismatch
+  telescope.extensions.file_browser.file_browser({ path = vim.fn.expand("%:p:h", false, false) })
 end
 
 local has_wk, wk = pcall(require, "which-key")

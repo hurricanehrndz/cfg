@@ -149,6 +149,6 @@ require("mason-lspconfig").setup_handlers(mason_lsp_handlers)
 require("hrndz.lsp.servers.null-ls").setup(custom_attach)
 
 -- setup puppet services, latest git release required
----@diagnostic disable-next-line: missing-parameter
-vim.env.PATH = vim.fn.expand(vim.fn.stdpath("cache") .. "/puppet-editor-services") .. ":" .. vim.env.PATH
+---@diagnostic disable-next-line: param-type-mismatch
+vim.env.PATH = vim.fn.expand(vim.fn.stdpath("cache") .. "/puppet-editor-services", false, false) .. ":" .. vim.env.PATH
 require("hrndz.lsp.servers.puppet").setup(custom_attach, capabilities)
