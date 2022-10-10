@@ -1,3 +1,4 @@
 [Mm]unki
 [Pp]kg[s]
 Jamf
+Zettelkasten
