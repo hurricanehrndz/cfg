@@ -1,6 +1,6 @@
 Host *
   ControlMaster auto
-  ControlPath ~/.ssh/controlmasters/%h@%p
+  ControlPath ~/.ssh/masters/%h@%p
   ControlPersist 10m
 
 Host dev
