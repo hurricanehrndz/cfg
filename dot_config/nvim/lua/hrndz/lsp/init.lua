@@ -98,6 +98,7 @@ local custom_attach = function(client, bufnr)
 
   -- formatting
   format.on_attach(client)
+  vim.api.nvim_del_augroup_by_name("Format")
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
