@@ -166,8 +166,4 @@ return require("packer").startup(function(use)
   -- > The last of vimrc < --
   -- Geppettoa love
   use("rodjek/vim-puppet")
-  -- So good, why not do it again
-  -- use("tpope/vim-repeat")
-  -- I am a Super
-  use("lambdalisue/suda.vim")
 end)
