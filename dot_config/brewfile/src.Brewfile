@@ -79,7 +79,6 @@ tap homebrew/cask
 cask amethyst
 cask discord
 cask element
-cask firefox
 cask flameshot
 cask iterm2
 cask powershell
