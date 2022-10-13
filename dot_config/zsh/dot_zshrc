@@ -1,6 +1,8 @@
 # vim: ft=zsh :
+# shellcheck shell=bash disable=SC1090,SC2296
 
 # make globally unique
+# shellcheck disable=2034
 typeset -gU cdpath fpath mailpath PATH path config_files
 HOMEBREW_BUNDLE_FILE="$HOME/.config/brewfile/Brewfile"
 HOMEBREW_BREWFILE_ON_REQUEST=1
@@ -27,12 +29,13 @@ export XDG_DATA_HOME \
 [[ -S $HOME/.ssh/auth_sock ]] && export SSH_AUTH_SOCK=$HOME/.ssh/auth_sock
 
 # XDG bin path
+# shellcheck disable=SC2206
 path=("$XDG_BIN_HOME" $path)
 
 # Some configuration are compiled and initialized by chezmoi
 # These can be found in .chezmoiscripts/run_after_40-optimize-zsh.sh.tmpl
 # load up inits, confs and paths, i.e homebrew/homebrew-file configs
-config_files=($ZDOTDIR/*/*.zsh)
+config_files=("$ZDOTDIR"/*/*.zsh)
 
 for file in ${(M)config_files:#*/path.zsh}; do
   source "$file"
@@ -44,19 +47,19 @@ for file in ${(M)config_files:#*/init.zsh}; do
 done
 
 plugins=(
-  "zsh-utils/editor/*.plugin.zsh"
-  "zsh-utils/history/*.plugin.zsh"
-  "zsh-utils/directory/*.plugin.zsh"
-  "zsh-utils/completion/*.plugin.zsh"
-  "fast-syntax-highlighting/*.plugin.zsh"
-  "zsh-autosuggestions/*.plugin.zsh"
+  "zsh-utils/editor"
+  "zsh-utils/history"
+  "zsh-utils/directory"
+  "zsh-utils/completion"
+  "fast-syntax-highlighting"
+  "zsh-autosuggestions"
 )
 for plugin in "${plugins[@]}"; do
-  for f ($XDG_DATA_HOME/zsh/plugins/$~plugin) source $f
+  source "${XDG_DATA_HOME}/zsh/plugins/${plugin}"/*.plugin.zsh
 done
 
-# load everything but the path and init files
-for file in ${config_files}; do
+# load conf files
+for file in ${(M)config_files:#*/conf.zsh}; do
   source "$file"
 done
 unset config_files
