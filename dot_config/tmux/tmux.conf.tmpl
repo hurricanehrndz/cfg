@@ -63,14 +63,6 @@ bind-key -n 'M-z' resize-pane -Z
 # shell
 set-option -g default-shell "{{ env "SHELL" }}"
 
-# tmux popup
-# TODO: need to kill popup session when parent session dies
-bind-key e run-shell 'tmux-popup'
-# clean popups
-set-hook -g pane-died "run-shell 'tmux-cleanup'"
-set-hook -g pane-exited "run-shell 'tmux-cleanup'"
-set-hook -g after-kill-pane "run-shell 'tmux-cleanup'"
-
 # neovim recommendations - checkhealth
 set-option -sg escape-time 0
 set-option -g focus-events on
