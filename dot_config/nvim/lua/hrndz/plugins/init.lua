@@ -91,7 +91,7 @@ return require("packer").startup(function(use)
       "tamago324/cmp-zsh",
       "Shougo/deol.nvim",
       -- Lua development -- lsp plugin
-      "folke/lua-dev.nvim",
+      "folke/neodev.nvim",
       -- dictionary
       "uga-rosa/cmp-dictionary",
 
