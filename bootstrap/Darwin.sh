@@ -36,7 +36,7 @@ for key in ${KEYS[@]}; do
 done
 gpg --card-status &> /dev/null
 gpg --list-secret-keys &> /dev/null
-  
+
 # Run chezmoi
 if [[ ! -d  "$HOME/.local/share/chezmoi" ]]; then
   git clone https://github.com/hurricanehrndz/cfg.git "$HOME/.local/share/chezmoi"
