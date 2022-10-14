@@ -29,7 +29,7 @@ if [[ ! -d "$NVIM_VENV" ]]; then
   asdf exec python -mvenv "$NVIM_VENV"
 fi
 
-node_ver="$(asdf list | sed -n '/nodejs/{n; s/[[:space:]]\+//p}')"
+node_ver="$(asdf list | /usr/bin/awk '/nodejs/{getline ver; sub(/[[:space:]]+/,"",ver); print ver}')"
 ln -sf "$ASDF_DATA_DIR/installs/nodejs/$node_ver/bin/node" "$NVIM_VENV/bin/"
 
 {{ end -}}
