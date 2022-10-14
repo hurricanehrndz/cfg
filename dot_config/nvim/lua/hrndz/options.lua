@@ -1,9 +1,11 @@
 local g = vim.g
 
 -- Disable python plugin support
-if (vim.fn.isdirectory(vim.env.HOME .. '/.local/share/envs/nvim')) then
-  g.python3_host_prog = vim.env.HOME .. '/.local/share/envs/nvim/bin/python3'
-  g.node_host_prog = vim.env.HOME .. '/.local/share/envs/nvim/bin/node'
+local vim_bin_path = vim.env.HOME .. "/.local/share/envs/nvim/bin"
+if vim.fn.isdirectory(vim_bin_path) then
+  g.python3_host_prog = vim_bin_path .. "/python3"
+  g.node_host_prog = vim_bin_path .. "/node"
+  vim.env.PATH = vim_bin_path .. ":" .. vim.env.PATH
 end
 g.loaded_python_provider = 0
 g.loaded_python3_provider = 0

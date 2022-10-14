@@ -2,6 +2,7 @@
 #!/bin/zsh
 # vim: set ft=zsh :
 
+ASDF_NODEJS_FORCE_COMPILE=1
 install_asdf_plugin() {
   local plugin_name
   plugin_name="$1"
@@ -17,7 +18,7 @@ export ASDF_DATA_DIR="$HOME/.local/share/asdf"
 path=(${ASDF_DATA_DIR}/bin $path)
 export PATH
 source "$ASDF_DATA_DIR/lib/asdf.sh"
-ASDF_PLUGINS=(terraform direnv python nodejs)
+ASDF_PLUGINS=(terraform direnv python)
 for plugin in $ASDF_PLUGINS; do
   install_asdf_plugin "$plugin"
 done
@@ -29,7 +30,15 @@ if [[ ! -d "$NVIM_VENV" ]]; then
   asdf exec python -mvenv "$NVIM_VENV"
 fi
 
-node_ver="$(asdf list | /usr/bin/awk '/nodejs/{getline ver; sub(/[[:space:]]+/,"",ver); print ver}')"
-ln -sf "$ASDF_DATA_DIR/installs/nodejs/$node_ver/bin/node" "$NVIM_VENV/bin/"
+NODE_PATH="/opt/nodejs"
+if [[ -d "$NODE_PATH" ]]; then
+  latest_node="$(/bin/ls --sort=v -r1 "$NODE_PATH" | head -1)"
+  ln -sf "$NODE_PATH/$latest_node/bin/node" "$NVIM_VENV/bin/"
+  ln -sf "$NODE_PATH/$latest_node/bin/npm" "$NVIM_VENV/bin/"
+fi
+
+if ! (( $+commands[nvr] )) && (( $+commands[python3.8] )); then
+  python3.8 -mpip install --user neovim-remote
+fi
 
 {{ end -}}
