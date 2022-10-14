@@ -163,6 +163,9 @@ return require("packer").startup(function(use)
   -- miniature world
   use_with_config("echasnovski/mini.nvim", "mini")
 
+  -- testing
+  use("ojroques/nvim-osc52")
+
   -- > The last of vimrc < --
   -- Geppettoa love
   use("rodjek/vim-puppet")
