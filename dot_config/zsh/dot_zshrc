@@ -68,3 +68,8 @@ unset config_files
 SYSTEM_ENV="$HOME/.local/share/hrndz/env"
 [[ -e "$SYSTEM_ENV" ]] && source "$SYSTEM_ENV"
 unset SYSTEM_ENV
+
+if [[ "$(uname)" == "Linux" ]]; then
+  export LC_ALL="en_US.UTF-8"
+  export LC_CTYPE="en_US.UTF-8"
+fi
