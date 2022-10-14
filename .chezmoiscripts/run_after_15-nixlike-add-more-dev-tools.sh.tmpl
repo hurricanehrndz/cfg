@@ -2,18 +2,6 @@
 #!/bin/zsh
 # vim: set ft=zsh :
 
-# enable yarn
-enable_yarn_tools() {
-  echo "Adding yarn packages..."
-  if (( $+commands[corepack] )); then
-    corepack enable
-
-    pushd ~/.local/share/yarn/global/
-    yarn global add
-    popd
-  fi
-}
-
 install_asdf_plugin() {
   local plugin_name
   plugin_name="$1"
@@ -24,26 +12,24 @@ install_asdf_plugin() {
   fi
 }
 
-
-(( $+commands[yarn] )) || enable_yarn_tools
-
 # install asdf and plugins
 export ASDF_DATA_DIR="$HOME/.local/share/asdf"
-if [[ -d "$ASDF_DATA_DIR" ]]; then
-  path=(${ASDF_DATA_DIR}/bin $path)
-  export PATH
-  source "$ASDF_DATA_DIR/lib/asdf.sh"
-  ASDF_PLUGINS=(terraform direnv python)
-  for plugin in $ASDF_PLUGINS; do
-    install_asdf_plugin "$plugin"
-  done
-  asdf global python latest
+path=(${ASDF_DATA_DIR}/bin $path)
+export PATH
+source "$ASDF_DATA_DIR/lib/asdf.sh"
+ASDF_PLUGINS=(terraform direnv python nodejs)
+for plugin in $ASDF_PLUGINS; do
+  install_asdf_plugin "$plugin"
+done
+asdf global python latest
+
+NVIM_VENV="$HOME/.local/share/envs/nvim"
+if [[ ! -d "$NVIM_VENV" ]]; then
+  mkdir -p "$NVIM_VENV"
+  asdf exec python -mvenv "$NVIM_VENV"
 fi
 
-NVIM_PYTHON_VENV="$HOME/.local/share/envs/nvim"
-if [[ ! -d "$NVIM_PYTHON_VENV" ]]; then
-  mkdir "$NVIM_PYTHON_VENV"
-  asdf exec python -mvenv "$NVIM_PYTHON_VENV"
-fi
+node_ver="$(asdf list | sed -n '/nodejs/{n; s/[[:space:]]\+//p}')"
+ln -sf "$ASDF_DATA_DIR/installs/nodejs/$node_ver/bin/node" "$NVIM_VENV/bin/"
 
 {{ end -}}
