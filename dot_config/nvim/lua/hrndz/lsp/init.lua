@@ -35,8 +35,9 @@ mlsp.setup({})
 -- install and update linters, and formatters
 installer.setup({
   ensure_installed = {
-    "cbfmt",
+    "beautysh",
     "black",
+    "cbfmt",
     "editorconfig-checker",
     "eslint-lsp",
     "flake8",
