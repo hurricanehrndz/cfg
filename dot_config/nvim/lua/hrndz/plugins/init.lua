@@ -20,7 +20,7 @@ return require("packer").startup(function(use)
   -- Show me some hunks
   use_with_config("lewis6991/gitsigns.nvim", "gitsigns")
   -- ground control to major tom?
-  use("famiu/feline.nvim")
+  -- use("famiu/feline.nvim") -- TODO: needs replacement
   -- A splash of color in your life
   use_with_config("norcalli/nvim-colorizer.lua", "colorizer")
   -- Everyone needs an icon
