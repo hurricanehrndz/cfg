@@ -1,4 +1,5 @@
 # Aliases
+# shellcheck shell=bash
 
 # exa
 alias                                                   \
@@ -93,5 +94,6 @@ function sshf() {
   else
     uid=1000
   fi
-  ssh -R /run/user/$uid/gnupg/S.gpg-agent:$(gpgconf --list-dirs agent-extra-socket) -A "$args[@]"
+  extra_socket="$(gpgconf --list-dirs agent-extra-socket)"
+  ssh -R /run/user/$uid/gnupg/S.gpg-agent:"$extra_socket" -A "${args[@]}"
 }
