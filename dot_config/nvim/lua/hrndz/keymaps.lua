@@ -49,18 +49,6 @@ local trim_whitespace = function()
   require("mini.trailspace").trim()
 end
 
--- window picker
-local has_winpick, winpick = pcall(require, "winpick")
-if not has_winpick then
-  return
-end
-local pick_window = function()
-  local winid = winpick.select()
-  if winid then
-    vim.api.nvim_set_current_win(winid)
-  end
-end
-
 -- osc52 copy
 local has_osc52, osc52 = pcall(require, "osc52")
 if has_osc52 then
@@ -92,7 +80,6 @@ wk.register({
   l = { "<Cmd>nohlsearch<CR>", "No search hl" },
   u = { "<Cmd>UndotreeToggle<CR>", "Undotree" },
   w = { trim_whitespace, "Trim whitespace" },
-  W = { pick_window, "Pick window" },
   y = { [["+y]], "Copy to clipboard" },
   Y = { [["+Y]], "Copy line to clipboard" },
   f = {

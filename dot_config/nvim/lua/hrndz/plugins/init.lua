@@ -40,7 +40,7 @@ return require("packer").startup(function(use)
   -- to peas in a pod
   use_with_config("windwp/nvim-autopairs", "autopairs")
   -- make it easy to pick window - config in keymaps
-  use("gbrlsnchs/winpick.nvim")
+  use_with_config("https://gitlab.com/yorickpeterse/nvim-window", "winpicker")
 
   -- Use the telescope to search between the fuzz
   use({
