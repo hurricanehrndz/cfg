@@ -55,13 +55,8 @@ telescope.setup({
     find_files = {
       find_command = {
         "rg",
-        "--no-ignore",
         "--hidden",
         "--no-binary",
-        "--iglob",
-        "!.git/*",
-        "--iglob",
-        "!.git-crypt/*",
         "--files",
       },
     },
