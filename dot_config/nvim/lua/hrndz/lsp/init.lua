@@ -3,19 +3,15 @@ local has_mason, mason = pcall(require, "mason")
 local has_mlsp, mlsp = pcall(require, "mason-lspconfig")
 local has_installer, installer = pcall(require, "mason-tool-installer")
 local has_cmp, cmp = pcall(require, "cmp_nvim_lsp")
-local has_format, format = pcall(require, "lsp-format")
 local has_lsplines, lsp_lines = pcall(require, "lsp_lines")
 
-if not has_mason or not has_installer or not has_mlsp or not has_cmp or not has_format then
+if not has_mason or not has_installer or not has_mlsp or not has_cmp then
   return
 end
 
 if has_lsplines then
   lsp_lines.setup()
 end
-
--- setup async formatting
-format.setup({})
 
 -- mason settings
 local mason_settings = {
@@ -71,15 +67,14 @@ wk.register({
     d = { "<Cmd>lua vim.diagnostic.open_float()<CR>", "Diagnostic float" },
     t = { "<Cmd>TroubleToggle<CR>", "Diagnostics" },
     w = { "<Cmd>Telescope diagnostics<CR>", "Workspace Diagnostics" },
-    f = { "<Cmd>Format sync<CR>", "Format" },
-    F = { "<Cmd>FormatToggle<CR>", "Toggle AutoFormat" },
+    f = { "<Cmd>lua vim.lsp.buf.format()<CR>", "Format" },
     i = { "<Cmd>LspInfo<CR>", "Info" },
     l = { [[<Cmd>lua require("lsp_lines").toggle()<CR>]], "Toggle lsp lines" },
     m = { "<Cmd>Mason<CR>", "Mason" },
   },
 }, { prefix = "<space>" })
 
-local custom_attach = function(client, bufnr)
+local custom_attach = function(_, bufnr)
   wk.register({
     d = { "<Cmd>Telescope lsp_definitions<CR>", "Show lsp definitions" },
     D = { "<Cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
@@ -97,9 +92,6 @@ local custom_attach = function(client, bufnr)
     d = { "<Cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic" },
   }, { prefix = "]", buffer = bufnr })
 
-  -- formatting
-  format.on_attach(client)
-  vim.api.nvim_del_augroup_by_name("Format")
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()

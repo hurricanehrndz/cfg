@@ -116,9 +116,6 @@ return require("packer").startup(function(use)
   -- signature
   use_with_config("ray-x/lsp_signature.nvim", "lsp-signature")
 
-  -- format
-  use("lukas-reineke/lsp-format.nvim")
-
   -- Diagnostic help
   use({
     "folke/trouble.nvim",
