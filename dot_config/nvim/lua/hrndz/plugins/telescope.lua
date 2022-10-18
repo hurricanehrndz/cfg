@@ -51,16 +51,15 @@ telescope.setup({
       preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     },
   },
-  pickers = {
+--[[   pickers = {
     find_files = {
       find_command = {
         "rg",
-        "--hidden",
         "--no-binary",
         "--files",
       },
     },
-  },
+  } ,]]
 })
 
 telescope.load_extension("fzf")
