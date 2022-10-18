@@ -91,10 +91,9 @@ local custom_attach = function(_, bufnr)
   wk.register({
     d = { "<Cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic" },
   }, { prefix = "]", buffer = bufnr })
-
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = cmp.default_capabilities()
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
