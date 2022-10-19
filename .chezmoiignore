@@ -12,7 +12,7 @@ LICENSE
 stylua.toml
 
 # symlinks
-.config/brewfile/src.*
+#.config/brewfile/src.*
 
 # zsh complied files
 **/*.zwc
