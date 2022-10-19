@@ -53,44 +53,33 @@ installer.setup({
   run_on_start = true,
 })
 
--- keybinds with which-key
-local has_wk, wk = pcall(require, "which-key")
-if not has_wk then
-  return
-end
-
-wk.register({
-  l = {
-    name = "LSP",
-    r = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-    a = { "<Cmd>CodeActionMenu<CR>", "Code Action" },
-    d = { "<Cmd>lua vim.diagnostic.open_float()<CR>", "Diagnostic float" },
-    t = { "<Cmd>TroubleToggle<CR>", "Diagnostics" },
-    w = { "<Cmd>Telescope diagnostics<CR>", "Workspace Diagnostics" },
-    f = { "<Cmd>lua vim.lsp.buf.format()<CR>", "Format" },
-    i = { "<Cmd>LspInfo<CR>", "Info" },
-    l = { [[<Cmd>lua require("lsp_lines").toggle()<CR>]], "Toggle lsp lines" },
-    m = { "<Cmd>Mason<CR>", "Mason" },
-  },
-}, { prefix = "<space>" })
+local map = require("hrndz.utils").map
+map("n", "<space>lr", "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename")
+map("n", "<space>la", "<Cmd>CodeActionMenu<CR>", "Code Action")
+map("n", "<space>ld", "<Cmd>lua vim.diagnostic.open_float()<CR>", "Diagnostic float")
+map("n", "<space>lt", "<Cmd>TroubleToggle<CR>", "Diagnostics")
+map("n", "<space>lw", "<Cmd>Telescope diagnostics<CR>", "Workspace Diagnostics")
+map("n", "<space>lf", "<Cmd>lua vim.lsp.buf.format()<CR>", "Format")
+map("n", "<space>li", "<Cmd>LspInfo<CR>", "Info")
+map("n", "<space>ll", [[<Cmd>lua require("lsp_lines").toggle()<CR>]], "Toggle lsp lines")
+map("n", "<space>lm", "<Cmd>Mason<CR>", "Mason")
 
 local custom_attach = function(_, bufnr)
-  wk.register({
-    d = { "<Cmd>Telescope lsp_definitions<CR>", "Show lsp definitions" },
-    D = { "<Cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
-    I = { "<Cmd>Telescope lsp_implementations<CR>", "Show lsp implementations" },
-    r = { "<Cmd>Telescope lsp_references<CR>", "Show lsp references" },
-    s = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
-    y = { "<Cmd>lua vim.lsp.buf.document_symbol()<CR>", "Search for symbol" },
-  }, { prefix = "g", buffer = bufnr })
+  local function bufmap(mode, l, r, desc)
+    local opts = {}
+    opts.desc = desc
+    opts.buffer = bufnr
+    vim.keymap.set(mode, l, r, opts)
+  end
+  bufmap("n", "gd", "<Cmd>Telescope lsp_definitions<CR>",  "Show lsp definitions")
+  bufmap("n", "gD", "<Cmd>lua vim.lsp.buf.type_definition()<CR>",  "Go to type definition")
+  bufmap("n", "gI", "<Cmd>Telescope lsp_implementations<CR>",  "Show lsp implementations")
+  bufmap("n", "gr", "<Cmd>Telescope lsp_references<CR>",  "Show lsp references")
+  bufmap("n", "gs", "<Cmd>lua vim.lsp.buf.signature_help()<CR>",  "Signature help")
+  bufmap("n", "gy", "<Cmd>lua vim.lsp.buf.document_symbol()<CR>",  "Search for symbol")
 
-  wk.register({
-    d = { "<Cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to prev diagnostic" },
-  }, { prefix = "[", buffer = bufnr })
-
-  wk.register({
-    d = { "<Cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic" },
-  }, { prefix = "]", buffer = bufnr })
+  bufmap("n", "]d", "<Cmd>lua vim.diagnostic.goto_next()<CR>",  "Go to next diagnostic")
+  bufmap("n", "[d", "<Cmd>lua vim.diagnostic.goto_prev()<CR>",  "Go to prev diagnostic")
 end
 
 local capabilities = cmp.default_capabilities()

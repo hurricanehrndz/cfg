@@ -24,3 +24,11 @@ wk.setup({
     },
   },
 })
+
+-- add labels to prefixes
+wk.register({
+  l = { name = "LSP" },
+  h = { name = "GitSigns" },
+  d = { name = "Debugger" },
+  f = { name = "Telescope" },
+}, { prefix = "<space>" })

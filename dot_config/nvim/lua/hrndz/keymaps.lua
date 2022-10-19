@@ -67,28 +67,13 @@ if has_osc52 then
   }
 end
 
-local has_wk, wk = pcall(require, "which-key")
-if not has_wk then
-  return
-end
-wk.register({
-  name = "Actions",
-  q = { qf_list_toggle, "Quickfix toggle" },
-  Q = { qf_list_clear, "Quickfix clear" },
-  s = { "<Cmd>update<CR>", "Save changes" },
-  S = { "<Cmd>SudaWrite<CR>", "Sudo write" },
-  l = { "<Cmd>nohlsearch<CR>", "No search hl" },
-  u = { "<Cmd>UndotreeToggle<CR>", "Undotree" },
-  w = { trim_whitespace, "Trim whitespace" },
-  y = { [["+y]], "Copy to clipboard" },
-  Y = { [["+Y]], "Copy line to clipboard" },
-  f = {
-    name = "File Explorer",
-    l = { "<cmd>NvimTreeFindFileToggle<CR>", "Locate File" },
-  },
-}, { prefix = "," })
-
-wk.register({
-  name = "Visual Actions",
-  y = { [["+y]], "Copy to clipboard" },
-}, { prefix = ",", mode = "v" })
+local map = require("hrndz.utils").map
+map("n", ",q", qf_list_toggle, "Quickfix toggle")
+map("n", ",Q", qf_list_clear, "Quickfix clear")
+map("n", ",s", "<Cmd>update<CR>", "Save changes")
+map("n", ",l", "<Cmd>nohlsearch<CR>", "No search hl")
+map("n", ",u", "<Cmd>UndotreeToggle<CR>", "Undotree")
+map("n", ",w", trim_whitespace, "Trim whitespace")
+map({"n", "v"}, ",y", [["+y]], "Copy to clipboard")
+map("n", ",Y", [["+Y]], "Copy line to clipboard")
+map("n", ",fl", "<cmd>NvimTreeFindFileToggle<CR>", "Nvim Tree")

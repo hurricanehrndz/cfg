@@ -51,7 +51,7 @@ telescope.setup({
       preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     },
   },
---[[   pickers = {
+  --[[   pickers = {
     find_files = {
       find_command = {
         "rg",
@@ -80,27 +80,19 @@ local file_browser = function()
   telescope.extensions.file_browser.file_browser({ path = vim.fn.expand("%:p:h", false, false) })
 end
 
-local has_wk, wk = pcall(require, "which-key")
-if not has_wk then
-  return
-end
+local map = require("hrndz.utils").map
 
-wk.register({
-  f = {
-    name = "Find",
-    w = { "<Cmd>Telescope grep_string<CR>", "Find string" },
-    g = { "<Cmd>Telescope live_grep<CR>", "Find text" },
-    f = { find_files, "Find files" },
-    F = { "<Cmd>Telescope git_files<CR>", "Find git files" },
-    h = { "<cmd>Telescope help_tags<CR>", "Help" },
-    n = { "<cmd>Telescope notify<CR>", "Notifications" },
-    b = { find_buffers, "Find buffer" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
-    R = { "<cmd>Telescope registers<cr>", "Registers" },
-    e = { file_browser, "Open Explorer" },
-    c = { "<cmd>Telescope commands<cr>", "Commands" },
-  },
-}, { prefix = "<space>" })
+map("n", "<space>fw", "<Cmd>Telescope grep_string<CR>", "Find string")
+map("n", "<space>fg", "<Cmd>Telescope live_grep<CR>", "Find text")
+map("n", "<space>ff", find_files, "Find files")
+map("n", "<space>fF", "<Cmd>Telescope git_files<CR>", "Find git files")
+map("n", "<space>fh", "<cmd>Telescope help_tags<CR>", "Help")
+map("n", "<space>fn", "<cmd>Telescope notify<CR>", "Notifications")
+map("n", "<space>fb", find_buffers, "Find buffer")
+map("n", "<space>fr", "<cmd>Telescope oldfiles<cr>", "Recent File")
+map("n", "<space>fR", "<cmd>Telescope registers<cr>", "Registers")
+map("n", "<space>fe", file_browser, "Open Explorer")
+map("n", "<space>fc", "<cmd>Telescope commands<cr>", "Commands")
 
 local plenary_ft = require("plenary.filetype")
 plenary_ft.add_file("defs")
