@@ -2,24 +2,66 @@ local has_gitsigns, gitsigns = pcall(require, "gitsigns")
 
 if has_gitsigns then
   gitsigns.setup({
-    keymaps = {
-      -- Default keymap options
-      noremap = true,
-      buffer = true,
+    on_attach = function(bufnr)
+      local gs = package.loaded.gitsigns
 
-      ["n ]c"] = { expr = true, [[&diff ? "]c" : '<cmd>lua require("gitsigns").next_hunk()<CR>']] },
-      ["n [c"] = { expr = true, [[&diff ? "[c" : '<cmd>lua require("gitsigns").prev_hunk()<CR>']] },
+      local function map(mode, l, r, opts)
+        opts = opts or {}
+        opts.buffer = bufnr
+        vim.keymap.set(mode, l, r, opts)
+      end
 
-      ["n <space>hs"] = '<cmd>lua require("gitsigns").stage_hunk()<CR>',
-      ["n <space>hu"] = '<cmd>lua require("gitsigns").undo_stage_hunk()<CR>',
-      ["n <space>hr"] = '<cmd>lua require("gitsigns").reset_hunk()<CR>',
-      ["n <space>hR"] = '<cmd>lua require("gitsigns").reset_buffer()<CR>',
-      ["n <space>hp"] = '<cmd>lua require("gitsigns").preview_hunk()<CR>',
-      ["n <space>hb"] = '<cmd>lua require("gitsigns").blame_line()<CR>',
+      local wk = require("which-key")
+      -- Navigation
+      wk.register({
+        c = {
+          function()
+            if vim.wo.diff then
+              return "[c"
+            end
+            vim.schedule(function()
+              gs.prev_hunk()
+            end)
+            return "<Ignore>"
+          end,
+          "Go to prev change",
+        },
+      }, { prefix = "[", buffer = bufnr })
 
-      -- Text objects
-      ["o ih"] = ':<C-U>lua require("gitsigns").select_hunk()<CR>',
-      ["x ih"] = ':<C-U>lua require("gitsigns").select_hunk()<CR>',
-    },
+      wk.register({
+        c = {
+          function()
+            if vim.wo.diff then
+              return "]c"
+            end
+            vim.schedule(function()
+              gs.next_hunk()
+            end)
+            return "<Ignore>"
+          end,
+          "Go to next change",
+        },
+      }, { prefix = "]", buffer = bufnr })
+
+      -- Actions
+      map({ "n", "v" }, "<space>hs", ":Gitsigns stage_hunk<CR>", { desc = "Stage hunk" })
+      map({ "n", "v" }, "<space>hr", ":Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
+      map("n", "<space>hS", gs.stage_buffer, { desc = "Stage buffer" })
+      map("n", "<space>hu", gs.undo_stage_hunk, { desc = "Unstage hunk" })
+      map("n", "<space>hR", gs.reset_buffer, { desc = "Reset buffer" })
+      map("n", "<space>hp", gs.preview_hunk, { desc = "Preview hunk" })
+      map("n", "<space>hb", function()
+        gs.blame_line({ full = true })
+      end, { desc = "Git blame" })
+      map("n", "<space>hB", gs.toggle_current_line_blame, { desc = "Toggle line blame" })
+      map("n", "<space>hd", gs.diffthis, { desc = "Diff HEAD" })
+      map("n", "<space>hD", function()
+        gs.diffthis("~")
+      end, { desc = "Diff HEAD~1" })
+      map("n", "<space>hg", gs.toggle_deleted, { desc = "Ghost deleted" })
+
+      -- Text object
+      map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
+    end,
   })
 end
