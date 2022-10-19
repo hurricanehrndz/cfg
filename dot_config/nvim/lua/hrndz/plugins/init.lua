@@ -35,8 +35,6 @@ return require("packer").startup(function(use)
   use("mbbill/undotree")
   -- dress it up pretty
   use("stevearc/dressing.nvim")
-  -- to peas in a pod
-  use_with_config("windwp/nvim-autopairs", "autopairs")
   -- make it easy to pick window - config in keymaps
   use_with_config("https://gitlab.com/yorickpeterse/nvim-window", "winpicker")
 
