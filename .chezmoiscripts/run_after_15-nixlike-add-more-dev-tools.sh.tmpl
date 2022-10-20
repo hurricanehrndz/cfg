@@ -26,6 +26,9 @@ NVIM_VENV="$HOME/.local/share/envs/nvim"
 if [[ ! -d "$NVIM_VENV" ]]; then
   mkdir -p "$NVIM_VENV"
   asdf exec python -mvenv "$NVIM_VENV"
+  source $NVIM_VENV/bin/activate.sh
+  pip install neovim-remote
+  ln -sf "$NVIM_VENV/bin/nvr" $XDG_BIN_HOME/
 fi
 
 NODE_PATH="/opt/nodejs"
@@ -37,9 +40,4 @@ elif (( $+commands[node] )); then
   ln -sf $(command -v node) "$NVIM_VENV/bin/"
   ln -sf $(command -v npm) "$NVIM_VENV/bin/"
 fi
-
-if ! (( $+commands[nvr] )) && (( $+commands[python3.8] )); then
-  python3.8 -mpip install --user neovim-remote
-fi
-
 {{ end -}}
