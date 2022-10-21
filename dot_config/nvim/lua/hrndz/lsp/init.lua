@@ -71,15 +71,16 @@ local custom_attach = function(_, bufnr)
     opts.buffer = bufnr
     vim.keymap.set(mode, l, r, opts)
   end
-  bufmap("n", "gd", "<Cmd>Telescope lsp_definitions<CR>",  "Show lsp definitions")
-  bufmap("n", "gD", "<Cmd>lua vim.lsp.buf.type_definition()<CR>",  "Go to type definition")
-  bufmap("n", "gI", "<Cmd>Telescope lsp_implementations<CR>",  "Show lsp implementations")
-  bufmap("n", "gr", "<Cmd>Telescope lsp_references<CR>",  "Show lsp references")
-  bufmap("n", "gs", "<Cmd>lua vim.lsp.buf.signature_help()<CR>",  "Signature help")
-  bufmap("n", "gy", "<Cmd>lua vim.lsp.buf.document_symbol()<CR>",  "Search for symbol")
 
-  bufmap("n", "]d", "<Cmd>lua vim.diagnostic.goto_next()<CR>",  "Go to next diagnostic")
-  bufmap("n", "[d", "<Cmd>lua vim.diagnostic.goto_prev()<CR>",  "Go to prev diagnostic")
+  bufmap("n", "gd", "<Cmd>Telescope lsp_definitions<CR>", "Show lsp definitions")
+  bufmap("n", "gD", "<Cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition")
+  bufmap("n", "gI", "<Cmd>Telescope lsp_implementations<CR>", "Show lsp implementations")
+  bufmap("n", "gr", "<Cmd>Telescope lsp_references<CR>", "Show lsp references")
+  bufmap("n", "gs", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help")
+  bufmap("n", "gy", "<Cmd>lua vim.lsp.buf.document_symbol()<CR>", "Search for symbol")
+
+  bufmap("n", "]d", "<Cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic")
+  bufmap("n", "[d", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to prev diagnostic")
 end
 
 local capabilities = cmp.default_capabilities()
