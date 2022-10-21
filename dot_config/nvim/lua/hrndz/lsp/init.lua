@@ -106,6 +106,10 @@ vim.diagnostic.config({
   severity_sort = true, -- default to false
 })
 
+-- setup null-ls
+require("hrndz.lsp.servers.null-ls").setup(custom_attach)
+
+-- setup lsp servers
 local mason_lsp_handlers = {
   -- The first entry (without a key) will be the default handler
   -- and will be called for each installed server that doesn't have
@@ -126,10 +130,7 @@ for _, server_name in ipairs(installed_servers) do
     end
   end
 end
--- setup lsp servers
 require("mason-lspconfig").setup_handlers(mason_lsp_handlers)
--- setup null-ls
-require("hrndz.lsp.servers.null-ls").setup(custom_attach)
 
 -- setup puppet services, latest git release required
 ---@diagnostic disable-next-line: param-type-mismatch
