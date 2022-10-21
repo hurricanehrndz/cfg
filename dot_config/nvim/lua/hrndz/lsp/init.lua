@@ -119,9 +119,11 @@ local mason_lsp_handlers = {
 }
 local installed_servers = mlsp.get_installed_servers()
 for _, server_name in ipairs(installed_servers) do
-  local has_custom_config, server = pcall(require, "hrndz.lsp.servers." .. server_name)
+  local has_custom_config, lspserver = pcall(require, "hrndz.lsp.servers." .. server_name)
   if has_custom_config then
-    mason_lsp_handlers[server_name] = server.setup(custom_attach, capabilities)
+    mason_lsp_handlers[server_name] = function()
+      return lspserver.setup(custom_attach, capabilities)
+    end
   end
 end
 -- setup lsp servers
