@@ -20,7 +20,9 @@ ASDF_PLUGINS=(terraform direnv python)
 for plugin in $ASDF_PLUGINS; do
   install_asdf_plugin "$plugin"
 done
-asdf global python latest
+if [[ ! -f "$HOME/.tool-versions" ]]; then
+  asdf global python latest
+fi
 
 NVIM_VENV="$HOME/.local/share/envs/nvim"
 if [[ ! -d "$NVIM_VENV" ]]; then
