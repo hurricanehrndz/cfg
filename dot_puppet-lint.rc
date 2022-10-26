@@ -1,0 +1,8 @@
+--no-class_inherits_from_params_class-check
+--no-documentation-check
+--no-140chars-check
+--no-variable_scope-check
+--no-inherits_across_namespaces-check
+--no-case_without_default-check
+--no-selector_inside_resource-check
+--no-unquoted_node_name-check
