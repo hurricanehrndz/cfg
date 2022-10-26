@@ -19,7 +19,7 @@ end
 local sources = {
   -- formatting
   b.formatting.prettier.with({
-    disabled_filetypes = { "typescript", "typescriptreact" },
+    disabled_filetypes = { "typescript", "typescriptreact", "yaml" },
     extra_args = { "--prose-wrap", "always" },
   }),
   -- google style
@@ -41,6 +41,7 @@ local sources = {
       end
     end,
   }),
+  b.formatting.yamlfmt,
 
   -- diagnostics
   b.diagnostics.shellcheck.with({
@@ -51,6 +52,7 @@ local sources = {
   b.diagnostics.vale,
   b.diagnostics.markdownlint,
   b.diagnostics.flake8,
+  b.diagnostics.yamllint,
 
   -- hover
   b.hover.dictionary,

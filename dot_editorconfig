@@ -41,3 +41,11 @@ trim_trailing_whitespace = false
 [*.json]
 indent_size = 4
 indent_style = tab
+
+[*.plist]
+indent_size = 4
+indent_style = tab
+
+[*.{yaml,yml}]
+indent_size = 2
+max_line_length = 150

@@ -48,6 +48,8 @@ installer.setup({
     "typescript-language-server",
     "vale",
     "vim-language-server",
+    "yaml-language-server",
+    "yamllint",
   },
   auto_update = false,
   run_on_start = true,
