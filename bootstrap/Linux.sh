@@ -17,29 +17,29 @@ path=($XDG_BIN_HOME $path)
 
 # shellcheck disable=2154
 if ! (( $+commands[eget] )); then
-	pushd "$XDG_BIN_HOME" || exit
-	curl -o eget.sh https://zyedidia.github.io/eget.sh
-	bash eget.sh
-	rm eget.sh
-	popd || exit
+  pushd "$XDG_BIN_HOME" || exit
+  curl -o eget.sh https://zyedidia.github.io/eget.sh
+  bash eget.sh
+  rm eget.sh
+  popd || exit
 fi
 
 # Install must have packages
 pushd "$XDG_BIN_HOME" || exit
-eget ogham/exa --asset musl
-eget starship/starship --asset musl
-eget BurntSushi/ripgrep --asset musl
-eget sharkdp/fd --asset musl
-eget sharkdp/bat --asset musl
-eget mjakob-gh/build-static-tmux --asset ^stripped
-eget dandavison/delta --asset musl
-eget jesseduffield/lazygit
-eget dbrgn/tealdeer --asset musl
-eget direnv/direnv
-eget ajeetdsouza/zoxide --asset musl
-eget twpayne/chezmoi --asset musl_amd64
-eget sharkdp/hyperfine --asset musl
-eget junegunn/fzf
+./eget ogham/exa --asset musl
+./eget starship/starship --asset musl
+./eget BurntSushi/ripgrep --asset musl
+./eget sharkdp/fd --asset musl
+./eget sharkdp/bat --asset musl
+./eget mjakob-gh/build-static-tmux --asset ^stripped
+./eget dandavison/delta --asset musl
+./eget jesseduffield/lazygit
+./eget dbrgn/tealdeer --asset musl
+./eget direnv/direnv
+./eget ajeetdsouza/zoxide --asset musl
+./eget twpayne/chezmoi --asset musl_amd64
+./eget sharkdp/hyperfine --asset musl
+./eget junegunn/fzf
 rm tmux
 # shellcheck disable=2035
 mv *tmux tmux
