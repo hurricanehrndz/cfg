@@ -9,10 +9,10 @@
     <string>/bin/sh</string>
     <string>-c</string>
 {{- if and (eq .chezmoi.os "darwin") (ne .chezmoi.arch "arm64") }}
-    <string>GNUPGHOME=$HOME/.config/gnupg /usr/local/bin/gpgconf --launch gpg-agent</string>
+    <string>GNUPGHOME=$HOME/.gnupg /usr/local/bin/gpgconf --launch gpg-agent</string>
 {{- end  }}
 {{- if and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64") }}
-    <string>GNUPGHOME=$HOME/.config/gnupg /opt/homebrew/bin/gpgconf --launch gpg-agent</string>
+    <string>GNUPGHOME=$HOME/.gnupg /opt/homebrew/bin/gpgconf --launch gpg-agent</string>
 {{- end  }}
   </array>
   <key>RunAtLoad</key>
