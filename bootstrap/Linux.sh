@@ -43,7 +43,7 @@ rm tmux
 mv *tmux tmux
 popd || exit
 
-if [[ ! -d "$XDG_BIN_HOME/zsh" ]]; then
+if [[ ! -d "$XDG_DATA_HOME/zsh" ]]; then
   ZSH_INSTALL_SCRIPT="/run/user/$UID/zsh_install"
   curl -o "$ZSH_INSTALL_SCRIPT"  \
     -L  https://raw.githubusercontent.com/romkatv/zsh-bin/master/install
