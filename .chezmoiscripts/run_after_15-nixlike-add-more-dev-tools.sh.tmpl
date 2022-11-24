@@ -13,9 +13,7 @@ install_asdf_plugin() {
 
 # install asdf and plugins
 export ASDF_DATA_DIR="$HOME/.local/share/asdf"
-path=(${ASDF_DATA_DIR}/bin $path)
-export PATH
-source "$ASDF_DATA_DIR/lib/asdf.sh"
+source "$ASDF_DATA_DIR/asdf.sh"
 ASDF_PLUGINS=(terraform direnv python)
 for plugin in $ASDF_PLUGINS; do
   install_asdf_plugin "$plugin"
