@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env bash
 # shellcheck shell=bash
 
 XDG_CONFIG_HOME="$HOME/.config"
@@ -12,11 +12,9 @@ export XDG_DATA_HOME \
 
 
 mkdir -p "$XDG_BIN_HOME"
-# shellcheck disable=2206
-path=($XDG_BIN_HOME $path)
+PATH=$XDG_BIN_HOME:$PATH
 
-# shellcheck disable=2154
-if ! (( $+commands[eget] )); then
+if [[ ! -e "$XDG_BIN_HOME/eget" ]]; then
   pushd "$XDG_BIN_HOME" || exit
   curl -o eget.sh https://zyedidia.github.io/eget.sh
   bash eget.sh
