@@ -1,31 +1,21 @@
 {{- if (ne .chezmoi.os "windows") -}}
 #!/usr/bin/env zsh
 # vim: set ft=zsh :
-install_asdf_plugin() {
-  local plugin_name
-  plugin_name="$1"
-  if [[ ! -d "$ASDF_DATA_DIR/plugins/${plugin_name}" ]]; then
-    echo "Installing $plugin..."
-    asdf plugin-add $plugin_name
-    asdf install $plugin_name latest
-  fi
-}
 
-# install asdf and plugins
-export ASDF_DATA_DIR="$HOME/.local/share/asdf"
-source "$ASDF_DATA_DIR/asdf.sh"
-ASDF_PLUGINS=(terraform direnv python)
-for plugin in $ASDF_PLUGINS; do
-  install_asdf_plugin "$plugin"
-done
-if [[ ! -f "$HOME/.tool-versions" ]]; then
-  asdf global python latest
+if [[ "$(uname)" == "Linux" ]]; then
+  python="$(/bin/ls -1 /usr/bin/python3* | awk '/python3.[0-9]+$/{print}' | sort | tail -1)"
+else
+  python="python3"
+fi
+
+if ! type -a virtualenv &>/dev/null; then
+  $python -mpip install --user virtualenv
 fi
 
 NVIM_VENV="$HOME/.local/share/envs/nvim"
 if [[ ! -d "$NVIM_VENV" ]]; then
   mkdir -p "$NVIM_VENV"
-  asdf exec python -mvenv "$NVIM_VENV"
+  virtualenv -p $python "$NVIM_VENV"
   if [[ -f "$NVIM_VENV/bin/activate.sh" ]]; then
     source $NVIM_VENV/bin/activate.sh
   else

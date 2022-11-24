@@ -32,20 +32,6 @@ if [[ -n "$BREW" ]]; then
   fi
 fi
 
-ASDF_INIT="$HOME/.config/zsh/asdf/init.zsh"
-if [[ -f "$HOME/.local/share/asdf/lib/asdf.sh" ]]; then
-  mkdir -p "$(dirname $ASDF_INIT)"
-  cat <<'EOF' >| $ASDF_INIT
-# asdf
-export ASDF_DATA_DIR=${XDG_DATA_HOME}/asdf
-path=(${ASDF_DATA_DIR}/bin $path)
-fpath=(${ASDF_DATA_DIR}/completions $fpath)
-EOF
-  {
-    cat "$HOME/.local/share/asdf/lib/asdf.sh"
-  }>> "$ASDF_INIT"
-fi
-
 DIRENV_CONF="$HOME/.config/zsh/direnv/conf.zsh"
 if (( $+commands[direnv] )); then
   mkdir -p "$(dirname $DIRENV_CONF)"
