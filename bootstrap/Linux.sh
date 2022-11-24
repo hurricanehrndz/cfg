@@ -35,7 +35,7 @@ pushd "$XDG_BIN_HOME" || exit
 ./eget dbrgn/tealdeer --asset musl
 ./eget direnv/direnv
 ./eget ajeetdsouza/zoxide --asset musl
-./eget twpayne/chezmoi --asset musl_amd64
+./eget twpayne/chezmoi --asset musl --asset tar
 ./eget sharkdp/hyperfine --asset musl
 ./eget junegunn/fzf
 rm tmux
