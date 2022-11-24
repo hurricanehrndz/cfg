@@ -26,7 +26,7 @@ NVIM_VENV="$HOME/.local/share/envs/nvim"
 if [[ ! -d "$NVIM_VENV" ]]; then
   mkdir -p "$NVIM_VENV"
   asdf exec python -mvenv "$NVIM_VENV"
-  source $NVIM_VENV/bin/activate.sh
+  source $NVIM_VENV/bin/activate.sh || source $NVIM_VENV/bin/activate
   pip install neovim-remote
   ln -sf "$NVIM_VENV/bin/nvr" $XDG_BIN_HOME/
 fi
