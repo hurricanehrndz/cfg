@@ -21,12 +21,6 @@
     executable = true
     url = "https://raw.githubusercontent.com/hurricanehrndz/git-fat/master/git-fat"
     refreshPeriod = "168h"
-[".local/share/asdf"]
-    type = "archive"
-    url = "https://github.com/asdf-vm/asdf/archive/v0.10.1.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
 [".local/share/zsh/plugins/fzf"]
     type = "archive"
     url = "https://github.com/junegunn/fzf/archive/master.tar.gz"
