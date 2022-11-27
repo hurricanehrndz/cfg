@@ -38,7 +38,6 @@ eget_pkgs=(
   "sharkdp/hyperfine"
   "starship/starship"
   "twpayne/chezmoi"
-  "neovim/neovim"
 )
 
 function check_privileges() {
