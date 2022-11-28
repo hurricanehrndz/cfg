@@ -116,15 +116,17 @@ function install_system_dependecies() {
   if [[ $can_sudo ]]; then
     echo "Installing system deps..."
     export DEBIAN_FRONTEND=noninteractive
-    sudo apt-get -yq install \
-      npm \
-      nodejs \
-      zsh \
-      tmux \
-      build-essential \
-      podman \
-      podman-docker
-    newgrp lxd
+    if ! which podman; then
+      sudo apt-get -yq install \
+        npm \
+        nodejs \
+        zsh \
+        tmux \
+        build-essential \
+        podman \
+        podman-docker
+      echo "Exiting, run newgrp lxd before running again!"
+    fi
   fi
 }
 
