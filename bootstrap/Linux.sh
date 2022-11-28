@@ -13,7 +13,7 @@ export XDG_DATA_HOME \
 mkdir -p "$XDG_BIN_HOME"
 PATH=$XDG_BIN_HOME:$PATH
 CHEZMOI_DIR="$XDG_DATA_HOME/chezmoi"
-OS_CODENAME="$(cat /etc/os-release | awk -F= '/VERSION_CODENAME/{print $2}')"
+OS_CODENAME="$(awk -F= '/VERSION_CODENAME/{print $2}' /etc/os-release)"
 
 cargo_crates=(
   ripgrep
@@ -127,7 +127,7 @@ function install_cargo_crates() {
 function install_eget_pkgs() {
   for pkg in "${eget_pkgs[@]}"; do
     echo "Installing ${pkg}..."
-    eget "${pkg}"
+    [[ -f ${XDG_BIN_HOME}/${pkg} ]] || eget "${pkg}"
   done
 }
 
@@ -139,7 +139,7 @@ function clone_dotfiles() {
 
 function install_from_source() {
   for pkg in "${build_from_source[@]}"; do
-    docker run \
+    [[ -f "${XDG_BIN_HOME}/${pkg}" ]] || docker run \
       -v "$HOME":"$HOME" \
       -e HOST_HOME="$HOME" ubuntu:"$OS_CODENAME" \
       "$CHEZMOI_DIR/bootstrap/Linux/${pkg}/build.sh"
