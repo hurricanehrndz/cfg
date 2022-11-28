@@ -13,7 +13,7 @@ if ! type -a virtualenv &>/dev/null; then
 fi
 
 NVIM_VENV="$HOME/.local/share/envs/nvim"
-if [[ ! -d "$NVIM_VENV" ]]; then
+if [[ ! -d "$NVIM_VENV/bin" ]]; then
   mkdir -p "$NVIM_VENV"
   virtualenv -p $python "$NVIM_VENV"
   if [[ -f "$NVIM_VENV/bin/activate.sh" ]]; then

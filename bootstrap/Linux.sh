@@ -114,7 +114,14 @@ function install_system_dependecies() {
   if [[ $can_sudo ]]; then
     echo "Installing system deps..."
     export DEBIAN_FRONTEND=noninteractive
-    sudo apt-get -yq install zsh tmux build-essential podman podman-docker
+    sudo apt-get -yq install \
+      npm \
+      nodejs \
+      zsh \
+      tmux \
+      build-essential \
+      podman \
+      podman-docker
   fi
 }
 
