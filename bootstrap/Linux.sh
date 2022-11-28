@@ -172,7 +172,7 @@ function install_from_source() {
 }
 
 function install_python() {
-  if ! ls "$PYENV_ROOT/versions/*" &>/dev/null; then
+  if ! ls "$PYENV_ROOT/versions/"* &>/dev/null; then
     docker run \
       --rm \
       -v "$HOME":"$HOME" \

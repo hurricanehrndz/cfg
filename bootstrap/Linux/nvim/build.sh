@@ -24,5 +24,5 @@ git clone https://github.com/neovim/neovim /tmp/src/neovim
 
 cd /tmp/src/neovim || exit
 git checkout nightly
-make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="$HOST_HOME/.local/nvim"
-make CMAKE_INSTALL_PREFIX="$HOME/.local/nvim" install
+make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="$HOST_HOME/.local"
+make CMAKE_INSTALL_PREFIX="$HOME/.local" install
