@@ -122,6 +122,8 @@ function install_system_dependecies() {
         nodejs \
         zsh \
         tmux \
+        golang \
+        unzip \
         build-essential \
         podman \
         podman-docker
