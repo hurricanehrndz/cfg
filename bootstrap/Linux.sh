@@ -14,6 +14,8 @@ mkdir -p "$XDG_BIN_HOME"
 PATH=$XDG_BIN_HOME:$PATH
 CHEZMOI_DIR="$XDG_DATA_HOME/chezmoi"
 OS_CODENAME="$(awk -F= '/VERSION_CODENAME/{print $2}' /etc/os-release)"
+PYENV_ROOT="$HOME/.local/share/pyenv"
+PYTHON_VERSION="3.10"
 
 cargo_crates=(
   "ripgrep:rg"
@@ -122,6 +124,7 @@ function install_system_dependecies() {
       build-essential \
       podman \
       podman-docker
+    newgrp lxd
   fi
 }
 
@@ -131,7 +134,7 @@ function install_cargo_crates() {
     set -- $crate_info
     if [[ ! -f "${XDG_BIN_HOME}/${2}" ]]; then
       echo "Installing ${1}..."
-      docker run \
+      docker run --rm \
         -v "$HOME":"$HOME" \
         -e HOST_HOME="$HOME" docker.io/rust:latest \
         cargo install --root "$HOME/.local/" "${1}"
@@ -159,21 +162,21 @@ function clone_dotfiles() {
 function install_from_source() {
   for pkg in "${build_from_source[@]}"; do
     [[ -f "${XDG_BIN_HOME}/${pkg}" ]] || docker run \
+      --rm \
       -v "$HOME":"$HOME" \
       -e HOST_HOME="$HOME" ubuntu:"$OS_CODENAME" \
       "$CHEZMOI_DIR/bootstrap/Linux/${pkg}/build.sh"
   done
 }
 
-function check_for_prerequisite() {
-  required_binaries=(cargo)
-  for binary in "${required_binaries[@]}"; do
-    "Checking for exitence of $binary"
-    if ! type -a "$binary" &>/dev/null; then
-      echo "Missing pre-requisites.."
-      exit 1
-    fi
-  done
+function install_python() {
+  if ! ls "$PYENV_ROOT/versions/*" &>/dev/null; then
+    docker run \
+      --rm \
+      -v "$HOME":"$HOME" \
+      -e HOST_HOME="$HOME" ubuntu:"$OS_CODENAME" \
+      "$CHEZMOI_DIR/bootstrap/Linux/python/build.sh" install $PYTHON_VERSION
+  fi
 }
 
 function configure_gpg() {
@@ -192,8 +195,8 @@ check_privileges
 install_eget_pkg_manager
 install_system_dependecies
 clone_dotfiles
-check_for_prerequisite
 install_cargo_crates
 install_from_source
 install_eget_pkgs
+install_python
 configure_gpg

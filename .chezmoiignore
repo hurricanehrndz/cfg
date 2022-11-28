@@ -24,3 +24,10 @@ stylua.toml
 .local/share/asdf/repository
 .local/share/asdf/shims
 .local/share/asdf/tmp
+
+# pyenv
+.local/share/pyenv/versions
+.local/share/pyenv/shims
+.local/share/pyenv/src/Makefile
+.local/share/pyenv/src/*.o
+.local/share/pyenv/libexec/pyenv-realpath.*

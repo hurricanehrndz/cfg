@@ -2,26 +2,23 @@
 #!/usr/bin/env zsh
 # vim: set ft=zsh :
 
-if [[ "$(uname)" == "Linux" ]]; then
-  python="$(/bin/ls -1 /usr/bin/python3* | awk '/python3.[0-9]+$/{print}' | sort | tail -1)"
-else
-  python="python3"
-fi
-
-if ! type -a virtualenv &>/dev/null; then
-  $python -mpip install --user virtualenv
-fi
-
 NVIM_VENV="$HOME/.local/share/envs/nvim"
+PYENV_ROOT="$HOME/.local/share/pyenv"
+PYTHON_VERSION="3.10"
+
+full_python_version="$(/bin/ls -1 "$PYENV_ROOT/versions/" | sort | tail -1)"
+PATH="${PYENV_ROOT}/versions/${full_python_version}/bin/":$PATH
+
 if [[ ! -d "$NVIM_VENV/bin" ]]; then
   mkdir -p "$NVIM_VENV"
-  virtualenv -p $python "$NVIM_VENV"
+  python3 -mvenv "$NVIM_VENV"
   if [[ -f "$NVIM_VENV/bin/activate.sh" ]]; then
     source $NVIM_VENV/bin/activate.sh
   else
     source $NVIM_VENV/bin/activate
   fi
 
+  pip install -U pip
   pip install neovim-remote
   ln -sf "$NVIM_VENV/bin/nvr" $XDG_BIN_HOME/
 fi
