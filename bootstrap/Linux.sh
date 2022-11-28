@@ -13,6 +13,7 @@ export XDG_DATA_HOME \
 mkdir -p "$XDG_BIN_HOME"
 PATH=$XDG_BIN_HOME:$PATH
 CHEZMOI_DIR="$XDG_DATA_HOME/chezmoi"
+OS_CODENAME="$(cat /etc/os-release | awk -F= '/VERSION_CODENAME/{print $2}')"
 
 cargo_crates=(
   ripgrep
@@ -32,7 +33,6 @@ eget_pkgs=(
   "ajeetdsouza/zoxide"
   "jesseduffield/lazygit"
   "junegunn/fzf"
-  "neovim/neovim"
   "sharkdp/bat"
   "sharkdp/fd"
   "sharkdp/hyperfine"
@@ -58,7 +58,7 @@ cat <<EOF > ~/.eget.toml
   quiet = false
   show_hash = false
   upgrade_only = true
-  target = "~/.local/bin"
+  target = "$HOME/.local/bin"
 
 ["dandavison/delta"]
   asset_filters = [ "linux", ".tar.gz", "^musl" ]
@@ -68,15 +68,16 @@ cat <<EOF > ~/.eget.toml
 
 ["ClementTsang/bottom"]
   asset_filters = [ "linux", ".tar.gz" ]
+  file = "btm"
 
 ["Peltoche/lsd"]
-  asset_filters = [ "linux", ".tar.gz" ]
+  asset_filters = [ "linux", ".tar.gz", "^musl" ]
 
 ["ajeetdsouza/zoxide"]
   asset_filters = [ "linux", ".tar.gz" ]
 
 ["jesseduffield/lazygit"]
-  asset_filters = [ "linux", ".tar.gz" ]
+  asset_filters = [ "Linux", ".tar.gz" ]
 
 ["junegunn/fzf"]
   asset_filters = [ "linux", ".tar.gz" ]
@@ -140,7 +141,7 @@ function install_from_source() {
   for pkg in "${build_from_source[@]}"; do
     docker run \
       -v "$HOME":"$HOME" \
-      -e HOST_HOME="$HOME" ubuntu:latest \
+      -e HOST_HOME="$HOME" ubuntu:"$OS_CODENAME" \
       "$CHEZMOI_DIR/bootstrap/Linux/${pkg}/build.sh"
   done
 }
