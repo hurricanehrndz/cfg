@@ -16,28 +16,28 @@ CHEZMOI_DIR="$XDG_DATA_HOME/chezmoi"
 OS_CODENAME="$(awk -F= '/VERSION_CODENAME/{print $2}' /etc/os-release)"
 
 cargo_crates=(
-  ripgrep
-  tealdeer
+  "ripgrep:rg"
+  "tealdeer:tldr"
 )
 
 build_from_source=(
-  neovim
+  nvim
   tmux
 )
 
 eget_pkgs=(
-  "dandavison/delta"
-  "bootandy/dust"
-  "ClementTsang/bottom"
-  "Peltoche/lsd"
-  "ajeetdsouza/zoxide"
-  "jesseduffield/lazygit"
-  "junegunn/fzf"
-  "sharkdp/bat"
-  "sharkdp/fd"
-  "sharkdp/hyperfine"
-  "starship/starship"
-  "twpayne/chezmoi"
+  "dandavison/delta:delta"
+  "bootandy/dust:dust"
+  "ClementTsang/bottom:btm"
+  "Peltoche/lsd:lsd"
+  "ajeetdsouza/zoxide:zoxide"
+  "jesseduffield/lazygit:lazygit"
+  "junegunn/fzf:fzf"
+  "sharkdp/bat:bat"
+  "sharkdp/fd:fd"
+  "sharkdp/hyperfine:hyperfine"
+  "starship/starship:starship"
+  "twpayne/chezmoi:chezmoi"
 )
 
 function check_privileges() {
@@ -114,20 +114,32 @@ function install_system_dependecies() {
   if [[ $can_sudo ]]; then
     echo "Installing system deps..."
     export DEBIAN_FRONTEND=noninteractive
-    sudo apt-get -yq install zsh tmux build-essential cargo podman podman-docker
+    sudo apt-get -yq install zsh tmux build-essential podman podman-docker
   fi
 }
 
 function install_cargo_crates() {
-  for crate in "${cargo_crates[@]}"; do
-    cargo install "${crate}"
+  for crate_info in "${cargo_crates[@]}"; do
+    IFS=":"
+    set -- $crate_info
+    if [[ ! -f "${XDG_BIN_HOME}/${2}" ]]; then
+      echo "Installing ${1}..."
+      docker run \
+        -v "$HOME":"$HOME" \
+        -e HOST_HOME="$HOME" docker.io/rust:latest \
+        cargo install --root "$HOME/.local/" "${1}"
+    fi
   done
 }
 
 function install_eget_pkgs() {
-  for pkg in "${eget_pkgs[@]}"; do
-    echo "Installing ${pkg}..."
-    [[ -f ${XDG_BIN_HOME}/${pkg} ]] || eget "${pkg}"
+  for pkg_info in "${eget_pkgs[@]}"; do
+    IFS=":"
+    set -- $pkg_info
+    if [[ ! -f "${XDG_BIN_HOME}/${2}" ]]; then
+      echo "Installing ${pkg}..."
+      eget "${1}"
+    fi
   done
 }
 
@@ -164,5 +176,6 @@ install_eget_pkg_manager
 install_system_dependecies
 clone_dotfiles
 check_for_prerequisite
+install_cargo_crates
 install_from_source
 install_eget_pkgs
