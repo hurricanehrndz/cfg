@@ -169,6 +169,16 @@ function check_for_prerequisite() {
   done
 }
 
+function configure_gpg() {
+  KEYS=("21D77144BCC519FD64EAA2C0919DA52AC863D46D" "C68DA2648035BCCE55710E3E0D2565B7C6058A69")
+  for key in "${KEYS[@]}"; do
+    gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$key"
+    echo "$key:6:" | gpg --import-ownertrust
+  done
+  gpg --card-status &> /dev/null
+  gpg --list-secret-keys &> /dev/null
+}
+
 
 ###  Main ###
 check_privileges
@@ -179,3 +189,4 @@ check_for_prerequisite
 install_cargo_crates
 install_from_source
 install_eget_pkgs
+configure_gpg
