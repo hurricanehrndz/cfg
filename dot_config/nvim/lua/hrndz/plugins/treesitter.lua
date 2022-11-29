@@ -9,5 +9,5 @@ ts_configs.setup({
   indent = { enable = true },
   highlight = { enable = true, disable = { "nix" } },
   additional_vim_regex_highlighting = false,
-  rainbow = { enable = true, disable = { "bash", "nix" } },
+  rainbow = { enable = true,  },
 })
