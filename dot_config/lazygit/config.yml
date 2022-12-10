@@ -10,12 +10,6 @@ git:
   autorefresh: false
 
 keybinding:
-  universal:
-    files:
-      commitChanges: "C"
-      commitChangesWithEditor: "c"
-
-keybinding:
   files:
-    commitChanges: 'C'
-    commitChangesWithEditor: 'c'
+    commitChanges: "C"
+    commitChangesWithEditor: "c"
