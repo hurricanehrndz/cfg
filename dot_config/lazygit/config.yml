@@ -1,15 +1,11 @@
 ---
-promptToReturnFromSubprocess: false
-
-os:
-  editCommand: "nvr -s -l" # see 'Configuring File Editing' section
-  editCommandTemplate: "{{editor}} +{{line}} -- {{filename}}"
-  openCommand: "nvr -s -l {{filename}}"
-
 git:
-  autorefresh: false
-
+  autoFetch: false
+  autoRefresh: false
+gui:
+  nerdFontsVersion: '3'
 keybinding:
   files:
-    commitChanges: "C"
-    commitChangesWithEditor: "c"
+    commitChanges: C
+    commitChangesWithEditor: c
+promptToReturnFromSubprocess: false
