@@ -1,36 +1,95 @@
-[".local/share/zsh/plugins/fast-syntax-highlighting"]
-    type = "archive"
-    url = "https://github.com/z-shell/F-Sy-H/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
-[".local/share/zsh/plugins/zsh-completions"]
-    type = "archive"
-    url = "https://github.com/zsh-users/zsh-completions/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
-[".local/share/zsh/plugins/zsh-autosuggestions"]
-    type = "archive"
-    url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
-[".local/bin/git-fat"]
+[".cache/zim/zimfw.zsh"]
     type = "file"
-    executable = true
-    url = "https://raw.githubusercontent.com/hurricanehrndz/git-fat/master/git-fat"
-    refreshPeriod = "168h"
-[".local/share/zsh/plugins/fzf"]
-    type = "archive"
-    url = "https://github.com/junegunn/fzf/archive/master.tar.gz"
+    url = "https://raw.githubusercontent.com/zimfw/zimfw/refs/heads/master/zimfw.zsh"
     exact = true
+    refreshPeriod = "168h"
+[".local/share/tools/gh"]
+    type = "archive"
+    url = {{ gitHubLatestReleaseAssetURL "cli/cli" "gh_*_linux_amd64.tar.gz" | quote }}
     stripComponents = 1
     refreshPeriod = "168h"
-    include = ["*/shell/**"]
-[".local/share/pyenv"]
+[".local/bin/tldr"]
+    type = "file"
+    url = {{ gitHubLatestReleaseAssetURL "tealdeer-rs/tealdeer" "tealdeer-linux-x86_64-musl" | quote }}
+    refreshPeriod = "168h"
+[".local/bin/zellij"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "zellij-org/zellij" "zellij-x86_64-unknown-linux-musl.tar.gz" | quote }}
+    executable = true
+    path = "zellij"
+    refreshPeriod = "168h"
+[".local/bin/eza"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "eza-community/eza" "eza_x86_64-unknown-linux-gnu.tar.gz" | quote }}
+    executable = true
+    path = "./eza"
+    refreshPeriod = "168h"
+[".local/share/tools/delta"]
     type = "archive"
-    url = "https://github.com/pyenv/pyenv/archive/master.tar.gz"
-    exact = true
+    url = {{ gitHubLatestReleaseAssetURL "dandavison/delta" "delta-*-x86_64-unknown-linux-musl.tar.gz" | quote }}
+    stripComponents = 1
+    refreshPeriod = "168h"
+[".local/share/tools/dust"]
+    type = "archive"
+    url = {{  gitHubLatestReleaseAssetURL "bootandy/dust" "dust-*-x86_64-unknown-linux-musl.tar.gz" | quote }}
+    stripComponents = 1
+    refreshPeriod = "168h"
+[".local/share/tools/bottom"]
+    type = "archive"
+    url = {{  gitHubLatestReleaseAssetURL "ClementTsang/bottom" "bottom_x86_64-unknown-linux-musl.tar.gz" | quote }}
+    refreshPeriod = "168h"
+[".local/share/tools/zoxide"]
+    type = "archive"
+    url = {{  gitHubLatestReleaseAssetURL "ajeetdsouza/zoxide" "zoxide-*-x86_64-unknown-linux-musl.tar.gz" | quote }}
+    refreshPeriod = "168h"
+[".local/share/tools/fzf"]
+    type = "archive"
+    url = {{  gitHubLatestReleaseAssetURL "junegunn/fzf" "fzf-*-linux_amd64.tar.gz " | quote }}
+    refreshPeriod = "168h"
+[".local/share/tools/bat"]
+    type = "archive"
+    url = {{  gitHubLatestReleaseAssetURL "sharkdp/bat" "bat-v*-x86_64-unknown-linux-musl.tar.gz" | quote }}
+    stripComponents = 1
+    refreshPeriod = "168h"
+[".local/share/tools/fd"]
+    type = "archive"
+    url = {{  gitHubLatestReleaseAssetURL "sharkdp/fd" "fd-v*-x86_64-unknown-linux-musl.tar.gz" | quote }}
+    stripComponents = 1
+    refreshPeriod = "168h"
+[".local/share/tools/hyperfine"]
+    type = "archive"
+    url = {{  gitHubLatestReleaseAssetURL "sharkdp/hyperfine" "hyperfine-v*-x86_64-unknown-linux-musl.tar.gz" | quote }}
+    stripComponents = 1
+    refreshPeriod = "168h"
+[".local/share/tools/starship"]
+    type = "archive"
+    url = {{  gitHubLatestReleaseAssetURL "starship/starship" "starship-x86_64-unknown-linux-musl.tar.gz" | quote }}
+    refreshPeriod = "168h"
+[".local/share/tools/ripgrep"]
+    type = "archive"
+    url = {{ gitHubLatestReleaseAssetURL "BurntSushi/ripgrep" "ripgrep-*-x86_64-unknown-linux-musl.tar.gz" | quote }}
+    stripComponents = 1
+    refreshPeriod = "168h"
+[".local/share/tools/difftastic"]
+    type = "archive"
+    url = {{ gitHubLatestReleaseAssetURL "Wilfred/difftastic" "difft-x86_64-unknown-linux-musl.tar.gz" | quote }}
+    refreshPeriod = "168h"
+[".local/share/tools/mise"]
+    type = "archive"
+    url = {{ gitHubLatestReleaseAssetURL "jdx/mise" "mise-v*-linux-x64-musl.tar.gz" | quote }}
+    stripComponents = 1
+    refreshPeriod = "168h"
+[".local/share/tools/sd"]
+    type = "archive"
+    url = {{ gitHubLatestReleaseAssetURL "chmln/sd" "sd-*-x86_64-unknown-linux-musl.tar.gz" | quote }}
+    stripComponents = 1
+    refreshPeriod = "168h"
+[".local/share/tools/tokei"]
+    type = "archive"
+    url = {{ gitHubLatestReleaseAssetURL "XAMPPRocky/tokei" "tokei-x86_64-unknown-linux-musl.tar.gz" | quote }}
+    refreshPeriod = "168h"
+[".config/tmux/plugins/tpm"]
+    type = "archive"
+    url = "https://github.com/tmux-plugins/tpm/archive/refs/heads/master.tar.gz"
     stripComponents = 1
     refreshPeriod = "168h"
