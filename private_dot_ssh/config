@@ -1,8 +1,0 @@
-Host *
-  ControlMaster auto
-  ControlPath ~/.ssh/masters/%h@%p
-  ControlPersist 10m
-
-Host dev
-  HostName dev33-uswest1adevc
-  ForwardAgent yes

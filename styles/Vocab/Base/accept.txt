@@ -1,6 +1,0 @@
-[Mm]unki
-[Pp]kg[s]
-Jamf
-Zettelkasten
-virtio
-[Vv]irt-manager
