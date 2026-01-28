@@ -1,4 +1,4 @@
-[".cache/zim/zimfw.zsh"]
+[".config/zsh/zim/zimfw.zsh"]
     type = "file"
     url = "https://raw.githubusercontent.com/zimfw/zimfw/refs/heads/master/zimfw.zsh"
     exact = true

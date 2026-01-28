@@ -1,7 +1,15 @@
 # shellcheck shell=bash
+skip_global_compinit=1
+
 ZDOTDIR=$HOME/.config/zsh
 export ZDOTDIR
 
-# Start compinit in my zshrc
-# shellcheck disable=SC2034
-# skip_global_compinit=1
+ZIM_HOME=${ZDOTDIR:-${HOME}}/zim
+export ZIM_HOME
+
+ZIM_CONFIG_FILE=~/.config/zsh/zimrc
+export ZIM_CONFIG_FILE
+
+if [[ -f  $HOME/.config/zsh/zsh_vars ]]; then
+  source $HOME/.config/zsh/zsh_vars
+fi

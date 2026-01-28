@@ -1,71 +1,19 @@
-# vim: ft=zsh :
 # shellcheck shell=bash disable=SC1090,SC2296
 
-# make globally unique
-# shellcheck disable=2034
-typeset -gU cdpath fpath mailpath PATH path config_files
-HOMEBREW_BUNDLE_FILE="$HOME/.config/brewfile/Brewfile"
-ZSH_AUTOSUGGEST_USE_ASYNC=1
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-XDG_CONFIG_HOME="$HOME/.config"
-XDG_DATA_HOME="$HOME/.local/share"
-XDG_CACHE_HOME="$HOME/.cache"
-XDG_BIN_HOME="$HOME/.local/bin"
-ZK_NOTEBOOK_DIR="$HOME/src/me/notes"
-export XDG_DATA_HOME \
-  XDG_CONFIG_HOME \
-  XDG_CACHE_HOME \
-  XDG_BIN_HOME \
-  HOMEBREW_BUNDLE_FILE \
-  ZK_NOTEBOOK_DIR
-
-# tmux SSH_AUTH_SOCK support via ssh/rc
-[[ -S $HOME/.ssh/auth_sock ]] && export SSH_AUTH_SOCK=$HOME/.ssh/auth_sock
-
-# XDG bin path
-# shellcheck disable=SC2206
-path=("$XDG_BIN_HOME" $path)
-
-# Some configuration are compiled and initialized by chezmoi
-# These can be found in .chezmoiscripts/run_after_40-optimize-zsh.sh.tmpl
-# load up inits, confs and paths, i.e homebrew/homebrew-file configs
-config_files=("$ZDOTDIR"/*/*.zsh)
-
-for file in ${(M)config_files:#*/path.zsh}; do
-  source "$file"
-done
-
-# load init files -- completion paths initialized here
-for file in ${(M)config_files:#*/init.zsh}; do
-  source "$file"
-done
-
-plugins=(
-  "zsh-utils/editor"
-  "zsh-utils/history"
-  "zsh-utils/directory"
-  "zsh-utils/completion"
-  "fast-syntax-highlighting"
-  "zsh-autosuggestions"
-)
-for plugin in "${plugins[@]}"; do
-  source "${XDG_DATA_HOME}/zsh/plugins/${plugin}"/*.plugin.zsh
-done
-
-# load conf files
-for file in ${(M)config_files:#*/conf.zsh}; do
-  source "$file"
-done
-unset config_files
-
-# Load environment variables from a file; this approach allows me to not
-# commit secrets like API keys to Git
-# machine-specific configuraion
-SYSTEM_ENV="$HOME/.local/share/hrndz/env"
-[[ -e "$SYSTEM_ENV" ]] && source "$SYSTEM_ENV"
-unset SYSTEM_ENV
-
-if [[ "$(uname)" == "Linux" ]]; then
-  export LC_ALL="en_US.UTF-8"
-  export LC_CTYPE="en_US.UTF-8"
+# Install missing modules and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init
 fi
+
+# Start zim
+source ${ZIM_HOME}/init.zsh
+
+# Compile ZIM init if needed
+if [[ ! -f "$ZIM_HOME/init.zsh.zwc" || "$ZIM_HOME/init.zsh" -nt "$ZIM_HOME/init.zsh.zwc" ]]; then
+  zcompile "$ZIM_HOME/init.zsh"
+fi
+
+# Async mode for autocompletion
+ZSH_AUTOSUGGEST_USE_ASYNC=true
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+ZSH_HIGHLIGHT_MAXLENGTH=100
