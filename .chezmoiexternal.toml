@@ -44,7 +44,7 @@
     refreshPeriod = "168h"
 [".local/share/tools/fzf"]
     type = "archive"
-    url = {{  gitHubLatestReleaseAssetURL "junegunn/fzf" "fzf-*-linux_amd64.tar.gz " | quote }}
+    url = {{  gitHubLatestReleaseAssetURL "junegunn/fzf" "fzf-*-linux_amd64.tar.gz" | quote }}
     refreshPeriod = "168h"
 [".local/share/tools/bat"]
     type = "archive"
