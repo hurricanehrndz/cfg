@@ -3,5 +3,6 @@
 ## Bootstrapping a new system
 
 ```sh
-eval  "$(curl -fsSL https://raw.githubusercontent.com/hurricanehrndz/cfg/main/bootstrap/$(uname -s).sh)"
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
+chezmoi apply
 ```
