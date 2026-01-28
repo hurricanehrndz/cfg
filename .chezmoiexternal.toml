@@ -84,10 +84,6 @@
     url = {{ gitHubLatestReleaseAssetURL "chmln/sd" "sd-*-x86_64-unknown-linux-musl.tar.gz" | quote }}
     stripComponents = 1
     refreshPeriod = "168h"
-[".local/share/tools/tokei"]
-    type = "archive"
-    url = {{ gitHubLatestReleaseAssetURL "XAMPPRocky/tokei" "tokei-x86_64-unknown-linux-musl.tar.gz" | quote }}
-    refreshPeriod = "168h"
 [".config/tmux/plugins/tpm"]
     type = "archive"
     url = "https://github.com/tmux-plugins/tpm/archive/refs/heads/master.tar.gz"
