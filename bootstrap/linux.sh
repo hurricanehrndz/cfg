@@ -31,8 +31,8 @@ gh auth login
 GITHUB_TOKEN=$(gh auth token)
 export GITHUB_TOKEN
 
-echo "Getting chemzoi config..."
 if [[ ! -d "$HOME/.local/share/chezmoi" ]]; then
+    echo "Getting chemzoi config..."
     chezmoi init --apply "git@github.com:hurricanehrndz/cfg.git"
 fi
 
