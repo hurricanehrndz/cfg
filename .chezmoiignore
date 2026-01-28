@@ -1,33 +1,9 @@
-{{ if ne .chezmoi.os "darwin" }}
-Library
-Library/**
-.local/share/hrndz/
-{{ end }}
-
 bootstrap/
 sensitive/
-dot_local/share/chezmoi_scripts/
 README.md
 LICENSE
 stylua.toml
 
-# symlinks
-#.config/brewfile/src.*
 
 # zsh complied files
 **/*.zwc
-
-# asdf
-.local/share/asdf/plugins
-.local/share/asdf/downloads
-.local/share/asdf/installs
-.local/share/asdf/repository
-.local/share/asdf/shims
-.local/share/asdf/tmp
-
-# pyenv
-.local/share/pyenv/versions
-.local/share/pyenv/shims
-.local/share/pyenv/src/Makefile
-.local/share/pyenv/src/*.o
-.local/share/pyenv/libexec/pyenv-realpath.*
